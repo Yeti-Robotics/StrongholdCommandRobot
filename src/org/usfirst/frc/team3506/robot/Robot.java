@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3506.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3506.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.GearShift;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,6 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static DriveTrain driveTrain;
+	public static GearShift gearShift;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -32,6 +35,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	gearShift = new GearShift();
 		driveTrain = new DriveTrain();
     	oi = new OI();
         chooser = new SendableChooser();

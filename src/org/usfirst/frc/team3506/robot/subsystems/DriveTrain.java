@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
+import org.usfirst.frc.team3506.robot.commands.UserDriveCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
@@ -25,9 +26,14 @@ public class DriveTrain extends Subsystem {
 		right2 = new CANTalon(RobotMap.RIGHT_2_CAN_TALON_ID);
 		right3 = new CANTalon(RobotMap.RIGHT_3_CAN_TALON_ID);
 		leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_PORTS[0], RobotMap.LEFT_ENCODER_PORTS[1]);
-		rightEncoder = new Encoder(RobotMap.LEFT_ENCODER_PORTS[2], RobotMap.LEFT_ENCODER_PORTS[3]);
+		rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_PORTS[0], RobotMap.RIGHT_ENCODER_PORTS[1]);
 		leftEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
 		rightEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
+	}
+	
+	public void joystickDrive(double left, double right){
+		moveLeftTrain(left);
+		moveRightTrain(right);
 	}
 	
 	public void driveStraight(double speed){
@@ -93,6 +99,7 @@ public class DriveTrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new UserDriveCommand());
     }
 }
 
