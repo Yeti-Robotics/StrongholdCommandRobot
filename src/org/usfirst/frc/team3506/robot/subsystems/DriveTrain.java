@@ -3,8 +3,11 @@ package org.usfirst.frc.team3506.robot.subsystems;
 import org.usfirst.frc.team3506.robot.RobotMap;
 import org.usfirst.frc.team3506.robot.commands.UserDriveCommand;
 
+import com.ni.vision.NIVision.CalibrationThumbnailType;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,23 +20,39 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 	private CANTalon left1, left2, left3, right1, right2, right3;
 	private Encoder leftEncoder, rightEncoder;
+	private RobotDrive robotDrive;
 	
 	public DriveTrain() {
 		left1 = new CANTalon(RobotMap.LEFT_1_CAN_TALON_ID);
 		left2 = new CANTalon(RobotMap.LEFT_2_CAN_TALON_ID);
 		left3 = new CANTalon(RobotMap.LEFT_3_CAN_TALON_ID);
+		left2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		left3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		left2.set(RobotMap.LEFT_1_CAN_TALON_ID);
+		left3.set(RobotMap.LEFT_1_CAN_TALON_ID);
+		
 		right1 = new CANTalon(RobotMap.RIGHT_1_CAN_TALON_ID);
 		right2 = new CANTalon(RobotMap.RIGHT_2_CAN_TALON_ID);
 		right3 = new CANTalon(RobotMap.RIGHT_3_CAN_TALON_ID);
+		right2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		right3.changeControlMode(CANTalon.TalonControlMode.Follower);
+		right2.set(RobotMap.RIGHT_1_CAN_TALON_ID);
+		right3.set(RobotMap.RIGHT_1_CAN_TALON_ID);
+		
+		robotDrive = new RobotDrive(left1, right1);		
+		
 		leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_PORTS[0], RobotMap.LEFT_ENCODER_PORTS[1]);
 		rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_PORTS[0], RobotMap.RIGHT_ENCODER_PORTS[1]);
 		leftEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
 		rightEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
 	}
 	
-	public void joystickDrive(double left, double right){
-		moveLeftTrain(left);
-		moveRightTrain(right);
+	public void tankDrive(double left, double right){
+		robotDrive.tankDrive(left, right);
+	}
+	
+	public void arcadeDrive(double left, double right){
+		robotDrive.arcadeDrive(left, right);
 	}
 	
 	public void driveStraight(double speed){
@@ -43,14 +62,10 @@ public class DriveTrain extends Subsystem {
 
 	public void moveLeftTrain(double speed){
 		left1.set(speed);
-		left2.set(speed);
-		left3.set(speed);
 	}
 	
 	public void moveRightTrain(double speed){
 		right1.set(speed);
-		right2.set(speed);
-		right3.set(speed);
 	}
 	
 	public void resetEncoders(){
