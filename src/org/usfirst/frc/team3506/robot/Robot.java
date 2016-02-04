@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
 	public static DriveTrain driveTrain;
 	public static GearShift gearShift;
 	public static BallGrabber ballGrabber;
@@ -31,8 +30,18 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	Command autonomousCommand;
+	public static SendableChooser gamepadChooser;
+	public static SendableChooser tankDriveChooser;
 	
     public void robotInit() {
+    	gamepadChooser = new SendableChooser();
+    	tankDriveChooser = new SendableChooser();
+    	tankDriveChooser.addDefault("Tank Drive", new Boolean(true));
+    	tankDriveChooser.addObject("Arcade Drive", new Boolean(false));
+    	gamepadChooser.addDefault("Gamepad Activated", new Boolean(true));
+    	gamepadChooser.addObject("Joysticks Activated", new Boolean(false));
+    	SmartDashboard.putData("Drive Chooser", tankDriveChooser);
+    	SmartDashboard.putData("Controller Chooser", gamepadChooser);
     	shooter = new Shooter();
     	gearShift = new GearShift();
 		driveTrain = new DriveTrain();

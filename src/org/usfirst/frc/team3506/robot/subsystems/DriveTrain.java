@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
+import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.UserDriveCommand;
+import org.usfirst.frc.team3506.robot.commands.UserArcadeDriveCommand;
+import org.usfirst.frc.team3506.robot.commands.UserTankDriveCommand;
 
 import com.ni.vision.NIVision.CalibrationThumbnailType;
 
@@ -114,7 +116,11 @@ public class DriveTrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new UserDriveCommand());
+    	if((Boolean)Robot.tankDriveChooser.getSelected()){
+    		setDefaultCommand(new UserTankDriveCommand());
+    	} else{
+    		setDefaultCommand(new UserArcadeDriveCommand());
+    	}
     }
 }
 

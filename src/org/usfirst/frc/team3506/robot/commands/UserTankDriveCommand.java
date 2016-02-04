@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class UserDriveCommand extends Command {
+public class UserTankDriveCommand extends Command {
 
-    public UserDriveCommand() {
+    public UserTankDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
@@ -21,7 +21,11 @@ public class UserDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
+    	if(!(Boolean)Robot.gamepadChooser.getSelected()){
+    		Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
+    	} else{
+    		Robot.driveTrain.tankDrive(Robot.oi.getGamepadLeftY(), Robot.oi.getGamepadRightY());
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
