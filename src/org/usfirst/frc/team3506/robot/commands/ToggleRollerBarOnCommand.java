@@ -5,20 +5,16 @@ import org.usfirst.frc.team3506.robot.Robot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ToggleRollerBarReverseCommand extends Command {
+public class ToggleRollerBarOnCommand extends Command {
 
-    public ToggleRollerBarReverseCommand() {
+    public ToggleRollerBarOnCommand() {
     	requires(Robot.rollerBar);
     }
 
     protected void initialize() {}
 
     protected void execute() {
-    	if(Robot.rollerBar.rollerBar.get() == Relay.Value.kReverse) {
-    		Robot.rollerBar.stopRollerBar();
-    	} else {
-    		Robot.rollerBar.reverseRollerBar();
-    	}
+    	Robot.oi.rollersOn = !Robot.oi.rollersOn;
     }
 
     protected boolean isFinished() {

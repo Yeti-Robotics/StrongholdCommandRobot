@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
+import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
+import org.usfirst.frc.team3506.robot.commands.UserShooterControlCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -13,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Shooter extends Subsystem {
+public class ShooterSubsystem extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -23,7 +25,7 @@ public class Shooter extends Subsystem {
 	private DigitalInput lowerLimitSwitch;
 	private boolean calibrated;
 	
-	public Shooter(){
+	public ShooterSubsystem(){
 		this.shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
 		this.spikeShooterLeft = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_LEFT);
 		this.spikeShooterRight = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_RIGHT);
@@ -79,9 +81,14 @@ public class Shooter extends Subsystem {
 		return this.calibrated;
 	}
 	
+	public void userControl(double val){
+		this.shooterTilt.set(val);
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new UserShooterControlCommand());
     }
 }
 

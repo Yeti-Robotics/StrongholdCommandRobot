@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class GearShift extends Subsystem {
+public class GearShiftSubsystem extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private Solenoid leftSolenoid, rightSolenoid;
 	
-	public GearShift(){
+	public GearShiftSubsystem(){
 		leftSolenoid = new Solenoid(RobotMap.SOLENOID_PORTS[0]);
 		rightSolenoid = new Solenoid(RobotMap.SOLENOID_PORTS[1]);
 	}

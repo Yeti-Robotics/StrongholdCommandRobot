@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftDown extends Command {
+public class UserShooterControlCommand extends Command {
 
-    public ShiftDown() {
+    public UserShooterControlCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearShift);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class ShiftDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearShift.shiftDown();
+    	Robot.shooter.userControl(Robot.oi.getGamepadLeftX());
     }
 
     // Make this return true when this Command no longer needs to run execute()

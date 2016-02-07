@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot.commands;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -22,9 +23,9 @@ public class UserTankDriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(!(Boolean)Robot.gamepadChooser.getSelected()){
-    		Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
+    		Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightY());
     	} else{
-    		Robot.driveTrain.tankDrive(Robot.oi.getGamepadLeftY(), Robot.oi.getGamepadRightY());
+    		Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightY());
     	}
     }
 

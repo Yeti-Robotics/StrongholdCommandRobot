@@ -3,6 +3,7 @@ package org.usfirst.frc.team3506.robot.commands;
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
@@ -31,6 +32,7 @@ public class CalibrateShooterCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Scheduler.getInstance().add(new UserShooterControlCommand());
     }
 
     // Called when another command which requires one or more of the same

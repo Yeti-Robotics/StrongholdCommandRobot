@@ -1,18 +1,20 @@
 package org.usfirst.frc.team3506.robot.commands;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class ShiftDown extends Command {
+public class ToggleCaptureModeCommand extends Command {
 
-    public ShiftDown() {
+    public ToggleCaptureModeCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearShift);
+    	requires(null);
     }
 
     // Called just before this Command runs the first time
@@ -21,12 +23,13 @@ public class ShiftDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearShift.shiftDown();
+    	Robot.captureMode = !Robot.captureMode;
+    	SmartDashboard.putBoolean(RobotMap.CAPTURE_MODE_ID, Robot.captureMode);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

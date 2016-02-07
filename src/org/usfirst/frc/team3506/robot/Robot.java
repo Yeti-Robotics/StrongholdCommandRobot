@@ -1,16 +1,17 @@
 
 package org.usfirst.frc.team3506.robot;
 
-import org.usfirst.frc.team3506.robot.subsystems.BallGrabber;
-import org.usfirst.frc.team3506.robot.subsystems.RollerBar;
+import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team3506.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team3506.robot.subsystems.Shooter;
-import org.usfirst.frc.team3506.robot.subsystems.GearShift;
+import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ShooterSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.GearShiftSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,18 +23,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static DriveTrain driveTrain;
-	public static GearShift gearShift;
-	public static BallGrabber ballGrabber;
-	public static RollerBar rollerBar;
-	public static Shooter shooter;
+	public static DriveTrainSubsystem driveTrain;
+	public static GearShiftSubsystem gearShift;
+	public static ArmSubsystem ballGrabber;
+	public static RollerBarSubsystem rollerBar;
+	public static ShooterSubsystem shooter;
+	public static ClimberSubsystem climber;
 	public static OI oi;
+	public static boolean captureMode;
 	
 	Command autonomousCommand;
 	public static SendableChooser gamepadChooser;
 	public static SendableChooser tankDriveChooser;
 	
     public void robotInit() {
+    	captureMode = false;
+    	SmartDashboard.putBoolean(RobotMap.CAPTURE_MODE_ID, captureMode);
     	gamepadChooser = new SendableChooser();
     	tankDriveChooser = new SendableChooser();
     	tankDriveChooser.addDefault("Tank Drive", new Boolean(true));
@@ -42,11 +47,12 @@ public class Robot extends IterativeRobot {
     	gamepadChooser.addObject("Joysticks Activated", new Boolean(false));
     	SmartDashboard.putData("Drive Chooser", tankDriveChooser);
     	SmartDashboard.putData("Controller Chooser", gamepadChooser);
-    	shooter = new Shooter();
-    	gearShift = new GearShift();
-		driveTrain = new DriveTrain();
-    	ballGrabber = new BallGrabber();
-    	rollerBar = new RollerBar();
+    	shooter = new ShooterSubsystem();
+    	gearShift = new GearShiftSubsystem();
+		driveTrain = new DriveTrainSubsystem();
+    	ballGrabber = new ArmSubsystem();
+    	rollerBar = new RollerBarSubsystem();
+    	climber = new ClimberSubsystem();
 		oi = new OI();
     }
 	
@@ -64,6 +70,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void teleopInit() {

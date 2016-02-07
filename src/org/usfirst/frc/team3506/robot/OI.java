@@ -1,6 +1,10 @@
 package org.usfirst.frc.team3506.robot;
 
 
+import org.usfirst.frc.team3506.robot.commands.CalibrateShooterCommand;
+import org.usfirst.frc.team3506.robot.commands.ShiftDown;
+import org.usfirst.frc.team3506.robot.commands.ShiftUp;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -11,15 +15,29 @@ import edu.wpi.first.wpilibj.command.Command;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	private Joystick gamepad;
+	/*Gamepad button mapping for user operation commands:
+	 * 2 & 4: UserOperateRollerBarCommand
+	 * 5 & 6: UserOperateClimberCommand
+	 * 7 & 8: UserOperateArmCommand
+	 */
+	public Joystick gamepad;
 	private Joystick leftStick;
 	private Joystick rightStick;
+	public boolean rollersOn;
+	public boolean rollersForward;
 	
 	public OI(){
 		gamepad = new Joystick(RobotMap.GAMEPAD_PORT);
 		leftStick = new Joystick(RobotMap.LEFT_STICK_PORT);
 		rightStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
+		rollersOn = false;
+		rollersForward = false;
+		setJoystickButtonCommand(gamepad, 1, new ShiftDown());
+		setJoystickButtonCommand(gamepad, 3, new ShiftUp());
+		setJoystickButtonCommand(gamepad, 9, new CalibrateShooterCommand());
 	}
+	
+	
 	
 	public double getGamepadLeftX(){
 		if(!(gamepad == null)){
@@ -91,6 +109,10 @@ public class OI {
 		} else{
 			return val;
 		}
+	}
+	
+	public int getGamepadPOV(){
+		return gamepad.getPOV();
 	}
 	
 	private void setJoystickButtonCommand(Joystick joystick, int button, Command command) {

@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class RollerBar extends Subsystem {
+public class RollerBarSubsystem extends Subsystem {
     public Relay rollerBar;
     
-    public RollerBar() {
+    public RollerBarSubsystem() {
     	rollerBar = new Relay(RobotMap.ROLLER_BAR_SPIKE_ID);
     }
     

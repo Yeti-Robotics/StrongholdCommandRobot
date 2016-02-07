@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftDown extends Command {
+public class UserOperateClimberCommand extends Command {
 
-    public ShiftDown() {
+    public UserOperateClimberCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearShift);
+    	requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,11 @@ public class ShiftDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearShift.shiftDown();
+    	if(Robot.oi.gamepad.getRawButton(5)){
+    		Robot.climber.moveWinchBackwards();
+    	} else if(Robot.oi.gamepad.getRawButton(6)){
+    		Robot.climber.moveWinchForward();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

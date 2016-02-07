@@ -14,11 +14,7 @@ public class ToggleRollerBarForwardCommand extends Command {
     protected void initialize() {}
 
     protected void execute() {
-    	if(Robot.rollerBar.rollerBar.get() == Relay.Value.kForward) {
-    		Robot.rollerBar.stopRollerBar();
-    	} else {
-    		Robot.rollerBar.driveRollerBar();
-    	}
+    	Robot.oi.rollersForward = !Robot.oi.rollersForward;
     }
 
     protected boolean isFinished() {

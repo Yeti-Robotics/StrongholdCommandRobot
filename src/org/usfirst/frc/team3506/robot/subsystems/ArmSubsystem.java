@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.OperateBallGrabberCommand;
+import org.usfirst.frc.team3506.robot.commands.UserOperateArmCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class BallGrabber extends Subsystem {
+public class ArmSubsystem extends Subsystem {
 	private CANTalon ballGrabber;
 	
-	public BallGrabber() {
+	public ArmSubsystem() {
 		ballGrabber = new CANTalon(RobotMap.BALL_GRABBER_CAN_TALON_ID);
 	}
 
@@ -21,7 +21,7 @@ public class BallGrabber extends Subsystem {
 	}
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new OperateBallGrabberCommand());
+		setDefaultCommand(new UserOperateArmCommand());
 	}
 	
 }

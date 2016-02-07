@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot.commands;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -22,9 +23,9 @@ public class UserArcadeDriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(!((Boolean)Robot.gamepadChooser.getSelected())){
-    		Robot.driveTrain.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX());
+    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightX());
     	} else{
-    		Robot.driveTrain.arcadeDrive(Robot.oi.getGamepadLeftY(), Robot.oi.getGamepadRightX());
+    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightX());
     	}
     }
 
