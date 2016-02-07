@@ -24,7 +24,7 @@ public class Processor {
 	static final double TARGET_HEIGHT = 14;
 	static double distance, angle, azimuth;
 	
-	public static void main(String[] args) {
+	public static void run() {
 		table = NetworkTable.getTable(TABLE_ADDRESS);
 		frameQueue = new CircularFifoQueue<ArrayList<Contour>>(CIRCULAR_FIFO_QUEUE_SIZE);
 		while(!SmartDashboard.getBoolean(CAPTURE_MODE_ID, false)){
