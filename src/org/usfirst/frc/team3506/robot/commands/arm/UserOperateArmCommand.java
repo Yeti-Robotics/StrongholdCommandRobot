@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.arm;
 
 import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
@@ -18,9 +18,9 @@ public class UserOperateArmCommand extends Command {
 
     protected void execute() {
     	if(Robot.oi.gamepad.getRawButton(7)){
-    		Robot.ballGrabber.moveBallGrabber(-RobotMap.ROLLER_BAR_LIFT_SPEED);
+    		Robot.ballGrabber.moveBallGrabber(-RobotMap.ARM_SPEED_OPERATOR);
     	} else if(Robot.oi.gamepad.getRawButton(8)){
-    		Robot.ballGrabber.moveBallGrabber(RobotMap.ROLLER_BAR_LIFT_SPEED);
+    		Robot.ballGrabber.moveBallGrabber(RobotMap.ARM_SPEED_OPERATOR);
     	}
     }
 

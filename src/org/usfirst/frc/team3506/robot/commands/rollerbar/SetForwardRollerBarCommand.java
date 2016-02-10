@@ -1,20 +1,22 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.rollerbar;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ToggleRollerBarOnCommand extends Command {
+/**
+ *
+ */
+public class SetForwardRollerBarCommand extends Command {
 
-    public ToggleRollerBarOnCommand() {
+    public SetForwardRollerBarCommand() {
     	requires(Robot.rollerBar);
     }
 
     protected void initialize() {}
 
     protected void execute() {
-    	Robot.oi.rollersOn = !Robot.oi.rollersOn;
+    	Robot.rollerBar.driveRollerBar();
     }
 
     protected boolean isFinished() {

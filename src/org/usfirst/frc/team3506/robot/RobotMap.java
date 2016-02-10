@@ -22,7 +22,7 @@ public class RobotMap {
 	public static final int[] LEFT_ENCODER_PORTS = {0,1}; // needs to be updated
 	public static final int[] RIGHT_ENCODER_PORTS = {0,1}; //needs to be updated
 	public static final int DISTANCE_PER_PULSE = 10;
-	public static final int ROBOT_WHEEL_DIAMETER_FT = 0; //needs adjustment
+	public static final double ROBOT_WHEEL_DIAMETER_FT = 0.75; //needs adjustment
 	public static final int[] SOLENOID_PORTS = {0,1}; //update?
 	public static final boolean SHIFT_UP = true;
 	public static final boolean SHIFT_DOWN = false;
@@ -41,5 +41,16 @@ public class RobotMap {
 	public static final int WINCH_TALON_ID = 0; // update
 	public static final double USER_SPEED_CONTROL_MODIFIER = 0.5;
 	public static final double CLIMBER_SPEED_OPERATOR = 1.0;
-	public static final double ROLLER_BAR_LIFT_SPEED = 0.3;
+	public static final double ARM_SPEED_OPERATOR = 0.3;
+	public static final int GYRO_PORT = 0; // UPDATE
+	public static final double ROBOT_TRACK_WIDTH_FT = 25.165 / 12.0;
+	public static final String TABLE_ADDRESS = "GRIP/RetroreflectiveContourReport";
+	public static final int CIRCULAR_FIFO_QUEUE_SIZE = 60;
+	public static final double[] DEFAULT_VALUE_ARRAY = {0};
+	public static final String DISTANCE_ID = "Distance";
+	public static final String AZIMUTH_ID = "Azimuth";
+	public static final int CLIMBER_UPPER_LIMIT_SWITCH_PORT = 0; //UPDATE
+	public static final int CLIMBER_LOWER_LIMIT_SWITCH_PORT = 0; //UPDATE
+	public static final int ARM_UPPER_LIMIT_SWITCH_PORT = 0; //UPDATE
+	public static final int ARM_LOWER_LIMIT_SWITCH_PORT = 0; //UPDATE
 }

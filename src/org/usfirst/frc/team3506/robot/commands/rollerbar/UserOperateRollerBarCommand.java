@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.rollerbar;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
@@ -21,23 +21,6 @@ public class UserOperateRollerBarCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.gamepad.getRawButton(2)){
-    		if(!Robot.oi.rollersOn){
-    			Robot.oi.rollersOn = true;
-    		} else if(!Robot.oi.rollersForward && Robot.oi.rollersOn){
-    			Robot.oi.rollersOn = false;
-    		} else if(Robot.oi.rollersForward && Robot.oi.rollersOn){
-    			Robot.oi.rollersForward = false;
-    		}
-    	} else if(Robot.oi.gamepad.getRawButton(4)){
-    		if(!Robot.oi.rollersOn){
-    			Robot.oi.rollersOn = true;
-    		} else if(Robot.oi.rollersForward && Robot.oi.rollersOn){
-    			Robot.oi.rollersOn = false;
-    		} else if(!Robot.oi.rollersForward && Robot.oi.rollersOn){
-    			Robot.oi.rollersForward = true;
-    		}
-    	}
     	if(Robot.oi.rollersOn){
     		if(Robot.oi.rollersForward){
     			Robot.rollerBar.driveRollerBar();

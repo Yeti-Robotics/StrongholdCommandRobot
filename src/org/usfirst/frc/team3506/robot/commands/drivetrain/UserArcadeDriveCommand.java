@@ -1,18 +1,19 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.drivetrain;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class UserShooterControlCommand extends Command {
+public class UserArcadeDriveCommand extends Command {
 
-    public UserShooterControlCommand() {
+    public UserArcadeDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +22,11 @@ public class UserShooterControlCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.userControl(Robot.oi.getGamepadLeftX());
+    	if(!((Boolean)Robot.gamepadChooser.getSelected())){
+    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightX());
+    	} else{
+    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightX());
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

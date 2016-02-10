@@ -2,7 +2,7 @@ package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.UserShooterControlCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.UserOperateShooterCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -21,7 +21,7 @@ public class ShooterSubsystem extends Subsystem {
     // here. Call these from Commands.
 	private CANTalon shooterTilt;
 	private Relay spikeShooterLeft, spikeShooterRight;
-	private Encoder tiltEncoder;
+	//private Encoder tiltEncoder;
 	private DigitalInput lowerLimitSwitch;
 	private boolean calibrated;
 	
@@ -29,8 +29,8 @@ public class ShooterSubsystem extends Subsystem {
 		this.shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
 		this.spikeShooterLeft = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_LEFT);
 		this.spikeShooterRight = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_RIGHT);
-		this.tiltEncoder = new Encoder(RobotMap.SHOOTER_TILT_ENCODER_PORTS[0], RobotMap.SHOOTER_TILT_ENCODER_PORTS[1]);
-		this.tiltEncoder.setDistancePerPulse(RobotMap.ENCODER_DEGREES_PER_PULSE);
+		/*this.tiltEncoder = new Encoder(RobotMap.SHOOTER_TILT_ENCODER_PORTS[0], RobotMap.SHOOTER_TILT_ENCODER_PORTS[1]);
+		this.tiltEncoder.setDistancePerPulse(RobotMap.ENCODER_DEGREES_PER_PULSE);*/
 		this.lowerLimitSwitch = new DigitalInput(RobotMap.SHOOTER_LOWER_LIMIT_SWITCH_PORT);
 		this.calibrated = false;
 	}
@@ -41,13 +41,13 @@ public class ShooterSubsystem extends Subsystem {
 		}
 	}
 	
-	public void calibrateShooterTilt(){
+	/*public void calibrateShooterTilt(){
 		this.lowerTilt();
 		this.tiltEncoder.reset();
 		this.calibrated = true;
-	}
+	}*/
 	
-	public void setDegreeValueofTilt(double degrees){
+	/*public void setDegreeValueofTilt(double degrees){
 		if(this.tiltEncoder.getDistance()>degrees){
 			while(this.tiltEncoder.getDistance()>degrees){
 				this.shooterTilt.set(-RobotMap.SHOOTER_TILT_CAN_TALON_SPEED);
@@ -57,7 +57,7 @@ public class ShooterSubsystem extends Subsystem {
 				this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED);
 			}
 		}
-	}
+	}*/
 	
 	public void activateFlywheels(){
 		this.spikeShooterLeft.set(Value.kForward);
@@ -69,9 +69,9 @@ public class ShooterSubsystem extends Subsystem {
 		this.spikeShooterLeft.set(Value.kOff);
 	}
 	
-	public double getCurrentDegreeTilt(){
+	/*public double getCurrentDegreeTilt(){
 		return this.tiltEncoder.getDistance();
-	}
+	}*/
 	
 	public boolean getLowerLimitSwitchState(){
 		return this.lowerLimitSwitch.get();
@@ -88,7 +88,7 @@ public class ShooterSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new UserShooterControlCommand());
+    	setDefaultCommand(new UserOperateShooterCommand());
     }
 }
 

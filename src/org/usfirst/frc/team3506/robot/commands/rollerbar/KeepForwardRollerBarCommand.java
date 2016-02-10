@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.rollerbar;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class KeepReverseRollerBarCommand extends Command {
+public class KeepForwardRollerBarCommand extends Command {
 
-    public KeepReverseRollerBarCommand() {
+    public KeepForwardRollerBarCommand() {
     	requires(Robot.rollerBar);
     }
 
     protected void initialize() {
-    	Robot.rollerBar.reverseRollerBar();
+    	Robot.rollerBar.driveRollerBar();
     }
 
     protected void execute() {}

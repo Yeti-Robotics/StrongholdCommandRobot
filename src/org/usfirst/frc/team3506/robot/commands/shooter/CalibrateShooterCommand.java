@@ -1,17 +1,19 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.shooter;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class ShiftUp extends Command {
+public class CalibrateShooterCommand extends Command {
 
-    public ShiftUp() {
+    public CalibrateShooterCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearShift);
+        // eg. requires(chassis);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -20,16 +22,17 @@ public class ShiftUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearShift.shiftUp();
+    	//Robot.shooter.calibrateShooterTilt();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return Robot.shooter.getLowerLimitSwitchState();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Scheduler.getInstance().add(new UserOperateShooterCommand());
     }
 
     // Called when another command which requires one or more of the same

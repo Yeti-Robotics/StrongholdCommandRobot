@@ -1,19 +1,18 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.arm;
 
 import org.usfirst.frc.team3506.robot.Robot;
-import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class UserArcadeDriveCommand extends Command {
+public class MoveArmDownCommand extends Command {
 
-    public UserArcadeDriveCommand() {
+    public MoveArmDownCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.driveTrain);
+    	requires(Robot.ballGrabber);
     }
 
     // Called just before this Command runs the first time
@@ -22,16 +21,14 @@ public class UserArcadeDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!((Boolean)Robot.gamepadChooser.getSelected())){
-    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightX());
-    	} else{
-    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightX());
+    	if(!Robot.ballGrabber.getLowerLimit()){
+    		Robot.ballGrabber.moveBallGrabberDown();
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

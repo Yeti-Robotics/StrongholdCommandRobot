@@ -1,18 +1,20 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.vision;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class UserOperateClimberCommand extends Command {
+public class ToggleCaptureModeCommand extends Command {
 
-    public UserOperateClimberCommand() {
+    public ToggleCaptureModeCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.climber);
+    	requires(null);
     }
 
     // Called just before this Command runs the first time
@@ -21,16 +23,13 @@ public class UserOperateClimberCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.gamepad.getRawButton(5)){
-    		Robot.climber.moveWinchBackwards();
-    	} else if(Robot.oi.gamepad.getRawButton(6)){
-    		Robot.climber.moveWinchForward();
-    	}
+    	Robot.captureMode = !Robot.captureMode;
+    	SmartDashboard.putBoolean(RobotMap.CAPTURE_MODE_ID, Robot.captureMode);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

@@ -1,19 +1,18 @@
-package org.usfirst.frc.team3506.robot.commands;
+package org.usfirst.frc.team3506.robot.commands.climber;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class CalibrateShooterCommand extends Command {
+public class MoveClimberDownCommand extends Command {
 
-    public CalibrateShooterCommand() {
+    public MoveClimberDownCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
+    	requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
@@ -22,17 +21,18 @@ public class CalibrateShooterCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.calibrateShooterTilt();
+    	if(!Robot.climber.getLowerLimit()){
+    		Robot.climber.moveWinchBackwards();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.shooter.getLowerLimitSwitchState();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Scheduler.getInstance().add(new UserShooterControlCommand());
     }
 
     // Called when another command which requires one or more of the same
