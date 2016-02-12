@@ -49,7 +49,7 @@ public class OI {
 	
 	public double getGamepadLeftY(){
 		if(!(gamepad == null)){
-			return deadZoneMod(gamepad.getRawAxis(RobotMap.GAMEPAD_LEFT_Y_AXIS));
+			return -deadZoneMod(gamepad.getRawAxis(RobotMap.GAMEPAD_LEFT_Y_AXIS));
 		} else{
 			return 0;
 		}

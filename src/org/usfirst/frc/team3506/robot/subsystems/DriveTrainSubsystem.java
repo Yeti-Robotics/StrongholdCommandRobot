@@ -32,6 +32,9 @@ public class DriveTrainSubsystem extends Subsystem {
 		left3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		left2.set(RobotMap.LEFT_1_CAN_TALON_ID);
 		left3.set(RobotMap.LEFT_1_CAN_TALON_ID);
+		left1.reverseOutput(true);
+		left2.reverseOutput(true);
+		left3.reverseOutput(true);
 		
 		right1 = new CANTalon(RobotMap.RIGHT_1_CAN_TALON_ID);
 		right2 = new CANTalon(RobotMap.RIGHT_2_CAN_TALON_ID);
@@ -40,6 +43,9 @@ public class DriveTrainSubsystem extends Subsystem {
 		right3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		right2.set(RobotMap.RIGHT_1_CAN_TALON_ID);
 		right3.set(RobotMap.RIGHT_1_CAN_TALON_ID);
+		right1.reverseOutput(false);
+		right2.reverseOutput(false);
+		right3.reverseOutput(false);
 		
 		robotDrive = new RobotDrive(left1, right1);		
 		
