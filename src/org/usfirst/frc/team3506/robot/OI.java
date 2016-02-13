@@ -134,7 +134,7 @@ public class OI {
 		new JoystickButton(joystick, button).whenPressed(command);
 	}
 	
-	private void setJoystickButtonWhilePressedCommand(Joystick joystick, int button, Command command){
+	private void setJoystickButtonWhilePressedCommand(Joystick joystick, int button, Command command, Command counterCommand){
 		new JoystickButton(joystick, button).whileHeld(command);
 	}
 }
