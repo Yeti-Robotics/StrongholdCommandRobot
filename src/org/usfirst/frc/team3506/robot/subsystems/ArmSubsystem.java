@@ -1,11 +1,13 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.arm.UserOperateArmCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,8 +19,17 @@ public class ArmSubsystem extends Subsystem {
 	
 	public ArmSubsystem() {
 		ballGrabber = new CANTalon(RobotMap.BALL_GRABBER_CAN_TALON_ID);
-		lowerLimit = new DigitalInput(RobotMap.ARM_LOWER_LIMIT_SWITCH_PORT);
-		upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
+		//lowerLimit = new DigitalInput(RobotMap.ARM_LOWER_LIMIT_SWITCH_PORT);
+		//upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
+		//ballGrabber.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	}
+	
+	public double getRawEncoderPos(){
+		return ballGrabber.getEncPosition();
+	}
+	
+	public double getRawEncoderVel(){
+		return ballGrabber.getEncVelocity();
 	}
 
 	public void moveBallGrabber(double speed) {
@@ -41,9 +52,16 @@ public class ArmSubsystem extends Subsystem {
 		return this.upperLimit.get();
 	}
 	
-	public void initDefaultCommand() {
-		setDefaultCommand(new UserOperateArmCommand());
+	public void publishEncoderValues(){
+		SmartDashboard.putNumber("Arm encoder position (raw)", getRawEncoderPos());
+		SmartDashboard.putNumber("Arm encoder velocity (raw)", getRawEncoderVel());
 	}
 	
+	public void addToLW(){
+		LiveWindow.addActuator("Ball Grabber", "Ball Grabber", ballGrabber);
+	}
+	
+	public void initDefaultCommand() {
+	}
 }
 

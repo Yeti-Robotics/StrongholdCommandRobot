@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3506.robot.commands.arm;
+package org.usfirst.frc.team3506.robot.commands.drivetrain;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveArmDownCommand extends Command {
+public class TestTalonCommand extends Command {
 
-    public MoveArmDownCommand() {
+    public TestTalonCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballGrabber);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -21,19 +21,16 @@ public class MoveArmDownCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(/*!Robot.ballGrabber.getLowerLimit()*/ true){
-    		Robot.ballGrabber.moveBallGrabberDown();
-    	}
+    	Robot.driveTrain.driveTalon();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
     }
 
     // Called when another command which requires one or more of the same

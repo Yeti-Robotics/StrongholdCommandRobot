@@ -1,15 +1,16 @@
 package org.usfirst.frc.team3506.robot.commands.arm;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class MoveArmDownCommand extends Command {
+public class CalibrateArmCommand extends Command {
 
-    public MoveArmDownCommand() {
+    public CalibrateArmCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.ballGrabber);
@@ -21,19 +22,17 @@ public class MoveArmDownCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(/*!Robot.ballGrabber.getLowerLimit()*/ true){
-    		Robot.ballGrabber.moveBallGrabberDown();
-    	}
+    	Robot.ballGrabber.moveBallGrabberDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Robot.ballGrabber.getLowerLimit();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	RobotMap.encoderPositionDegreesModifierArm = RobotMap.convertEncFeedbackToDegrees(Robot.ballGrabber.getRawEncoderPos());
     }
 
     // Called when another command which requires one or more of the same

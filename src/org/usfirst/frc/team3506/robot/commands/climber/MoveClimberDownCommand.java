@@ -21,7 +21,7 @@ public class MoveClimberDownCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.climber.getLowerLimit()){
+    	if(/*!Robot.climber.getLowerLimit()*/ true){
     		Robot.climber.moveWinchBackwards();
     	}
     }

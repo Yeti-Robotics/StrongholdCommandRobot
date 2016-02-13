@@ -21,7 +21,7 @@ public class MoveArmUpCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.ballGrabber.getUpperLimit()){
+    	if(/*!Robot.ballGrabber.getUpperLimit()*/ true){
     		Robot.ballGrabber.moveBallGrabberUp();
     	}
     }

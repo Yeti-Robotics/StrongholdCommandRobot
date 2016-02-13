@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team3506.robot;
 
+import org.usfirst.frc.team3506.robot.commands.drivetrain.UserArcadeDriveCommand;
+import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
@@ -47,13 +49,16 @@ public class Robot extends IterativeRobot {
     	gamepadChooser.addObject("Joysticks Activated", new Boolean(false));
     	SmartDashboard.putData("Drive Chooser", tankDriveChooser);
     	SmartDashboard.putData("Controller Chooser", gamepadChooser);
-    	shooter = new ShooterSubsystem();
+//    	//shooter = new ShooterSubsystem();
     	gearShift = new GearShiftSubsystem();
-		driveTrain = new DriveTrainSubsystem();
+    	driveTrain = new DriveTrainSubsystem();
     	ballGrabber = new ArmSubsystem();
-    	rollerBar = new RollerBarSubsystem();
-    	climber = new ClimberSubsystem();
+//    	rollerBar = new RollerBarSubsystem();
+//    	climber = new ClimberSubsystem();
 		oi = new OI();
+		//driveTrain.addToLW();
+		//rollerBar.addToLW();
+		//ballGrabber.addToLW();
     }
 	
     public void disabledInit(){
@@ -75,10 +80,19 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
+        if((Boolean)tankDriveChooser.getSelected()){
+        	Scheduler.getInstance().add(new UserTankDriveCommand());
+        } else{
+        	Scheduler.getInstance().add(new UserArcadeDriveCommand());
+        }
+        
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        driveTrain.publishEncoderValues();
+        //ballGrabber.publishEncoderValues();
+        //shooter.publishEncoderValues();
     }
     
     public void testPeriodic() {

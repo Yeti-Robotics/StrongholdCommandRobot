@@ -9,10 +9,12 @@ import com.ni.vision.NIVision.CalibrationThumbnailType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -23,7 +25,6 @@ public class DriveTrainSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private CANTalon left1, left2, left3, right1, right2, right3;
-	//private Encoder leftEncoder, rightEncoder;
 	private RobotDrive robotDrive;
 	public DriveTrainSubsystem() {
 		left1 = new CANTalon(RobotMap.LEFT_1_CAN_TALON_ID);
@@ -33,7 +34,6 @@ public class DriveTrainSubsystem extends Subsystem {
 		left3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		left2.set(RobotMap.LEFT_1_CAN_TALON_ID);
 		left3.set(RobotMap.LEFT_1_CAN_TALON_ID);
-		
 		right1 = new CANTalon(RobotMap.RIGHT_1_CAN_TALON_ID);
 		right2 = new CANTalon(RobotMap.RIGHT_2_CAN_TALON_ID);
 		right3 = new CANTalon(RobotMap.RIGHT_3_CAN_TALON_ID);
@@ -41,14 +41,31 @@ public class DriveTrainSubsystem extends Subsystem {
 		right3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		right2.set(RobotMap.RIGHT_1_CAN_TALON_ID);
 		right3.set(RobotMap.RIGHT_1_CAN_TALON_ID);
-		
+		right3.setInverted(true);
+		right2.setInverted(true);
+		right1.setInverted(true);
+		left1.setInverted(false);
+		left2.setInverted(false);
+		left3.setInverted(false);
 		robotDrive = new RobotDrive(left1, right1);		
-		
-		//leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_PORTS[0], RobotMap.LEFT_ENCODER_PORTS[1]);
-		//rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_PORTS[0], RobotMap.RIGHT_ENCODER_PORTS[1]);
-		
-		//leftEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
-		//rightEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
+		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	}
+	
+	public double getRawLeftEncoderPos(){
+		return left1.getEncPosition();
+	}
+	
+	public double getRawRightEncoderPos(){
+		return right1.getEncPosition();
+	}
+	
+	public double getRawLeftEncoderVel(){
+		return left1.getEncVelocity();
+	}
+	
+	public double getRawRightEncoderVel(){
+		return right1.getEncVelocity();
 	}
 	
 	public void tankDrive(double left, double right){
@@ -57,6 +74,10 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	public void arcadeDrive(double left, double right){
 		robotDrive.arcadeDrive(left, right);
+	}
+	
+	public void driveTalon(){
+		this.left3.set(0.3);
 	}
 	
 	public void driveStraight(double speed){
@@ -72,35 +93,6 @@ public class DriveTrainSubsystem extends Subsystem {
 		right1.set(speed);
 	}
 	
-	/*public void resetEncoders(){
-		leftEncoder.reset();
-		rightEncoder.reset();
-	}
-	
-	public Encoder getLeftEncoder(){
-		return leftEncoder;
-	}
-	
-	public Encoder getRightEncoder(){
-		return rightEncoder;
-	}
-	
-	public double getLeftEncoderDistance(){
-		return leftEncoder.getDistance();
-	}
-	
-	public double getRightEncoderDistance(){
-		return rightEncoder.getDistance();
-	}
-	
-	public double getLeftEncoderRate(){
-		return leftEncoder.getRate();
-	}
-	
-	public double getRightEncoderRate(){
-		return rightEncoder.getRate();
-	}*/
-	
 	public double getTotalTurnDistance(double degrees){
 		double rad = convertToRadians(degrees);
 		return rad*(RobotMap.ROBOT_WHEEL_DIAMETER_FT)/2.0;
@@ -110,18 +102,33 @@ public class DriveTrainSubsystem extends Subsystem {
 		return 2*Math.PI*(degrees/360.0);
 	}
 	
-	/*public void logEncoder(){
-		SmartDashboard.putData("Left Encoder", leftEncoder);
-		SmartDashboard.putData("Right Encoder", rightEncoder);
-	}*/
+	public double convertTrainVelocityToPower(double velocity){
+		return 0.0;
+	}
+	
+	public void publishEncoderValues(){
+		SmartDashboard.putNumber("Left drive encoder position (raw)", getRawLeftEncoderPos());
+		SmartDashboard.putNumber("Left drive encoder velocity (raw)", getRawLeftEncoderVel());
+		SmartDashboard.putNumber("Right drive encoder positon (raw)", getRawRightEncoderPos());
+		SmartDashboard.putNumber("Right drive encoder velocity (raw)", getRawRightEncoderVel());
+	}
+	
+	public void addToLW(){
+		LiveWindow.addActuator("Drive train", "left side 1", left1);
+		LiveWindow.addActuator("Drive train", "left side 2", left2);
+		LiveWindow.addActuator("Drive train", "left side 3", left3);
+		LiveWindow.addActuator("Drive train", "right side 1", right1);
+		LiveWindow.addActuator("Drive train", "right side 2", right2);
+		LiveWindow.addActuator("Drive train", "right side 3", right3);
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	if((Boolean)Robot.tankDriveChooser.getSelected()){
-    		setDefaultCommand(new UserTankDriveCommand());
-    	} else{
     		setDefaultCommand(new UserArcadeDriveCommand());
+    	} else{
+    		setDefaultCommand(new UserTankDriveCommand());
     	}
     }
 }

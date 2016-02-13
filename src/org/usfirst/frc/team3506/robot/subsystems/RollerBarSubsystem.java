@@ -4,6 +4,7 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  *
@@ -25,6 +26,10 @@ public class RollerBarSubsystem extends Subsystem {
 
     public void reverseRollerBar() {
     	rollerBar.set(Relay.Value.kReverse);
+    }
+    
+    public void addToLW(){
+    	LiveWindow.addActuator("Roller bar", "roll", rollerBar);
     }
 
 	protected void initDefaultCommand() {}

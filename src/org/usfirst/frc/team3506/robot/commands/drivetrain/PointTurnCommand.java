@@ -8,31 +8,40 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class UserTankDriveCommand extends Command {
-
-    public UserTankDriveCommand() {
+public class PointTurnCommand extends Command {
+	private double turnDistance;
+	private double initialPosition;
+    public PointTurnCommand(double degrees) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    	turnDistance = Robot.driveTrain.getTotalTurnDistance(degrees);
+    	initialPosition = RobotMap.convertEncFeedbackToDriveDistance(Robot.driveTrain.getRawLeftEncoderPos());
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!(Boolean)Robot.gamepadChooser.getSelected()){
-    		Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightY());
+    	if(turnDistance > 0){
+    		Robot.driveTrain.moveLeftTrain(RobotMap.AUTO_DRIVE_SPEED);
+    		Robot.driveTrain.moveRightTrain(-RobotMap.AUTO_DRIVE_SPEED);
     	} else{
-    		Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightY());
+    		Robot.driveTrain.moveLeftTrain(-RobotMap.AUTO_DRIVE_SPEED);
+    		Robot.driveTrain.moveRightTrain(RobotMap.AUTO_DRIVE_SPEED);
     	}
-    	Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightY(), -RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if(turnDistance > 0){
+        	return !(RobotMap.convertEncFeedbackToDriveDistance(Robot.driveTrain.getRawLeftEncoderPos()) < turnDistance);
+        } else{
+        	return !(RobotMap.convertEncFeedbackToDriveDistance(Robot.driveTrain.getRawLeftEncoderPos()) > turnDistance);
+        }
     }
 
     // Called once after isFinished returns true
