@@ -2,7 +2,6 @@ package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.drivetrain.UserArcadeDriveCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 
 import com.ni.vision.NIVision.CalibrationThumbnailType;
@@ -26,14 +25,15 @@ public class DriveTrainSubsystem extends Subsystem {
     // here. Call these from Commands.
 	private CANTalon left1, left2, left3, right1, right2, right3;
 	private RobotDrive robotDrive;
+	public static enum Talons {LEFT1, LEFT2, LEFT3, RIGHT1, RIGHT2, RIGHT3}
 	public DriveTrainSubsystem() {
 		left1 = new CANTalon(RobotMap.LEFT_1_CAN_TALON_ID);
 		left2 = new CANTalon(RobotMap.LEFT_2_CAN_TALON_ID);
 		left3 = new CANTalon(RobotMap.LEFT_3_CAN_TALON_ID);
-		left2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		left1.changeControlMode(CANTalon.TalonControlMode.Follower);
 		left3.changeControlMode(CANTalon.TalonControlMode.Follower);
-		left2.set(RobotMap.LEFT_1_CAN_TALON_ID);
-		left3.set(RobotMap.LEFT_1_CAN_TALON_ID);
+		left1.set(RobotMap.LEFT_2_CAN_TALON_ID);
+		left3.set(RobotMap.LEFT_2_CAN_TALON_ID);
 		right1 = new CANTalon(RobotMap.RIGHT_1_CAN_TALON_ID);
 		right2 = new CANTalon(RobotMap.RIGHT_2_CAN_TALON_ID);
 		right3 = new CANTalon(RobotMap.RIGHT_3_CAN_TALON_ID);
@@ -47,13 +47,14 @@ public class DriveTrainSubsystem extends Subsystem {
 		left1.setInverted(false);
 		left2.setInverted(false);
 		left3.setInverted(false);
-		robotDrive = new RobotDrive(left1, right1);		
-		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		robotDrive = new RobotDrive(left2, right1);		
+		left2.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		// ENCODER ATTACHMENT PORTS: RIGHT1 (5), LEFT2 (1) ----- CATAPULT AIM IS FRONT
 	}
 	
 	public double getRawLeftEncoderPos(){
-		return left1.getEncPosition();
+		return left2.getEncPosition();
 	}
 	
 	public double getRawRightEncoderPos(){
@@ -61,7 +62,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 	
 	public double getRawLeftEncoderVel(){
-		return left1.getEncVelocity();
+		return left2.getEncVelocity();
 	}
 	
 	public double getRawRightEncoderVel(){
@@ -72,12 +73,27 @@ public class DriveTrainSubsystem extends Subsystem {
 		robotDrive.tankDrive(left, right);
 	}
 	
-	public void arcadeDrive(double left, double right){
-		robotDrive.arcadeDrive(left, right);
-	}
-	
 	public void driveTalon(){
-		this.left3.set(0.3);
+		switch((Talons)Robot.testDriveTalonChooser.getSelected()){
+			case LEFT1:
+				left1.set(RobotMap.AUTO_DRIVE_SPEED);
+				break;
+			case LEFT2:
+				left2.set(RobotMap.AUTO_DRIVE_SPEED);
+				break;
+			case LEFT3:
+				left3.set(RobotMap.AUTO_DRIVE_SPEED);
+				break;
+			case RIGHT1:
+				right1.set(RobotMap.AUTO_DRIVE_SPEED);
+				break;
+			case RIGHT2:
+				right2.set(RobotMap.AUTO_DRIVE_SPEED);
+				break;
+			case RIGHT3:
+				right3.set(RobotMap.AUTO_DRIVE_SPEED);
+				break;
+		}
 	}
 	
 	public void driveStraight(double speed){
@@ -86,7 +102,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 
 	public void moveLeftTrain(double speed){
-		left1.set(speed);
+		left2.set(speed);
 	}
 	
 	public void moveRightTrain(double speed){
@@ -125,11 +141,7 @@ public class DriveTrainSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	if((Boolean)Robot.tankDriveChooser.getSelected()){
-    		setDefaultCommand(new UserArcadeDriveCommand());
-    	} else{
-    		setDefaultCommand(new UserTankDriveCommand());
-    	}
+    	setDefaultCommand(new UserTankDriveCommand());
     }
 }
 

@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team3506.robot;
 
-import org.usfirst.frc.team3506.robot.commands.drivetrain.UserArcadeDriveCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
@@ -27,38 +26,53 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	public static DriveTrainSubsystem driveTrain;
 	public static GearShiftSubsystem gearShift;
-	public static ArmSubsystem ballGrabber;
+	public static ArmSubsystem arm;
 	public static RollerBarSubsystem rollerBar;
 	public static ShooterSubsystem shooter;
 	public static ClimberSubsystem climber;
 	public static OI oi;
 	public static boolean captureMode;
+	public static boolean flywheelsActive;
 	
 	Command autonomousCommand;
 	public static SendableChooser gamepadChooser;
-	public static SendableChooser tankDriveChooser;
+	public static SendableChooser testDriveTalonChooser;
+	public static SendableChooser driveTrainFrontSideChooser;
 	
     public void robotInit() {
     	captureMode = false;
-    	SmartDashboard.putBoolean(RobotMap.CAPTURE_MODE_ID, captureMode);
+    	flywheelsActive = false;
     	gamepadChooser = new SendableChooser();
-    	tankDriveChooser = new SendableChooser();
-    	tankDriveChooser.addDefault("Tank Drive", new Boolean(true));
-    	tankDriveChooser.addObject("Arcade Drive", new Boolean(false));
+    	testDriveTalonChooser = new SendableChooser();
+    	driveTrainFrontSideChooser = new SendableChooser();
+    	
     	gamepadChooser.addDefault("Gamepad Activated", new Boolean(true));
     	gamepadChooser.addObject("Joysticks Activated", new Boolean(false));
-    	SmartDashboard.putData("Drive Chooser", tankDriveChooser);
+    	
+    	testDriveTalonChooser.addDefault("Left1", DriveTrainSubsystem.Talons.LEFT1);
+    	testDriveTalonChooser.addObject("Left2", DriveTrainSubsystem.Talons.LEFT2);
+    	testDriveTalonChooser.addObject("Left3", DriveTrainSubsystem.Talons.LEFT3);
+    	testDriveTalonChooser.addObject("Right1", DriveTrainSubsystem.Talons.RIGHT1);
+    	testDriveTalonChooser.addObject("Right2", DriveTrainSubsystem.Talons.RIGHT2);
+    	testDriveTalonChooser.addObject("Right3", DriveTrainSubsystem.Talons.RIGHT3);
+    	
+    	driveTrainFrontSideChooser.addDefault("Shooter trajectory is front", new Boolean(true));
+    	driveTrainFrontSideChooser.addObject("Ball grabber is front", new Boolean(false));
+    	
     	SmartDashboard.putData("Controller Chooser", gamepadChooser);
-//    	//shooter = new ShooterSubsystem();
+    	SmartDashboard.putData("Test Drive Talon Chooser", testDriveTalonChooser);
+    	SmartDashboard.putData("Front Side Chooser", driveTrainFrontSideChooser);
+    	
+    	shooter = new ShooterSubsystem();
     	gearShift = new GearShiftSubsystem();
     	driveTrain = new DriveTrainSubsystem();
-    	ballGrabber = new ArmSubsystem();
-//    	rollerBar = new RollerBarSubsystem();
-//    	climber = new ClimberSubsystem();
+    	arm = new ArmSubsystem();
+    	rollerBar = new RollerBarSubsystem();
+    	climber = new ClimberSubsystem();
 		oi = new OI();
-		//driveTrain.addToLW();
-		//rollerBar.addToLW();
-		//ballGrabber.addToLW();
+		driveTrain.addToLW();
+		rollerBar.addToLW();
+		arm.addToLW();
     }
 	
     public void disabledInit(){
@@ -67,6 +81,10 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		driveTrain.publishEncoderValues();
+        arm.publishEncoderValues();
+        shooter.publishEncoderValues();
+       // gearShift.publishShiftStatus();
 	}
 
     public void autonomousInit() {
@@ -80,19 +98,15 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
-        if((Boolean)tankDriveChooser.getSelected()){
-        	Scheduler.getInstance().add(new UserTankDriveCommand());
-        } else{
-        	Scheduler.getInstance().add(new UserArcadeDriveCommand());
-        }
-        
+        Scheduler.getInstance().add(new UserTankDriveCommand());
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         driveTrain.publishEncoderValues();
-        //ballGrabber.publishEncoderValues();
-        //shooter.publishEncoderValues();
+        arm.publishEncoderValues();
+        shooter.publishEncoderValues();
+        //gearShift.publishShiftStatus();
     }
     
     public void testPeriodic() {

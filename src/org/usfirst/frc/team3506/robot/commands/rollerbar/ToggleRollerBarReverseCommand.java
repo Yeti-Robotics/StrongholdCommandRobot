@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ToggleRollerBarReverseCommand extends Command {
 
     public ToggleRollerBarReverseCommand() {
-    	requires(null);
+    	requires(Robot.rollerBar);
     }
 
     protected void initialize() {}

@@ -13,7 +13,7 @@ public class CalibrateArmCommand extends Command {
     public CalibrateArmCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballGrabber);
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -22,17 +22,16 @@ public class CalibrateArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ballGrabber.moveBallGrabberDown();
+    	Robot.arm.moveBallGrabberDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.ballGrabber.getLowerLimit();
+        return Robot.arm.getLowerLimit();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.encoderPositionDegreesModifierArm = RobotMap.convertEncFeedbackToDegrees(Robot.ballGrabber.getRawEncoderPos());
     }
 
     // Called when another command which requires one or more of the same

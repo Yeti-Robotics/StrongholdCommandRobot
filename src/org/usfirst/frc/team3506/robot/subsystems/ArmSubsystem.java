@@ -19,9 +19,9 @@ public class ArmSubsystem extends Subsystem {
 	
 	public ArmSubsystem() {
 		ballGrabber = new CANTalon(RobotMap.BALL_GRABBER_CAN_TALON_ID);
-		//lowerLimit = new DigitalInput(RobotMap.ARM_LOWER_LIMIT_SWITCH_PORT);
-		//upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
-		//ballGrabber.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		lowerLimit = new DigitalInput(RobotMap.ARM_LOWER_LIMIT_SWITCH_PORT);
+		upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
+		ballGrabber.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	}
 	
 	public double getRawEncoderPos(){
@@ -37,11 +37,11 @@ public class ArmSubsystem extends Subsystem {
 	}
 	
 	public void moveBallGrabberUp(){
-		ballGrabber.set(RobotMap.ARM_SPEED_OPERATOR);
+		ballGrabber.set(-RobotMap.ARM_SPEED_OPERATOR);
 	}
 	
 	public void moveBallGrabberDown(){
-		ballGrabber.set(-RobotMap.ARM_SPEED_OPERATOR);
+		ballGrabber.set(RobotMap.ARM_SPEED_OPERATOR);
 	}
 	
 	public boolean getLowerLimit(){

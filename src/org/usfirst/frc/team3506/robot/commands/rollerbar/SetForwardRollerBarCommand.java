@@ -20,10 +20,14 @@ public class SetForwardRollerBarCommand extends Command {
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
-    protected void end() {}
+    protected void end() {
+    	Robot.rollerBar.stopRollerBar();
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    	Robot.rollerBar.stopRollerBar();
+    }
 }

@@ -1,16 +1,16 @@
 package org.usfirst.frc.team3506.robot.commands.drivetrain;
 
 import org.usfirst.frc.team3506.robot.Robot;
-import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class UserArcadeDriveCommand extends Command {
+public class DisableAutoDriveCommand extends Command {
 
-    public UserArcadeDriveCommand() {
+    public DisableAutoDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
@@ -22,20 +22,18 @@ public class UserArcadeDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!((Boolean)Robot.gamepadChooser.getSelected())){
-    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightX());
-    	} else{
-    		Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightX());
-    	}
+    	Robot.driveTrain.moveLeftTrain(0);
+    	Robot.driveTrain.moveRightTrain(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Scheduler.getInstance().add(new UserTankDriveCommand());
     }
 
     // Called when another command which requires one or more of the same

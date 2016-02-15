@@ -12,7 +12,7 @@ public class MoveArmDownCommand extends Command {
     public MoveArmDownCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballGrabber);
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,7 @@ public class MoveArmDownCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(/*!Robot.ballGrabber.getLowerLimit()*/ true){
-    		Robot.ballGrabber.moveBallGrabberDown();
+    		Robot.arm.moveBallGrabberDown();
     	}
     }
 

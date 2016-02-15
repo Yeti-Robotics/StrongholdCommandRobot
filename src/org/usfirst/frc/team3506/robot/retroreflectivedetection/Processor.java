@@ -3,6 +3,7 @@ package org.usfirst.frc.team3506.robot.retroreflectivedetection;
 import java.util.ArrayList;
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.usfirst.frc.team3506.robot.retroreflectivedetection.Contour.Param;
+import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,19 +18,19 @@ public class Processor {
 	static final double FOCAL_LENGTH = 125;
 	static final double TARGET_WIDTH = 20;
 	static final double TARGET_HEIGHT = 14;
-	static double distance, angle, azimuth;
+	public static double distance, angle, azimuth;
 	
 	public static void run() {
 		table = NetworkTable.getTable(RobotMap.TABLE_ADDRESS);
 		frameQueue = new CircularFifoQueue<ArrayList<Contour>>(RobotMap.CIRCULAR_FIFO_QUEUE_SIZE);
-		while(!SmartDashboard.getBoolean(RobotMap.CAPTURE_MODE_ID, false)){
+		while(!Robot.captureMode){
 			runStandbyLoop();
 		}
 	}
 	
 	public static void runStandbyLoop(){
 		frameQueue.clear();
-		while(SmartDashboard.getBoolean(RobotMap.CAPTURE_MODE_ID, false)){
+		while(Robot.captureMode){
 			if(!frameQueue.isAtFullCapacity()){
 				frameQueue.add(readCurrentContourReport());
 			}

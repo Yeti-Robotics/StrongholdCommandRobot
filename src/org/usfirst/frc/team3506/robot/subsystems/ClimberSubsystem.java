@@ -30,6 +30,10 @@ public class ClimberSubsystem extends Subsystem {
 		this.winch.set(-RobotMap.CLIMBER_SPEED_OPERATOR);
 	}
 	
+	public void stopWinch(){
+		this.winch.set(0);
+	}
+	
 	public boolean getUpperLimit(){
 		return this.upperLimitSwitch.get();
 	}
