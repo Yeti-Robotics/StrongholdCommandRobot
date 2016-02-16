@@ -37,5 +37,8 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 	private double convertRawEncoderPositiontoDegrees(){
 		return shooterTilt.getPosition() * RobotMap.SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER;
 	}
+	
+	public void addToLW(){
+	}
 }
 

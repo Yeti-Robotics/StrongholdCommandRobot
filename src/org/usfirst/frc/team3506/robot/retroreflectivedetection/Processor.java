@@ -62,7 +62,6 @@ public class Processor {
 		centerX = obj.getParam(Param.WIDTH);
 		apparentWidth = obj.getParam(Param.WIDTH);
     	distance = (TARGET_WIDTH * FOCAL_LENGTH) / apparentWidth;
-    	distance = distance * Math.sin(Math.asin(GOAL_CENTER_HEIGHT / distance));
 		azimuth = ((centerX * HORIZONTAL_FOV) / IMAGE_WIDTH) - (.5 * HORIZONTAL_FOV);
 		SmartDashboard.putNumber(RobotMap.DISTANCE_ID, distance);
 		SmartDashboard.putNumber(RobotMap.AZIMUTH_ID, azimuth);

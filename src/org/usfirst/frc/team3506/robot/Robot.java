@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
 		driveTrain.addToLW();
 		rollerBar.addToLW();
 		arm.addToLW();
+		shooter.addToLW();
     }
 	
     public void disabledInit(){
@@ -110,6 +111,7 @@ public class Robot extends IterativeRobot {
     }
     
     public void testPeriodic() {
+    	LiveWindow.setEnabled(true);
         LiveWindow.run();
     }
 }

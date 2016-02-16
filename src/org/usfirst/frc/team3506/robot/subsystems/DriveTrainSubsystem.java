@@ -130,6 +130,8 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 	
 	public void addToLW(){
+		LiveWindow.addSensor("Drive train", "Left Encoder", left2);
+		LiveWindow.addSensor("Drive train", "Right Encoder", right1);
 		LiveWindow.addActuator("Drive train", "left side 1", left1);
 		LiveWindow.addActuator("Drive train", "left side 2", left2);
 		LiveWindow.addActuator("Drive train", "left side 3", left3);
