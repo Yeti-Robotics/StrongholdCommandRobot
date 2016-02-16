@@ -1,7 +1,9 @@
 
 package org.usfirst.frc.team3506.robot;
 
+import org.usfirst.frc.team3506.robot.commands.arm.UserOperateArmCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
+import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
@@ -107,7 +109,9 @@ public class Robot extends IterativeRobot {
         driveTrain.publishEncoderValues();
         arm.publishEncoderValues();
         shooter.publishEncoderValues();
+        Scheduler.getInstance().add(new UserOperateRollerBarCommand());
         //gearShift.publishShiftStatus();
+        Scheduler.getInstance().add(new UserOperateArmCommand());
     }
     
     public void testPeriodic() {

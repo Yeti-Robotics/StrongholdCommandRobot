@@ -4,6 +4,7 @@ import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class ToggleRollerBarForwardCommand extends Command {
 
@@ -27,7 +28,11 @@ public class ToggleRollerBarForwardCommand extends Command {
         return true;
     }
 
-    protected void end() {}
+    protected void end() {
+    	Scheduler.getInstance().add(new UserOperateRollerBarCommand());
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    	Scheduler.getInstance().add(new UserOperateRollerBarCommand());
+    }
 }

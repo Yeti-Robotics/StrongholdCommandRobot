@@ -67,6 +67,11 @@ public class OI {
 		setJoystickButtonWhilePressedCommand(rightStick, 9, new RunTrainAtPowerCommand(false, -0.25));
 		setJoystickButtonWhenPressedCommand(leftStick, 2, new ShiftDownCommand());
 		setJoystickButtonWhenPressedCommand(leftStick, 3, new ShiftUpCommand());
+		setJoystickButtonWhenPressedCommand(gamepad, 7, new ToggleRollerBarReverseCommand());
+		setJoystickButtonWhenPressedCommand(gamepad, 6, new ToggleRollerBarForwardCommand());
+		//setJoystickButtonWhilePressedCommand(gamepad, 10, new MoveArmDownCommand());
+		//setJoystickButtonWhilePressedCommand(gamepad, 11, new MoveArmUpCommand());
+		setJoystickButtonWhenPressedCommand(gamepad, 1, new ToggleFlywheelCommand());
 	}
 	
 	public double getGamepadLeftX(){

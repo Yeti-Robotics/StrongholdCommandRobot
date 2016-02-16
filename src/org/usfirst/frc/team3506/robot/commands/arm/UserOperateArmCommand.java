@@ -1,19 +1,18 @@
-package org.usfirst.frc.team3506.robot.commands.shooter;
+package org.usfirst.frc.team3506.robot.commands.arm;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class ToggleFlywheelCommand extends Command {
+public class UserOperateArmCommand extends Command {
 
-    public ToggleFlywheelCommand() {
+    public UserOperateArmCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -22,17 +21,12 @@ public class ToggleFlywheelCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.flywheelsActive = !Robot.flywheelsActive;
-    	if(Robot.flywheelsActive){
-    		Robot.shooter.activateFlywheels();
-    	} else{
-    		Robot.shooter.deactivateFlywheels();
-    	}
+    	Robot.arm.moveBallGrabber(Robot.oi.getGamepadLeftY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
