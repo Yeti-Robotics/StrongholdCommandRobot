@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
+import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Relay;
@@ -34,7 +35,9 @@ public class RollerBarSubsystem extends Subsystem {
     	LiveWindow.addActuator("Roller bar", "roll", rollerBar);
     }
 
-	protected void initDefaultCommand() {}
+	protected void initDefaultCommand() {
+		setDefaultCommand(new UserOperateRollerBarCommand());
+	}
 
 }
 

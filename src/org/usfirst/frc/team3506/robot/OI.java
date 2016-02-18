@@ -11,6 +11,7 @@ import org.usfirst.frc.team3506.robot.commands.gearshift.ShiftDownCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ShiftUpCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.SetForwardRollerBarCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.SetReverseRollerBarCommand;
+import org.usfirst.frc.team3506.robot.commands.rollerbar.StopRollerBarCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.ToggleRollerBarForwardCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.ToggleRollerBarReverseCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterDownCommand;
@@ -61,8 +62,8 @@ public class OI {
 //		setJoystickButtonWhenPressedCommand(rightStick, 4, new ToggleRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(rightStick, 4, new MoveShooterDownCommand());
 		setJoystickButtonWhilePressedCommand(rightStick, 5, new MoveShooterUpCommand());
-//		setJoystickButtonWhilePressedCommand(leftStick, 6, new MoveClimberDownCommand());
-//		setJoystickButtonWhilePressedCommand(leftStick, 7, new MoveClimberUpCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 6, new MoveClimberDownCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 7, new MoveClimberUpCommand());
 		setJoystickButtonWhilePressedCommand(rightStick, 8, new RunTrainAtPowerCommand(false, 0.25));
 		setJoystickButtonWhilePressedCommand(rightStick, 9, new RunTrainAtPowerCommand(false, -0.25));
 		setJoystickButtonWhenPressedCommand(leftStick, 2, new ShiftDownCommand());
@@ -72,6 +73,10 @@ public class OI {
 		//setJoystickButtonWhilePressedCommand(gamepad, 10, new MoveArmDownCommand());
 		//setJoystickButtonWhilePressedCommand(gamepad, 11, new MoveArmUpCommand());
 		setJoystickButtonWhenPressedCommand(gamepad, 1, new ToggleFlywheelCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 4, new MoveArmUpCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 5, new MoveArmDownCommand());
+		new JoystickButton(rightStick, 1).whenPressed(new SetReverseRollerBarCommand());
+		new JoystickButton(rightStick, 1).whenReleased(new StopRollerBarCommand());
 	}
 	
 	public double getGamepadLeftX(){

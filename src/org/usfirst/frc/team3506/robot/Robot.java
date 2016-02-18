@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
     	climber = new ClimberSubsystem();
 		oi = new OI();
 		driveTrain.addToLW();
+		driveTrain.publishEncoderValues();
 		rollerBar.addToLW();
 		arm.addToLW();
 		shooter.addToLW();

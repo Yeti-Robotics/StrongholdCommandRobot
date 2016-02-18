@@ -18,8 +18,8 @@ public class ClimberSubsystem extends Subsystem {
 	
 	public ClimberSubsystem(){
 		winch = new CANTalon(RobotMap.WINCH_TALON_ID);
-		upperLimitSwitch = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT_SWITCH_PORT);
-		lowerLimitSwitch = new DigitalInput(RobotMap.CLIMBER_LOWER_LIMIT_SWITCH_PORT);
+//		upperLimitSwitch = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT_SWITCH_PORT);
+//		lowerLimitSwitch = new DigitalInput(RobotMap.CLIMBER_LOWER_LIMIT_SWITCH_PORT);
 	}
 	
 	public void moveWinchForward(){

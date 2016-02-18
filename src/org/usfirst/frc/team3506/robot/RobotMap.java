@@ -17,6 +17,10 @@ public class RobotMap {
 	public static final double USER_SPEED_CONTROL_MODIFIER = 0.8;
 	public static final int GYRO_PORT = 0; // UPDATE
 	public static final double DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER = 0.0; //CALCULATE
+	public static final int[] LEFT_ENCODER_PORT = {0, 1};
+	public static final int[] RIGHT_ENCODER_PORT = {2, 3};
+	//left encoder dio 0,1
+	//other 2,3
 	
 	//Arm
 	public static final int BALL_GRABBER_CAN_TALON_ID = 3;
