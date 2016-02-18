@@ -38,5 +38,9 @@ public class ArmTiltPIDSubsystem extends PIDSubsystem {
 	private double getEncoderPositionDegrees(){
 		return ballGrabber.getEncPosition() * RobotMap.ARM_ENCODER_RAW_TO_DEGREES_MODIFIER;
 	}
+
+	public void resetEncoderValues() {
+		ballGrabber.setPosition(0);
+	}
 }
 
