@@ -52,7 +52,7 @@ public class DriveTrainSubsystem extends Subsystem {
 		left2.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftEnc = new Encoder(RobotMap.LEFT_ENCODER_PORT[0], RobotMap.LEFT_ENCODER_PORT[1]);
-//		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
+		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
 		// ENCODER ATTACHMENT PORTS: RIGHT1 (5), LEFT2 (1) ----- CATAPULT AIM IS FRONT
 	}
 	
@@ -112,6 +112,11 @@ public class DriveTrainSubsystem extends Subsystem {
 		right1.set(speed);
 	}
 	
+	public void resetEncoders(){
+		leftEnc.reset();
+		rightEnc.reset();
+	}
+	
 	public double getTotalTurnDistance(double degrees){
 		double rad = convertToRadians(degrees);
 		return rad*(RobotMap.ROBOT_WHEEL_DIAMETER_FT)/2.0;
@@ -128,8 +133,8 @@ public class DriveTrainSubsystem extends Subsystem {
 	public void publishEncoderValues(){
 		SmartDashboard.putNumber("Left drive encoder position (raw)", getRawLeftEncoderPos());
 		SmartDashboard.putNumber("Left drive encoder velocity (raw)", getRawLeftEncoderVel());
-//		SmartDashboard.putNumber("Right drive encoder positon (raw)", getRawRightEncoderPos());
-//		SmartDashboard.putNumber("Right drive encoder velocity (raw)", getRawRightEncoderVel());
+		SmartDashboard.putNumber("Right drive encoder positon (raw)", getRawRightEncoderPos());
+		SmartDashboard.putNumber("Right drive encoder velocity (raw)", getRawRightEncoderVel());
 	}
 	
 	public void addToLW(){

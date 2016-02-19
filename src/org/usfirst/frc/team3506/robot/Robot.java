@@ -7,6 +7,7 @@ import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCom
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ServoSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static RollerBarSubsystem rollerBar;
 	public static ShooterSubsystem shooter;
 	public static ClimberSubsystem climber;
+	public static ServoSubsystem servo;
 	public static OI oi;
 	public static boolean captureMode;
 	public static boolean flywheelsActive;
@@ -71,6 +73,7 @@ public class Robot extends IterativeRobot {
     	arm = new ArmSubsystem();
     	rollerBar = new RollerBarSubsystem();
     	climber = new ClimberSubsystem();
+    	servo = new ServoSubsystem();
 		oi = new OI();
 		driveTrain.addToLW();
 		driveTrain.publishEncoderValues();
@@ -110,9 +113,11 @@ public class Robot extends IterativeRobot {
         driveTrain.publishEncoderValues();
         arm.publishEncoderValues();
         shooter.publishEncoderValues();
+        servo.publishGetServo();
         Scheduler.getInstance().add(new UserOperateRollerBarCommand());
         //gearShift.publishShiftStatus();
         Scheduler.getInstance().add(new UserOperateArmCommand());
+        
     }
     
     public void testPeriodic() {

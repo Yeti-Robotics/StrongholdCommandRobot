@@ -52,7 +52,7 @@ public class RobotMap {
 	public static final double SHOOTER_D = 0.0; // CALCULATE
 	
 	//GearShift
-	public static final int[] SOLENOID_PORTS = {0,1};
+	public static final int[] SOLENOID_PORTS = {0,2};
 	public static final boolean SHIFT_UP = true;
 	public static final boolean SHIFT_DOWN = false;
 	

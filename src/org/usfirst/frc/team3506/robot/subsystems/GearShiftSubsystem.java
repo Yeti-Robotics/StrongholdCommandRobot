@@ -21,7 +21,7 @@ public class GearShiftSubsystem extends Subsystem {
 	public GearShiftSubsystem(){
 		shifter = new DoubleSolenoid(RobotMap.SOLENOID_PORTS[0], RobotMap.SOLENOID_PORTS[1]);
 		compressor = new Compressor(50);
-		compressor.start();
+		compressor.setClosedLoopControl(true);
 	}
 	
 	public void shiftUp(){
