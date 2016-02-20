@@ -17,18 +17,18 @@ public class GearShiftSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private DoubleSolenoid shifter;
-	private Compressor compressor;
 	public GearShiftSubsystem(){
 		shifter = new DoubleSolenoid(RobotMap.SOLENOID_PORTS[0], RobotMap.SOLENOID_PORTS[1]);
-		compressor = new Compressor(50);
-		compressor.setClosedLoopControl(true);
+		shifter.set(Value.kOff);
 	}
 	
 	public void shiftUp(){
+		System.out.println("Forward");
 		shifter.set(Value.kForward);
 	}
 	
 	public void shiftDown(){
+		System.out.println("Forward");
 		shifter.set(Value.kReverse);
 	}
 	
@@ -37,7 +37,7 @@ public class GearShiftSubsystem extends Subsystem {
 	}
 	
 	public void publishShiftStatus(){
-		SmartDashboard.putData("Shift state", shifter);
+//		SmartDashboard.putData("Shift state", shifter);
 	}
 	
     public void initDefaultCommand() {

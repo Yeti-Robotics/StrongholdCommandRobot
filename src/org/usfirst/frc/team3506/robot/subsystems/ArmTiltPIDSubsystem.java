@@ -5,6 +5,8 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,10 +24,7 @@ public class ArmTiltPIDSubsystem extends PIDSubsystem {
 		ballGrabber.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	}
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+    public void initDefaultCommand() {}
 
 	protected double returnPIDInput() {
 		return getEncoderPositionDegrees();
@@ -39,8 +38,14 @@ public class ArmTiltPIDSubsystem extends PIDSubsystem {
 		return ballGrabber.getEncPosition() * RobotMap.ARM_ENCODER_RAW_TO_DEGREES_MODIFIER;
 	}
 
+	public void publishEncoderValues(){
+		SmartDashboard.putNumber("Arm encoder position (raw)", ballGrabber.getEncPosition());
+		SmartDashboard.putNumber("Arm encoder velocity (raw)", ballGrabber.getEncVelocity());
+	}
+	
 	public void resetEncoderValues() {
 		ballGrabber.setPosition(0);
 	}
+	
 }
 

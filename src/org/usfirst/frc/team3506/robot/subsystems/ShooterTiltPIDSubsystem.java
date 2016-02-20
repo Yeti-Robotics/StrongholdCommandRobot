@@ -5,6 +5,7 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -38,7 +39,9 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 		return shooterTilt.getPosition() * RobotMap.SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER;
 	}
 	
-	public void addToLW(){
+	public void publishEncoderValues(){
+		SmartDashboard.putNumber("Shooter encoder position (raw)", shooterTilt.getEncPosition());
+		SmartDashboard.putNumber("Shooter encoder velocity (raw)", shooterTilt.getEncVelocity());
 	}
 }
 

@@ -5,6 +5,7 @@ import org.usfirst.frc.team3506.robot.commands.arm.UserOperateArmCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ArmTiltPIDSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ServoSubsystem;
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ShooterSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ShooterTiltPIDSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.GearShiftSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,7 +33,7 @@ public class Robot extends IterativeRobot {
 	public static GearShiftSubsystem gearShift;
 	public static ArmSubsystem arm;
 	public static RollerBarSubsystem rollerBar;
-	public static ShooterSubsystem shooter;
+	public static ShooterTiltPIDSubsystem shooter;
 	public static ClimberSubsystem climber;
 	public static ServoSubsystem servo;
 	public static OI oi;
@@ -67,7 +69,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData("Test Drive Talon Chooser", testDriveTalonChooser);
     	SmartDashboard.putData("Front Side Chooser", driveTrainFrontSideChooser);
     	
-    	shooter = new ShooterSubsystem();
+    	shooter = new ShooterTiltPIDSubsystem();
     	gearShift = new GearShiftSubsystem();
     	driveTrain = new DriveTrainSubsystem();
     	arm = new ArmSubsystem();
@@ -78,8 +80,7 @@ public class Robot extends IterativeRobot {
 		driveTrain.addToLW();
 		driveTrain.publishEncoderValues();
 		rollerBar.addToLW();
-		arm.addToLW();
-		shooter.addToLW();
+		SmartDashboard.putData("arm tilt subsystem", arm);
     }
 	
     public void disabledInit(){

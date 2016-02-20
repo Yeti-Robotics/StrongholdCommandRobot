@@ -16,7 +16,7 @@ public class RobotMap {
 	public static final double AUTO_DRIVE_SPEED = 0.3;
 	public static final double USER_SPEED_CONTROL_MODIFIER = 0.8;
 	public static final int GYRO_PORT = 0; // UPDATE
-	public static final double DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER = 0.0; //CALCULATE
+	public static final double DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER = (8 * Math.PI) / 490; //CALCULATE
 	public static final int[] LEFT_ENCODER_PORT = {0, 1};
 	public static final int[] RIGHT_ENCODER_PORT = {2, 3};
 	//left encoder dio 0,1
@@ -27,10 +27,10 @@ public class RobotMap {
 	public static final double ARM_SPEED_OPERATOR = 0.7;
 	public static final int ARM_UPPER_LIMIT_SWITCH_PORT = 3; //UPDATE
 	public static final int ARM_LOWER_LIMIT_SWITCH_PORT = 4; //UPDATE
-	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 0.0; //UPDATE
+	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 1.0; //UPDATE
 	
-	public static final double ARM_P = 0.0; //CALCULATE;
-	public static final double ARM_I = 0.0; //CALCULATE;
+	public static final double ARM_P = 1.0; //CALCULATE;
+	public static final double ARM_I = 1.0; //CALCULATE;
 	public static final double ARM_D = 0.0; //CALCULATE;
 	
 	//Climber
@@ -47,7 +47,7 @@ public class RobotMap {
 	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.1;
 	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 0.0; //UPDATE
 	
-	public static final double SHOOTER_P = 0.0; // CALCULATE
+	public static final double SHOOTER_P = 1.0; // CALCULATE
 	public static final double SHOOTER_I = 0.0; // CALCULATE
 	public static final double SHOOTER_D = 0.0; // CALCULATE
 	
@@ -69,7 +69,7 @@ public class RobotMap {
 	public static final String AZIMUTH_ID = "Azimuth";
 	
 	//Robot and controller constants
-	public static final double ROBOT_WHEEL_DIAMETER_FT = 0.75; //needs adjustment ---------------
+	public static final double ROBOT_WHEEL_DIAMETER_FT = 8.5; //feet
 	public static final int GAMEPAD_PORT = 0;
 	public static final int LEFT_STICK_PORT = 1;
 	public static final int RIGHT_STICK_PORT = 2;

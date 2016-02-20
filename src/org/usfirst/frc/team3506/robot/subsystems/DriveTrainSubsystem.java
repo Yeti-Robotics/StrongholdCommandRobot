@@ -57,11 +57,15 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 	
 	public double getRawLeftEncoderPos(){
-		return /*left2.getEncPosition();*/leftEnc.getDistance();
+		return left2.getEncPosition();
 	}
 	
 	public double getRawRightEncoderPos(){
-		return /*right1.getEncPosition();*/rightEnc.getDistance();
+		return right1.getEncPosition();
+	}
+	
+	public double getRawAvgEncoderPos() {
+		return (getRawLeftEncoderPos() + getRawRightEncoderPos())/2;
 	}
 	
 	public double getRawLeftEncoderVel(){
@@ -124,6 +128,10 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	public double convertToRadians(double degrees){
 		return 2*Math.PI*(degrees/360.0);
+	}
+	
+	public double convertFeetToTicks(double feet) {
+		return feet * RobotMap.DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER;
 	}
 	
 	public double convertTrainVelocityToPower(double velocity){

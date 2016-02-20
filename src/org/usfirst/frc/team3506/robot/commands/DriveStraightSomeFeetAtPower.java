@@ -1,20 +1,15 @@
-package org.usfirst.frc.team3506.robot.commands.shooter;
-
-import org.usfirst.frc.team3506.robot.Robot;
-import org.usfirst.frc.team3506.robot.RobotMap;
+package org.usfirst.frc.team3506.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class CalibrateShooterCommand extends Command {
+public class DriveStraightSomeFeetAtPower extends Command {
 
-    public CalibrateShooterCommand() {
+    public DriveStraightSomeFeetAtPower() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -23,12 +18,11 @@ public class CalibrateShooterCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.lowerTilt();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.shooter.getLowerLimitSwitchState();
+        return false;
     }
 
     // Called once after isFinished returns true
