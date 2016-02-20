@@ -39,9 +39,17 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 		return shooterTilt.getPosition() * RobotMap.SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER;
 	}
 	
+	public void resetEncoders() {
+		shooterTilt.setEncPosition(0);
+	}
+	
 	public void publishEncoderValues(){
 		SmartDashboard.putNumber("Shooter encoder position (raw)", shooterTilt.getEncPosition());
 		SmartDashboard.putNumber("Shooter encoder velocity (raw)", shooterTilt.getEncVelocity());
+	}
+
+	public void addToLW() {
+		LiveWindow.addActuator("ShooterTilt", "Shooter tilt", this.shooterTilt);
 	}
 }
 

@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team3506.robot;
 
 import org.usfirst.frc.team3506.robot.commands.arm.UserOperateArmCommand;
@@ -10,6 +9,7 @@ import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ServoSubsystem;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		driveTrain.addToLW();
 		driveTrain.publishEncoderValues();
 		rollerBar.addToLW();
-		SmartDashboard.putData("arm tilt subsystem", arm);
+		shooter.addToLW();
     }
 	
     public void disabledInit(){
@@ -112,13 +112,10 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         driveTrain.publishEncoderValues();
-        arm.publishEncoderValues();
+//        arm.publishEncoderValues();
         shooter.publishEncoderValues();
         servo.publishGetServo();
-        Scheduler.getInstance().add(new UserOperateRollerBarCommand());
-        //gearShift.publishShiftStatus();
-        Scheduler.getInstance().add(new UserOperateArmCommand());
-        
+        Scheduler.getInstance().add(new UserOperateRollerBarCommand());        
     }
     
     public void testPeriodic() {

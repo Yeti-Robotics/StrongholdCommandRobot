@@ -30,7 +30,7 @@ public class RobotMap {
 	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 1.0; //UPDATE
 	
 	public static final double ARM_P = 1.0; //CALCULATE;
-	public static final double ARM_I = 1.0; //CALCULATE;
+	public static final double ARM_I = 0.0; //CALCULATE;
 	public static final double ARM_D = 0.0; //CALCULATE;
 	
 	//Climber
@@ -45,14 +45,14 @@ public class RobotMap {
 	public static final int SPIKE_SHOOTER_RELAY_PORT_RIGHT = 1;
 	public static final int SHOOTER_LOWER_LIMIT_SWITCH_PORT = 5; // Needs to be updated
 	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.1;
-	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 0.0; //UPDATE
+	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 180.0 / 2960.0; //UPDATE
 	
 	public static final double SHOOTER_P = 1.0; // CALCULATE
-	public static final double SHOOTER_I = 0.0; // CALCULATE
-	public static final double SHOOTER_D = 0.0; // CALCULATE
+	public static final double SHOOTER_I = 0.1; // CALCULATE
+	public static final double SHOOTER_D = 0.1; // CALCULATE
 	
 	//GearShift
-	public static final int[] SOLENOID_PORTS = {0,2};
+	public static final int[] SOLENOID_PORTS = {0,1};
 	public static final boolean SHIFT_UP = true;
 	public static final boolean SHIFT_DOWN = false;
 	
