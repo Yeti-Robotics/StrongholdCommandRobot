@@ -1,13 +1,9 @@
 package org.usfirst.frc.team3506.robot;
 
 
-import org.usfirst.frc.team3506.robot.commands.arm.MoveArmDownCommand;
-import org.usfirst.frc.team3506.robot.commands.arm.MoveArmUpCommand;
-import org.usfirst.frc.team3506.robot.commands.climber.HoldVoltage;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.ResetDriveTrainEncodersCommand;
-import org.usfirst.frc.team3506.robot.commands.drivetrain.RunTrainAtPowerCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ShiftDownCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ShiftUpCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.ToggleRollerBarForwardCommand;
@@ -17,12 +13,10 @@ import org.usfirst.frc.team3506.robot.commands.servo.ServoMoveUpCommand;
 import org.usfirst.frc.team3506.robot.commands.servo.StopServoCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.CalibrateShooterEncoder;
 import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.MovePIDShooter;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterUpCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.ToggleFlywheelCommand;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;

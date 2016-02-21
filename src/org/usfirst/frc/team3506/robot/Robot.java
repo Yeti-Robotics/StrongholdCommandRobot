@@ -5,21 +5,19 @@ import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
 import org.usfirst.frc.team3506.robot.processor.Processor;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
-import org.usfirst.frc.team3506.robot.subsystems.ArmTiltPIDSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.FlywheelSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.GearShiftSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.RollerBarSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ServoSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ShooterSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.ShooterTiltPIDSubsystem;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
-import org.usfirst.frc.team3506.robot.subsystems.FlywheelSubsystem;
-import org.usfirst.frc.team3506.robot.subsystems.ShooterSubsystem;
-import org.usfirst.frc.team3506.robot.subsystems.ShooterTiltPIDSubsystem;
-import org.usfirst.frc.team3506.robot.subsystems.GearShiftSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
