@@ -62,6 +62,7 @@ public class OI {
 		setJoystickButtonWhilePressedCommand(rightStick, 4, new MoveShooterDownCommand());
 		setJoystickButtonWhilePressedCommand(rightStick, 5, new MoveShooterUpCommand());
 		setJoystickButtonWhenPressedCommand(rightStick, 6, new KeepShooterStaticCommand());
+		setJoystickButtonWhenPressedCommand(rightStick, 7, new CalibrateShooterEncoder());
 	}
 	
 	public double getGamepadLeftX(){

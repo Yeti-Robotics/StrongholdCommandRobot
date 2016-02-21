@@ -22,12 +22,12 @@ public class CalibrateArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.moveBallGrabberDown();
+    	Robot.arm.moveBallGrabberUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.getLowerLimit();
+        return Robot.arm.getUpperLimit();
     }
 
     // Called once after isFinished returns true

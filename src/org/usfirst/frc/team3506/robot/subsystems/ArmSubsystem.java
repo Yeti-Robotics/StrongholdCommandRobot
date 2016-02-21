@@ -16,13 +16,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ArmSubsystem extends Subsystem {
 	private CANTalon ballGrabber;
-	private DigitalInput lowerLimit;
 	private DigitalInput upperLimit;
 	
 	public ArmSubsystem() {
 		ballGrabber = new CANTalon(RobotMap.BALL_GRABBER_CAN_TALON_ID);
-//		lowerLimit = new DigitalInput(RobotMap.ARM_LOWER_LIMIT_SWITCH_PORT);
-//		upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
+		upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
 		ballGrabber.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	}
 	
@@ -46,10 +44,6 @@ public class ArmSubsystem extends Subsystem {
 		ballGrabber.set(RobotMap.ARM_SPEED_OPERATOR);
 	}
 	
-	public boolean getLowerLimit(){
-		return this.lowerLimit.get();
-	}
-	
 	public boolean getUpperLimit(){
 		return this.upperLimit.get();
 	}
@@ -61,6 +55,10 @@ public class ArmSubsystem extends Subsystem {
 	
 	public void addToLW(){
 		LiveWindow.addActuator("Ball Grabber", "Ball Grabber", ballGrabber);
+	}
+	
+	public void resetEncoder(){
+		ballGrabber.setEncPosition(0);
 	}
 	
 	public void initDefaultCommand() {

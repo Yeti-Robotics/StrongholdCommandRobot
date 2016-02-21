@@ -36,7 +36,7 @@ public class RobotMap {
 	
 	//Arm
 	public static final int BALL_GRABBER_CAN_TALON_ID = 3;
-	public static final double ARM_SPEED_OPERATOR = 0.7;
+	public static final double ARM_SPEED_OPERATOR = 0.35;
 	public static final int ARM_UPPER_LIMIT_SWITCH_PORT = 3; //UPDATE
 	public static final int ARM_LOWER_LIMIT_SWITCH_PORT = 4; //UPDATE
 	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 1.0; //UPDATE
