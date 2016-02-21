@@ -37,8 +37,7 @@ public class RobotMap {
 	//Arm
 	public static final int BALL_GRABBER_CAN_TALON_ID = 3;
 	public static final double ARM_SPEED_OPERATOR = 0.35;
-	public static final int ARM_UPPER_LIMIT_SWITCH_PORT = 3; //UPDATE
-	public static final int ARM_LOWER_LIMIT_SWITCH_PORT = 4; //UPDATE
+	public static final int ARM_LIMIT_SWITCH_PORT = 4;
 	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 1.0; //UPDATE
 	
 	public static final double ARM_P = 1.0; //CALCULATE;
@@ -48,14 +47,17 @@ public class RobotMap {
 	//Climber
 	public static final int WINCH_TALON_ID = 8; 
 	public static final double CLIMBER_SPEED_OPERATOR = 1.0;
-	public static final int CLIMBER_UPPER_LIMIT_SWITCH_PORT = 1; //UPDATE
+	public static final int CLIMBER_UPPER_LIMIT_SWITCH_PORT = 4;
 	public static final double CLIMBER_HOLD_VOLTAGE = 0.11;
 	
 	//Shooter
 	public static final int SHOOTER_TILT_CAN_TALON_ID = 4;
 	public static final int SPIKE_SHOOTER_RELAY_PORT_LEFT = 0;
 	public static final int SPIKE_SHOOTER_RELAY_PORT_RIGHT = 1;
-	public static final int SHOOTER_LOWER_LIMIT_SWITCH_PORT = 5; // Needs to be updated
+	public static final int SHOOTER_LOWER_LIMIT_SWITCH_PORT = 6;
+	public static final int SHOOTER_UPPER_LIMIT_SWITCH_PORT = 7;
+	public static final int SHOOTER_UPPER_ENCODER_LIMIT = 0; //UPDATE
+	public static final int SHOOTER_LOWER_ENCODER_LIMIT = 0; //UPDATE
 	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.1;
 	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 180.0 / 2960.0; //UPDATE
 	public static final double SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER = 2960.0 / 180.0;

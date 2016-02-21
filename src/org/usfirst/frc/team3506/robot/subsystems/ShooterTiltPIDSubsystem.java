@@ -20,6 +20,7 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 	public ShooterTiltPIDSubsystem(){
 		super("Shooter tilt", RobotMap.SHOOTER_P, RobotMap.SHOOTER_I, RobotMap.SHOOTER_D);
 		shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
+		setInputRange(RobotMap.SHOOTER_LOWER_ENCODER_LIMIT, RobotMap.SHOOTER_UPPER_ENCODER_LIMIT);
 	}
 
     public void initDefaultCommand() {

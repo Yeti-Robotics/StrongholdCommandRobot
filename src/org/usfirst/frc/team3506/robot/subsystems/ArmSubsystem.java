@@ -20,7 +20,7 @@ public class ArmSubsystem extends Subsystem {
 	
 	public ArmSubsystem() {
 		ballGrabber = new CANTalon(RobotMap.BALL_GRABBER_CAN_TALON_ID);
-		upperLimit = new DigitalInput(RobotMap.ARM_UPPER_LIMIT_SWITCH_PORT);
+		upperLimit = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH_PORT);
 		ballGrabber.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	}
 	
