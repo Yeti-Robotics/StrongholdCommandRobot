@@ -16,7 +16,7 @@ public class RobotMap {
 	public static final int GAMEPAD_LEFT_Y_AXIS = 1;
 	public static final int GAMEPAD_RIGHT_X_AXIS = 2;
 	public static final int GAMEPAD_RIGHT_Y_AXIS = 3;
-	public static final double ROBOT_TRACK_WIDTH_FT = 25.165 / 12.0;
+	public static final double ROBOT_TRACK_WIDTH_FT = 22.5 / 12.0;
 	
 	// DriveTrain
 	public static final int LEFT_1_CAN_TALON_ID = 62;  // ORIENTATION: DEFAULT FORWARD IS DIRECTION OF SHOOTER FIRING
@@ -49,7 +49,6 @@ public class RobotMap {
 	public static final int WINCH_TALON_ID = 8; 
 	public static final double CLIMBER_SPEED_OPERATOR = 1.0;
 	public static final int CLIMBER_UPPER_LIMIT_SWITCH_PORT = 1; //UPDATE
-	public static final int CLIMBER_LOWER_LIMIT_SWITCH_PORT = 2; //UPDATE
 	public static final double CLIMBER_HOLD_VOLTAGE = 0.11;
 	
 	//Shooter
@@ -59,6 +58,7 @@ public class RobotMap {
 	public static final int SHOOTER_LOWER_LIMIT_SWITCH_PORT = 5; // Needs to be updated
 	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.1;
 	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 180.0 / 2960.0; //UPDATE
+	public static final double SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER = 2960.0 / 180.0;
 	
 	public static final double SHOOTER_P = 1.0; // CALCULATE
 	public static final double SHOOTER_I = 0.1; // CALCULATE
@@ -71,7 +71,7 @@ public class RobotMap {
 	
 	//RollerBar
 	public static final int ROLLER_BAR_TALON_ID = 9;
-	public static final double ROLLER_BAR_OPERATOR = 1.0;
+	public static final double ROLLER_BAR_OPERATOR = .7;
 	
 	//Vision
 	public static final String CAPTURE_MODE_ID = "RetroreflectiveCaptureMode";
