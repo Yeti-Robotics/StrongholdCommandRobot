@@ -6,6 +6,18 @@ package org.usfirst.frc.team3506.robot;
  * floating around.
  */
 public class RobotMap {
+	//Robot and controller constants
+	public static final double ROBOT_WHEEL_DIAMETER_FT = 9.0 / 12.0; //feet
+	public static final int GAMEPAD_PORT = 0;
+	public static final int LEFT_STICK_PORT = 1;
+	public static final int RIGHT_STICK_PORT = 2;
+	public static final double DEAD_ZONE_MOD = 0.10;
+	public static final int GAMEPAD_LEFT_X_AXIS = 0;
+	public static final int GAMEPAD_LEFT_Y_AXIS = 1;
+	public static final int GAMEPAD_RIGHT_X_AXIS = 2;
+	public static final int GAMEPAD_RIGHT_Y_AXIS = 3;
+	public static final double ROBOT_TRACK_WIDTH_FT = 25.165 / 12.0;
+	
 	// DriveTrain
 	public static final int LEFT_1_CAN_TALON_ID = 62;  // ORIENTATION: DEFAULT FORWARD IS DIRECTION OF SHOOTER FIRING
 	public static final int LEFT_2_CAN_TALON_ID = 1;
@@ -16,7 +28,7 @@ public class RobotMap {
 	public static final double AUTO_DRIVE_SPEED = 0.3;
 	public static final double USER_SPEED_CONTROL_MODIFIER = 0.8;
 	public static final int GYRO_PORT = 0; // UPDATE
-	public static final double DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER = (8 * Math.PI) / 490; //CALCULATE
+	public static final double DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER = (ROBOT_WHEEL_DIAMETER_FT * Math.PI) / 490; //CALCULATE
 	public static final int[] LEFT_ENCODER_PORT = {0, 1};
 	public static final int[] RIGHT_ENCODER_PORT = {2, 3};
 	//left encoder dio 0,1
@@ -69,17 +81,7 @@ public class RobotMap {
 	public static final String DISTANCE_ID = "Distance";
 	public static final String AZIMUTH_ID = "Azimuth";
 	
-	//Robot and controller constants
-	public static final double ROBOT_WHEEL_DIAMETER_FT = 8.5 / 12.0; //feet
-	public static final int GAMEPAD_PORT = 0;
-	public static final int LEFT_STICK_PORT = 1;
-	public static final int RIGHT_STICK_PORT = 2;
-	public static final double DEAD_ZONE_MOD = 0.10;
-	public static final int GAMEPAD_LEFT_X_AXIS = 0;
-	public static final int GAMEPAD_LEFT_Y_AXIS = 1;
-	public static final int GAMEPAD_RIGHT_X_AXIS = 2;
-	public static final int GAMEPAD_RIGHT_Y_AXIS = 3;
-	public static final double ROBOT_TRACK_WIDTH_FT = 25.165 / 12.0;
+
 	
 	public static double encoderPositionDegreesModifierShooter; // subtract from actual encoder position to get calibrated encoder position
 	public static double encoderPositionDegreesModifierArm; // subtract from actual encoder position to get calibrated encoder position

@@ -50,6 +50,14 @@ public class ShooterSubsystem extends Subsystem {
 		return this.shooterTilt.getEncVelocity();
 	}
 	
+    public double encoderToDegree(double encoderValue) {
+    	return encoderValue * RobotMap.SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER;
+    }
+    
+    public double degreeToEncoder(double angle) {
+    	return angle * RobotMap.SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER;
+    }
+	
 	public boolean getLowerLimitSwitchState(){
 		return this.lowerLimitSwitch.get();
 	}
@@ -71,6 +79,10 @@ public class ShooterSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void resetEncoder() {
+    	shooterTilt.setEncPosition(0);
     }
 }
 
