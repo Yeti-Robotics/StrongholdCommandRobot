@@ -82,6 +82,7 @@ public class RobotMap {
 	public static final double[] DEFAULT_VALUE_ARRAY = {0};
 	public static final String DISTANCE_ID = "Distance";
 	public static final String AZIMUTH_ID = "Azimuth";
+	public static final double AZIMUTH_TURN_SPEED = .5;
 	
 
 	

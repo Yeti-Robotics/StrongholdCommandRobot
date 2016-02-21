@@ -23,11 +23,6 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 		setInputRange(RobotMap.SHOOTER_LOWER_ENCODER_LIMIT, RobotMap.SHOOTER_UPPER_ENCODER_LIMIT);
 	}
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
-
 	protected double returnPIDInput() {
 		return convertRawEncoderPositiontoDegrees();
 	}
@@ -53,5 +48,10 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 //		LiveWindow.addSensor("ShooterTilt", "Shooter tilt encoder", shooterTilt);
 //		LiveWindow.addActuator("ShooterTilt", "Shooter tilt", shooterTilt);
 	}
+
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
 }
 

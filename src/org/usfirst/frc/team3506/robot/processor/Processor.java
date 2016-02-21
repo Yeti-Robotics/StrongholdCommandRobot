@@ -36,7 +36,7 @@ public class Processor {
 		}
 	}
 	
-	public static void runStandbyLoop(){
+	public static void runStandbyLoop() {
 		frameQueue.clear();
 		while(Robot.captureMode){
 			if(/*!frameQueue.isAtFullCapacity()*/ true){
@@ -50,7 +50,7 @@ public class Processor {
 		}
 	}
 	
-	public static Contour findDesignatedContour(){
+	public static Contour findDesignatedContour() {
 		Contour designatedContour = new Contour(0, 0, 0, 0, 0, 0);
 		for(int i = 0; i < frameQueue.get(CIRCULAR_FIFO_QUEUE_SIZE - 1).size(); i ++){
 			if(i == 0){
@@ -64,7 +64,7 @@ public class Processor {
 		return designatedContour;
 	}
 	
-	public static void publishDistanceAzimuth(){
+	public static void publishDistanceAzimuth() {
 		double centerX, apparentWidth;
 		Contour obj = findDesignatedContour();
 		if(obj.getParam(Param.AREA) == 0){
@@ -81,7 +81,7 @@ public class Processor {
 		SmartDashboard.putNumber(AZIMUTH_ID, azimuth);
 	}
 	
-	public static ArrayList<Contour> readCurrentContourReport(){
+	public static ArrayList<Contour> readCurrentContourReport() {
 		ArrayList<Contour> contours = new ArrayList<Contour>();
 		for(int i = 0; i < table.getNumberArray("", DEFAULT_VALUE_ARRAY).length; i ++){
 			contours.add(new Contour(table.getNumberArray("", DEFAULT_VALUE_ARRAY)[i], table.getNumberArray("", DEFAULT_VALUE_ARRAY)[i], table.getNumberArray("", DEFAULT_VALUE_ARRAY)[i], table.getNumberArray("", DEFAULT_VALUE_ARRAY)[i], table.getNumberArray("", DEFAULT_VALUE_ARRAY)[i], table.getNumberArray("", DEFAULT_VALUE_ARRAY)[i]));

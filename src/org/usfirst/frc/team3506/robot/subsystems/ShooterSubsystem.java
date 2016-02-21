@@ -21,13 +21,25 @@ public class ShooterSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private CANTalon shooterTilt;
-	
 	private DigitalInput lowerLimitSwitch;
 	
 	public ShooterSubsystem(){
 		this.shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
 		this.lowerLimitSwitch = new DigitalInput(RobotMap.SHOOTER_LOWER_LIMIT_SWITCH_PORT);
 //		this.shooterTilt.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	}
+	
+	public double calculateFiringAngle() {
+		double x = getDistance();
+		return 45;
+	}
+	
+	public double getDistance() {
+		return SmartDashboard.getNumber(RobotMap.DISTANCE_ID);
+	}
+	
+	public double getAzimuth() {
+		return SmartDashboard.getNumber(RobotMap.AZIMUTH_ID);
 	}
 	
 	public void lowerTilt(){

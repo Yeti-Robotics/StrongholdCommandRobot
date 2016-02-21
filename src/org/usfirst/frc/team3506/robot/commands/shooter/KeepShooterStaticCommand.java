@@ -26,10 +26,10 @@ public class KeepShooterStaticCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.shooter.getRawEncoderPos() < setPosition - 10){
+    	if(Robot.shooter.getRawEncoderPos() < setPosition){
     		power += 0.02;
     		Robot.shooter.userControl(power);
-    	} else if(Robot.shooter.getRawEncoderPos() > setPosition + 10){
+    	} else if(Robot.shooter.getRawEncoderPos() > setPosition){
     		power -= 0.02;
     		Robot.shooter.userControl(power);
     	}
