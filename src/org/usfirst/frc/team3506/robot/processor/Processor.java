@@ -3,6 +3,7 @@ package org.usfirst.frc.team3506.robot.processor;
 import java.util.ArrayList;
 
 import org.apache.commons.collections4.queue.CircularFifoQueue;
+import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.processor.Contour.Param;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -30,15 +31,15 @@ public class Processor {
 	public static void run(String[] args) {
 		table = NetworkTable.getTable(TABLE_ADDRESS);
 		frameQueue = new CircularFifoQueue<ArrayList<Contour>>(CIRCULAR_FIFO_QUEUE_SIZE);
-		while(!SmartDashboard.getBoolean(CAPTURE_MODE_ID, false)){
+		while(!Robot.captureMode){
 			runStandbyLoop();
 		}
 	}
 	
 	public static void runStandbyLoop(){
 		frameQueue.clear();
-		while(SmartDashboard.getBoolean(CAPTURE_MODE_ID, false)){
-			if(!frameQueue.isAtFullCapacity()){
+		while(Robot.captureMode){
+			if(/*!frameQueue.isAtFullCapacity()*/ true){
 				frameQueue.add(readCurrentContourReport());
 				try {
 					Thread.sleep(WAIT_PERIOD_MILLIS);
@@ -63,7 +64,7 @@ public class Processor {
 		return designatedContour;
 	}
 	
-	public void publishDistanceAzimuth(){
+	public static void publishDistanceAzimuth(){
 		double centerX, apparentWidth;
 		Contour obj = findDesignatedContour();
 		if(obj.getParam(Param.AREA) == 0){
