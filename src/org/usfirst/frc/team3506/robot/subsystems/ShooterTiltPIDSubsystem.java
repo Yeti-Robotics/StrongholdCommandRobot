@@ -36,7 +36,7 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 	}
 	
 	private double convertRawEncoderPositiontoDegrees(){
-		return shooterTilt.getPosition() * RobotMap.SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER;
+		return shooterTilt.getEncPosition() * RobotMap.SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER;
 	}
 	
 	public void resetEncoders() {
@@ -49,7 +49,8 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 	}
 
 	public void addToLW() {
-		LiveWindow.addActuator("ShooterTilt", "Shooter tilt", this.shooterTilt);
+//		LiveWindow.addSensor("ShooterTilt", "Shooter tilt encoder", shooterTilt);
+//		LiveWindow.addActuator("ShooterTilt", "Shooter tilt", shooterTilt);
 	}
 }
 

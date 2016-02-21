@@ -11,26 +11,30 @@ public class ServoSubsystem extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private Servo servo;
+	private Servo servo1, servo2;
 	private double position;
 	
 	public ServoSubsystem(){
-		servo = new Servo(0);
+		servo1 = new Servo(0);
+		servo2 = new Servo(1);
+	
 		position = 0;
 	}
 	
 	public void moveServoDown(){
 		if(position>=0){
-			position-=0.05;
+			position-=0.2;
 		}
-		servo.set(position);
+		servo1.set(1);
+		servo2.set(0);
 	}
 	
 	public void moveServoUp(){
 		if(position<=1){
-			position+=0.05;
+			position+=0.2;
 		}
-		servo.set(position);
+		servo1.set(.5);
+		servo2.set(.5);
 	}
 	
 	public void stopServo(){
@@ -39,7 +43,8 @@ public class ServoSubsystem extends Subsystem {
 	
 	
 	public void publishGetServo(){
-		SmartDashboard.putNumber("Servo position", servo.get());
+		SmartDashboard.putNumber("Servo position", servo1.get());
+		SmartDashboard.putNumber("Servo 2 position", servo2.get());
 	}
 	
     public void initDefaultCommand() {

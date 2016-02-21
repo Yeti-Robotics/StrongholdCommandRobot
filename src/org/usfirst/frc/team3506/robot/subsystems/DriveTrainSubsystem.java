@@ -121,11 +121,6 @@ public class DriveTrainSubsystem extends Subsystem {
 		rightEnc.reset();
 	}
 	
-	public double getTotalTurnDistance(double degrees){
-		double rad = convertToRadians(degrees);
-		return rad*(RobotMap.ROBOT_WHEEL_DIAMETER_FT)/2.0;
-	}
-	
 	public double convertToRadians(double degrees){
 		return 2*Math.PI*(degrees/360.0);
 	}

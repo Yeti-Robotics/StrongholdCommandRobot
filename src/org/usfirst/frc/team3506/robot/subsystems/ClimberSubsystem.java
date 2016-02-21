@@ -15,9 +15,11 @@ public class ClimberSubsystem extends Subsystem {
 	private CANTalon winch;
 	private DigitalInput upperLimitSwitch;
 	private DigitalInput lowerLimitSwitch;
+	public boolean hold;
 	
 	public ClimberSubsystem(){
 		winch = new CANTalon(RobotMap.WINCH_TALON_ID);
+		hold = false;
 //		upperLimitSwitch = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT_SWITCH_PORT);
 //		lowerLimitSwitch = new DigitalInput(RobotMap.CLIMBER_LOWER_LIMIT_SWITCH_PORT);
 	}
@@ -32,6 +34,10 @@ public class ClimberSubsystem extends Subsystem {
 	
 	public void stopWinch(){
 		this.winch.set(0);
+	}
+	
+	public void holdWinch() {
+		this.winch.set(RobotMap.CLIMBER_HOLD_VOLTAGE);
 	}
 	
 	public boolean getUpperLimit(){

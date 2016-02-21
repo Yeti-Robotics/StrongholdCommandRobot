@@ -7,25 +7,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MovePIDShooter extends Command {
-	double setpoint;
-    public MovePIDShooter(double setpoint) {
-    	this.setpoint = setpoint;
+public class UserOperateShooterCommand extends Command {
+
+    public UserOperateShooterCommand() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.shooter.setSetpoint(setpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+//    	Robot.shooter.userControl(Robot.oi.getGamepadLeftX());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return /*Math.abs(Robot.shooter.getPosition() - Robot.shooter.getSetpoint()) < 0.1;*/ true;
+        return false;
     }
 
     // Called once after isFinished returns true

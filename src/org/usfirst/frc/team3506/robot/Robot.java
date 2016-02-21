@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
+import org.usfirst.frc.team3506.robot.subsystems.FlywheelSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ShooterSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ShooterTiltPIDSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.GearShiftSubsystem;
@@ -33,10 +34,12 @@ public class Robot extends IterativeRobot {
 	public static GearShiftSubsystem gearShift;
 	public static ArmSubsystem arm;
 	public static RollerBarSubsystem rollerBar;
-	public static ShooterTiltPIDSubsystem shooter;
+	public static ShooterSubsystem shooter;
 	public static ClimberSubsystem climber;
 	public static ServoSubsystem servo;
 	public static OI oi;
+	public static ShooterTiltPIDSubsystem shooterPID;
+	public static FlywheelSubsystem flywheels;
 	public static boolean captureMode;
 	public static boolean flywheelsActive;
 	
@@ -51,9 +54,9 @@ public class Robot extends IterativeRobot {
     	gamepadChooser = new SendableChooser();
     	testDriveTalonChooser = new SendableChooser();
     	driveTrainFrontSideChooser = new SendableChooser();
+    	gamepadChooser.addDefault("Joysticks Activated", new Boolean(false));
+    	gamepadChooser.addObject("Gamepad Activated", new Boolean(true));
     	
-    	gamepadChooser.addDefault("Gamepad Activated", new Boolean(true));
-    	gamepadChooser.addObject("Joysticks Activated", new Boolean(false));
     	
     	testDriveTalonChooser.addDefault("Left1", DriveTrainSubsystem.Talons.LEFT1);
     	testDriveTalonChooser.addObject("Left2", DriveTrainSubsystem.Talons.LEFT2);
@@ -69,30 +72,36 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData("Test Drive Talon Chooser", testDriveTalonChooser);
     	SmartDashboard.putData("Front Side Chooser", driveTrainFrontSideChooser);
     	
-    	shooter = new ShooterTiltPIDSubsystem();
+    	shooter = new ShooterSubsystem();
     	gearShift = new GearShiftSubsystem();
     	driveTrain = new DriveTrainSubsystem();
     	arm = new ArmSubsystem();
     	rollerBar = new RollerBarSubsystem();
     	climber = new ClimberSubsystem();
     	servo = new ServoSubsystem();
+    	shooterPID = new ShooterTiltPIDSubsystem();
+    	flywheels = new FlywheelSubsystem();
 		oi = new OI();
-		driveTrain.addToLW();
-		driveTrain.publishEncoderValues();
-		rollerBar.addToLW();
-		shooter.addToLW();
+		shooterPID.addToLW();
+		LiveWindow.addActuator("Shooter tilt", "ShooterTilt", shooterPID.getPIDController());
+		SmartDashboard.putData("PIDSubsystem", shooterPID.getPIDController());
     }
 	
     public void disabledInit(){
-
+//    	if(climber.hold) {
+//    		climber.holdWinch();
+//    	}
     }
 	
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-		driveTrain.publishEncoderValues();
-        arm.publishEncoderValues();
-        shooter.publishEncoderValues();
+//		Scheduler.getInstance().run();
+//		driveTrain.publishEncoderValues();
+//        arm.publishEncoderValues();
+//        shooter.publishEncoderValues();
        // gearShift.publishShiftStatus();
+//        if(climber.hold) {
+//    		climber.holdWinch();
+//    	}
 	}
 
     public void autonomousInit() {
@@ -107,15 +116,19 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         Scheduler.getInstance().add(new UserTankDriveCommand());
+        Scheduler.getInstance().add(new UserOperateArmCommand());
+        Scheduler.getInstance().add(new UserOperateRollerBarCommand());
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         driveTrain.publishEncoderValues();
-//        arm.publishEncoderValues();
+        arm.publishEncoderValues();
         shooter.publishEncoderValues();
-        servo.publishGetServo();
-        Scheduler.getInstance().add(new UserOperateRollerBarCommand());        
+//        servo.publishGetServo();
+//    	if(climber.hold) {
+//    		climber.holdWinch();
+//    	}
     }
     
     public void testPeriodic() {

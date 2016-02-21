@@ -3,18 +3,26 @@ package org.usfirst.frc.team3506.robot;
 
 import org.usfirst.frc.team3506.robot.commands.arm.MoveArmDownCommand;
 import org.usfirst.frc.team3506.robot.commands.arm.MoveArmUpCommand;
+import org.usfirst.frc.team3506.robot.commands.climber.HoldVoltage;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
-import org.usfirst.frc.team3506.robot.commands.drivetrain.ResetEncodersCommand;
+import org.usfirst.frc.team3506.robot.commands.drivetrain.ResetDriveTrainEncodersCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.RunTrainAtPowerCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ShiftDownCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ShiftUpCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.ToggleRollerBarForwardCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.ToggleRollerBarReverseCommand;
+import org.usfirst.frc.team3506.robot.commands.servo.ServoMoveDownCommand;
+import org.usfirst.frc.team3506.robot.commands.servo.ServoMoveUpCommand;
 import org.usfirst.frc.team3506.robot.commands.servo.StopServoCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.CalibrateShooterEncoder;
+import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MovePIDShooter;
+import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterDownCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterUpCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.ToggleFlywheelCommand;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -36,22 +44,24 @@ public class OI {
 		gamepad = new Joystick(RobotMap.GAMEPAD_PORT);
 		leftStick = new Joystick(RobotMap.LEFT_STICK_PORT);
 		rightStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
+		
+		setJoystickButtonWhenPressedCommand(gamepad, 2, new ToggleRollerBarReverseCommand());
+		setJoystickButtonWhenPressedCommand(gamepad, 3, new ToggleRollerBarForwardCommand());
 		setJoystickButtonWhenPressedCommand(gamepad, 7, new ShiftDownCommand());
 		setJoystickButtonWhenPressedCommand(gamepad, 8, new ShiftUpCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 10, new ResetEncodersCommand());
+		setJoystickButtonWhenPressedCommand(gamepad, 9, new CalibrateShooterEncoder());
+		setJoystickButtonWhenPressedCommand(gamepad, 10, new ToggleFlywheelCommand());
+		
 		setJoystickButtonWhilePressedCommand(leftStick, 6, new MoveClimberDownCommand());
 		setJoystickButtonWhilePressedCommand(leftStick, 7, new MoveClimberUpCommand());
-		setJoystickButtonWhilePressedCommand(rightStick, 1, new RunTrainAtPowerCommand(false, 0.25));
-		setJoystickButtonWhilePressedCommand(rightStick, 9, new RunTrainAtPowerCommand(false, -0.25));
-		setJoystickButtonWhenPressedCommand(leftStick, 2, new ShiftDownCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 3, new ShiftUpCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 8, new StopServoCommand());
-		setJoystickButtonWhenPressedCommand(gamepad, 5, new ToggleRollerBarReverseCommand());
-		setJoystickButtonWhenPressedCommand(gamepad, 6, new ToggleRollerBarForwardCommand());
-		setJoystickButtonWhilePressedCommand(gamepad, 4, new MoveArmUpCommand());
-		setJoystickButtonWhilePressedCommand(gamepad, 2, new MoveArmDownCommand());
-		setJoystickButtonWhenPressedCommand(gamepad, 9, new CalibrateShooterEncoder());
-		setJoystickButtonWhenPressedCommand(leftStick, 10, new MovePIDShooter(400));
+		setJoystickButtonWhenPressedCommand(leftStick, 8, new ServoMoveDownCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 9, new ServoMoveUpCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 10, new StopServoCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 11, new ResetDriveTrainEncodersCommand());	
+		
+		setJoystickButtonWhilePressedCommand(rightStick, 4, new MoveShooterDownCommand());
+		setJoystickButtonWhilePressedCommand(rightStick, 5, new MoveShooterUpCommand());
+		setJoystickButtonWhenPressedCommand(rightStick, 6, new KeepShooterStaticCommand());
 	}
 	
 	public double getGamepadLeftX(){

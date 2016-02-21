@@ -38,6 +38,7 @@ public class RobotMap {
 	public static final double CLIMBER_SPEED_OPERATOR = 1.0;
 	public static final int CLIMBER_UPPER_LIMIT_SWITCH_PORT = 1; //UPDATE
 	public static final int CLIMBER_LOWER_LIMIT_SWITCH_PORT = 2; //UPDATE
+	public static final double CLIMBER_HOLD_VOLTAGE = 0.11;
 	
 	//Shooter
 	public static final int SHOOTER_TILT_CAN_TALON_ID = 4;
@@ -69,11 +70,11 @@ public class RobotMap {
 	public static final String AZIMUTH_ID = "Azimuth";
 	
 	//Robot and controller constants
-	public static final double ROBOT_WHEEL_DIAMETER_FT = 8.5; //feet
+	public static final double ROBOT_WHEEL_DIAMETER_FT = 8.5 / 12.0; //feet
 	public static final int GAMEPAD_PORT = 0;
 	public static final int LEFT_STICK_PORT = 1;
 	public static final int RIGHT_STICK_PORT = 2;
-	public static final double DEAD_ZONE_MOD = 0.15;
+	public static final double DEAD_ZONE_MOD = 0.10;
 	public static final int GAMEPAD_LEFT_X_AXIS = 0;
 	public static final int GAMEPAD_LEFT_Y_AXIS = 1;
 	public static final int GAMEPAD_RIGHT_X_AXIS = 2;
