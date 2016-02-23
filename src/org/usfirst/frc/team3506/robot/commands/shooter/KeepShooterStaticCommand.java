@@ -22,7 +22,7 @@ public class KeepShooterStaticCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	setPosition = Robot.shooter.getRawEncoderPos();
-    	power = 0;
+//    	power = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run

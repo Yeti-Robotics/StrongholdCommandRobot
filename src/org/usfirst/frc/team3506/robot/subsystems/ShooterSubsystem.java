@@ -51,7 +51,7 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public double getRawEncoderPos(){
-		return this.shooterTilt.getEncPosition();
+		return this.shooterTilt.getPosition();
 	}
 	
 	public double getRawEncoderVel(){

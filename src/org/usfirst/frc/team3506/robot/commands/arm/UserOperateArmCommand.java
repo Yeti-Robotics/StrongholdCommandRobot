@@ -21,7 +21,11 @@ public class UserOperateArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.moveBallGrabber(Robot.oi.getGamepadLeftY());
+//    	if (!Robot.arm.getUpperLimit()) {
+			Robot.arm.moveBallGrabber(Robot.oi.getGamepadLeftY());
+//		} else if (Robot.oi.getGamepadLeftY() > 0) {
+//			Robot.arm.moveBallGrabber(Robot.oi.getGamepadLeftY());
+//		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -21,12 +21,14 @@ public class MoveShooterDownCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.lowerTilt();
+    	if (!Robot.shooter.getLowerLimitSwitchState()) {
+			Robot.shooter.lowerTilt();
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.shooter.getLowerLimitSwitchState();
     }
 
     // Called once after isFinished returns true
