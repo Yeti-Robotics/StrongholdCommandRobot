@@ -16,7 +16,7 @@ public class SetForwardRollerBarCommand extends Command {
     protected void initialize() {}
 
     protected void execute() {
-    	Robot.rollerBar.driveRollerBar();
+    	Robot.rollerBar.setRollerBarForward();
     }
 
     protected boolean isFinished() {

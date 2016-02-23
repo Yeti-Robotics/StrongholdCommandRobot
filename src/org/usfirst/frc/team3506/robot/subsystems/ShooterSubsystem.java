@@ -85,7 +85,7 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new KeepShooterStaticCommand());
+//        setDefaultCommand(new KeepShooterStaticCommand());
     }
     
     public void resetEncoder() {

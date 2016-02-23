@@ -14,7 +14,7 @@ public class KeepReverseRollerBarCommand extends Command {
     }
 
     protected void initialize() {
-    	Robot.rollerBar.reverseRollerBar();
+    	Robot.rollerBar.setRollerBarReverse();
     }
 
     protected void execute() {}

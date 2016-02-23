@@ -23,9 +23,9 @@ public class UserOperateRollerBarCommand extends Command {
     protected void execute() {
     	if(Robot.oi.rollersOn){
     		if(Robot.oi.rollersForward){
-    			Robot.rollerBar.driveRollerBar();
+    			Robot.rollerBar.setRollerBarForward();
     		} else{
-    			Robot.rollerBar.reverseRollerBar();
+    			Robot.rollerBar.setRollerBarReverse();
     		}
     	} else{
     		Robot.rollerBar.stopRollerBar();

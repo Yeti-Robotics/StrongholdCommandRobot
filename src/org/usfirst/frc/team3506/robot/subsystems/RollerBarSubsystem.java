@@ -22,11 +22,11 @@ public class RollerBarSubsystem extends Subsystem {
     	rollerBar.set(0);
     }
     
-    public void driveRollerBar() {
+    public void setRollerBarForward() {
     	rollerBar.set(RobotMap.ROLLER_BAR_OPERATOR);
     }
 
-    public void reverseRollerBar() {
+    public void setRollerBarReverse() {
     	rollerBar.set(-RobotMap.ROLLER_BAR_OPERATOR);
     }
     

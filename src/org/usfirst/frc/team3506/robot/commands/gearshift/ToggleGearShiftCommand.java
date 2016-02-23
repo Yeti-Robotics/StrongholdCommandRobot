@@ -1,45 +1,37 @@
-package org.usfirst.frc.team3506.robot.commands.shooter;
+package org.usfirst.frc.team3506.robot.commands.gearshift;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class KeepShooterStaticCommand extends Command {
-	
-	private double setPosition;
-	private double power;
-	
-    public KeepShooterStaticCommand(double power) {
+public class ToggleGearShiftCommand extends Command {
+
+    public ToggleGearShiftCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
-    	this.power = power;
+    	requires(Robot.gearShift);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setPosition = Robot.shooter.getRawEncoderPos();
-    	power = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.shooter.getRawEncoderPos() < setPosition){
-//    		power += 0.02;
-//    		Robot.shooter.userControl(power);
-//    	} else if(Robot.shooter.getRawEncoderPos() > setPosition){
-//    		power -= 0.02;
-//    		Robot.shooter.userControl(power);
-//    	}
-    	Robot.shooter.userControl(power);
+    	if (Robot.gearShift.shiftedState() == Value.kForward) {
+    		Robot.gearShift.shiftDown();
+    	} else {
+    		Robot.gearShift.shiftUp();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

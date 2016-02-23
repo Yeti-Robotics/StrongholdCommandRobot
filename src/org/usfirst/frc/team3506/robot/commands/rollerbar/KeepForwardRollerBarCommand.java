@@ -14,7 +14,7 @@ public class KeepForwardRollerBarCommand extends Command {
     }
 
     protected void initialize() {
-    	Robot.rollerBar.driveRollerBar();
+    	Robot.rollerBar.setRollerBarForward();
     }
 
     protected void execute() {}

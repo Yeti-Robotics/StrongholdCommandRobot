@@ -62,9 +62,9 @@ public class RobotMap {
 	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 180.0 / 2960.0; //UPDATE
 	public static final double SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER = 2960.0 / 180.0;
 	
-	public static final double SHOOTER_P = 1.0; // CALCULATE
-	public static final double SHOOTER_I = 0.1; // CALCULATE
-	public static final double SHOOTER_D = 0.1; // CALCULATE
+	public static final double SHOOTER_P = 0.1; // CALCULATE
+	public static final double SHOOTER_I = 0.001; // CALCULATE
+	public static final double SHOOTER_D = 0.0; // CALCULATE
 	
 	//GearShift
 	public static final int[] SOLENOID_PORTS = {0,1};

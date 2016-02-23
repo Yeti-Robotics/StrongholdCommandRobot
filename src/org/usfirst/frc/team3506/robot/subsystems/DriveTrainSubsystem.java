@@ -23,6 +23,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	private RobotDrive robotDrive;
 	private Encoder leftEnc, rightEnc;
 	public static enum Talons {LEFT1, LEFT2, LEFT3, RIGHT1, RIGHT2, RIGHT3}
+	public boolean isArmFront;
 	public DriveTrainSubsystem() {
 		left1 = new CANTalon(RobotMap.LEFT_1_CAN_TALON_ID);
 		left2 = new CANTalon(RobotMap.LEFT_2_CAN_TALON_ID);
@@ -49,6 +50,7 @@ public class DriveTrainSubsystem extends Subsystem {
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftEnc = new Encoder(RobotMap.LEFT_ENCODER_PORT[0], RobotMap.LEFT_ENCODER_PORT[1]);
 		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
+		isArmFront = true;
 		// ENCODER ATTACHMENT PORTS: RIGHT1 (5), LEFT2 (1) ----- CATAPULT AIM IS FRONT
 	}
 	

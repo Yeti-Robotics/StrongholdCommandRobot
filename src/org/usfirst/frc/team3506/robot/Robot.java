@@ -1,9 +1,10 @@
 package org.usfirst.frc.team3506.robot;
 
+import javax.annotation.processing.Processor;
+
 import org.usfirst.frc.team3506.robot.commands.arm.UserOperateArmCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
-import org.usfirst.frc.team3506.robot.processor.Processor;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
@@ -84,7 +85,7 @@ public class Robot extends IterativeRobot {
 		shooterPID.addToLW();
 		LiveWindow.addActuator("Shooter tilt", "ShooterTilt", shooterPID.getPIDController());
 		SmartDashboard.putData("PIDSubsystem", shooterPID.getPIDController());
-		Processor.run(null);
+//		Processor.run(null);
     }
 	
     public void disabledInit(){
@@ -129,7 +130,7 @@ public class Robot extends IterativeRobot {
 //    	if(climber.hold) {
 //    		climber.holdWinch();
 //    	}
-        Processor.publishDistanceAzimuth();
+//        Processor.publishDistanceAzimuth();
     }
     
     public void testPeriodic() {
