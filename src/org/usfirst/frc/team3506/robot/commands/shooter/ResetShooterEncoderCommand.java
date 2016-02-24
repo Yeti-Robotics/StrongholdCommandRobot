@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class UserOperateShooterCommand extends Command {
+public class ResetShooterEncoderCommand extends Command {
 
-    public UserOperateShooterCommand() {
+    public ResetShooterEncoderCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
@@ -21,12 +21,12 @@ public class UserOperateShooterCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	Robot.shooter.userControl(Robot.oi.getGamepadLeftX());
+    	Robot.shooter.resetEncoder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

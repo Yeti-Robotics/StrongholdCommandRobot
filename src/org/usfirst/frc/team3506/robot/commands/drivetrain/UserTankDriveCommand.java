@@ -22,19 +22,43 @@ public class UserTankDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!(Boolean)Robot.gamepadChooser.getSelected()){
-    		if(!Robot.driveTrain.isArmFront){
-    			Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY(), -RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightY());
-    		} else{
-    			Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getRightY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getLeftY());
-    		}
-    	} else{
-    		if(Robot.driveTrain.isArmFront){
-    			Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightY(), -RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY());
-    		} else{
-    			Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadLeftY(), RobotMap.USER_SPEED_CONTROL_MODIFIER*Robot.oi.getGamepadRightY());
-    		}
-    	}
+//    	if (!(Boolean)Robot.driveSchemeChooser.getSelected()) {
+			if (!(Boolean) Robot.gamepadChooser.getSelected()) {
+				if (!Robot.driveTrain.isArmFront) {
+					Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY(),
+							-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY());
+				} else {
+					Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY(),
+							RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY());
+				}
+			} else {
+				if (Robot.driveTrain.isArmFront) {
+					Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadRightY(),
+							-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadLeftY());
+				} else {
+					Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadLeftY(),
+							RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadRightY());
+				}
+			} 
+//		} else if ((Boolean)Robot.driveSchemeChooser.getSelected()){
+//			if (!(Boolean) Robot.gamepadChooser.getSelected()) {
+//				if (!Robot.driveTrain.isArmFront) {
+//					Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY(),
+//							-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY());
+//				} else {
+//					Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY(),
+//							RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY());
+//				}
+//			} else {
+//				if (Robot.driveTrain.isArmFront) {
+//					Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadRightY(),
+//							-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadLeftY());
+//				} else {
+//					Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadLeftY(),
+//							RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getGamepadRightY());
+//				}
+//			} 
+//		}
     	
     }
 

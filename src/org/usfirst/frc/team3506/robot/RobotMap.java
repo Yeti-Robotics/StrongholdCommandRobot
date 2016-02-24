@@ -11,7 +11,7 @@ public class RobotMap {
 	public static final int GAMEPAD_PORT = 0;
 	public static final int LEFT_STICK_PORT = 1;
 	public static final int RIGHT_STICK_PORT = 2;
-	public static final double DEAD_ZONE_MOD = 0.10;
+	public static final double DEAD_ZONE_MOD = 0.05;
 	public static final int GAMEPAD_LEFT_X_AXIS = 0;
 	public static final int GAMEPAD_LEFT_Y_AXIS = 1;
 	public static final int GAMEPAD_RIGHT_X_AXIS = 2;
@@ -49,6 +49,7 @@ public class RobotMap {
 	public static final double CLIMBER_SPEED_OPERATOR = 1.0;
 	public static final int CLIMBER_UPPER_LIMIT_SWITCH_PORT = 4;
 	public static final double CLIMBER_HOLD_VOLTAGE = 0.11;
+	public static final int[] CLIMBER_STOP_SOLENOID_PORTS = {6, 7};
 	
 	//Shooter
 	public static final int SHOOTER_TILT_CAN_TALON_ID = 4;
@@ -61,6 +62,8 @@ public class RobotMap {
 	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.1;
 	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 180.0 / 2960.0; //UPDATE
 	public static final double SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER = 2960.0 / 180.0;
+	public static final double STATIC_SHOOTER_POWER = -.05;
+	public static final int SHOOTER_STATIC_LIMIT = 700;
 	
 	public static final double SHOOTER_P = 0.1; // CALCULATE
 	public static final double SHOOTER_I = 0.001; // CALCULATE

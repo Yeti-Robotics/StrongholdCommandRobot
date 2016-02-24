@@ -1,10 +1,5 @@
 package org.usfirst.frc.team3506.robot;
 
-import javax.annotation.processing.Processor;
-
-import org.usfirst.frc.team3506.robot.commands.arm.UserOperateArmCommand;
-import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
-import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
@@ -41,21 +36,23 @@ public class Robot extends IterativeRobot {
 	public static ShooterTiltPIDSubsystem shooterPID;
 	public static FlywheelSubsystem flywheels;
 	public static boolean captureMode;
-	public static boolean flywheelsActive;
 	
 	Command autonomousCommand;
 	public static SendableChooser gamepadChooser;
 	public static SendableChooser testDriveTalonChooser;
 	public static SendableChooser driveTrainFrontSideChooser;
+	public static SendableChooser driveSchemeChooser;
 	
     public void robotInit() {
     	captureMode = true;
-    	flywheelsActive = false;
     	gamepadChooser = new SendableChooser();
     	testDriveTalonChooser = new SendableChooser();
     	driveTrainFrontSideChooser = new SendableChooser();
     	gamepadChooser.addDefault("Joysticks Activated", new Boolean(false));
     	gamepadChooser.addObject("Gamepad Activated", new Boolean(true));
+    	driveSchemeChooser = new SendableChooser();
+    	driveSchemeChooser.addDefault("Arcade drive", new Boolean(true));
+    	driveSchemeChooser.addObject("Tank drive", new Boolean(false));
     	
     	
     	testDriveTalonChooser.addDefault("Left1", DriveTrainSubsystem.Talons.LEFT1);
@@ -116,9 +113,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Scheduler.getInstance().add(new UserTankDriveCommand());
-        Scheduler.getInstance().add(new UserOperateArmCommand());
-        Scheduler.getInstance().add(new UserOperateRollerBarCommand());
     }
 
     public void teleopPeriodic() {

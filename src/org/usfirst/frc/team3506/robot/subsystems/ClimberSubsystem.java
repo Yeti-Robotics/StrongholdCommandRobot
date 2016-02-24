@@ -4,6 +4,8 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,12 +19,26 @@ public class ClimberSubsystem extends Subsystem {
 	private DigitalInput upperLimitSwitch;
 	private DigitalInput lowerLimitSwitch;
 	public boolean hold;
+	private DoubleSolenoid brake;
 	
 	public ClimberSubsystem(){
 		winch = new CANTalon(RobotMap.WINCH_TALON_ID);
 		hold = false;
+		brake = new DoubleSolenoid(RobotMap.CLIMBER_STOP_SOLENOID_PORTS[0], RobotMap.CLIMBER_STOP_SOLENOID_PORTS[1]);
 //		upperLimitSwitch = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT_SWITCH_PORT);
 //		lowerLimitSwitch = new DigitalInput(RobotMap.CLIMBER_LOWER_LIMIT_SWITCH_PORT);
+	}
+	
+	public void brake() {
+		brake.set(Value.kForward);
+	}
+	
+	public void releaseBrake() {
+		brake.set(Value.kReverse);
+	}
+	
+	public Value getBrakeState() {
+		return brake.get();
 	}
 	
 	public void moveWinchForward(){

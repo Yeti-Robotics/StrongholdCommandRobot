@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FlywheelSubsystem extends Subsystem {
 	private Relay spikeShooterLeft, spikeShooterRight;
+	public boolean isActive;
 	
 	public FlywheelSubsystem(){
 		this.spikeShooterLeft = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_LEFT);
 		this.spikeShooterRight = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_RIGHT);
+		isActive = false;
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

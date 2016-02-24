@@ -24,7 +24,7 @@ public class ArmSubsystem extends Subsystem {
 	}
 	
 	public double getRawEncoderPos(){
-		return ballGrabber.getEncPosition();
+		return ballGrabber.getPosition();
 	}
 	
 	public double getRawEncoderVel(){
@@ -50,6 +50,7 @@ public class ArmSubsystem extends Subsystem {
 	public void publishEncoderValues(){
 		SmartDashboard.putNumber("Arm encoder position (raw)", getRawEncoderPos());
 		SmartDashboard.putNumber("Arm encoder velocity (raw)", getRawEncoderVel());
+		SmartDashboard.putBoolean("Arm upper limit", getUpperLimit());
 	}
 	
 	public void addToLW(){
@@ -57,7 +58,7 @@ public class ArmSubsystem extends Subsystem {
 	}
 	
 	public void resetEncoder(){
-		ballGrabber.setEncPosition(0);
+		ballGrabber.setPosition(0);
 	}
 	
 	public void initDefaultCommand() {

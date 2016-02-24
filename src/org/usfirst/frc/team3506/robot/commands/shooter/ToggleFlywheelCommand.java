@@ -21,8 +21,8 @@ public class ToggleFlywheelCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.flywheelsActive = !Robot.flywheelsActive;
-    	if(Robot.flywheelsActive){
+    	Robot.flywheels.isActive = !Robot.flywheels.isActive;
+    	if(Robot.flywheels.isActive){
     		Robot.flywheels.activateFlywheels();
     	} else{
     		Robot.flywheels.deactivateFlywheels();

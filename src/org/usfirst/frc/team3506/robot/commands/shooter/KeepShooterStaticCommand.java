@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot.commands.shooter;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,37 +10,23 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class KeepShooterStaticCommand extends Command {
 	
-	private double setPosition;
-	private double power;
-	
-    public KeepShooterStaticCommand(double power) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public KeepShooterStaticCommand() {
     	requires(Robot.shooter);
-    	this.power = power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setPosition = Robot.shooter.getRawEncoderPos();
-//    	power = 0;
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.shooter.getRawEncoderPos() < setPosition){
-//    		power += 0.02;
-//    		Robot.shooter.userControl(power);
-//    	} else if(Robot.shooter.getRawEncoderPos() > setPosition){
-//    		power -= 0.02;
-//    		Robot.shooter.userControl(power);
-//    	}
-    	Robot.shooter.userControl(power);
+    	Robot.shooter.userControl(RobotMap.STATIC_SHOOTER_POWER);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (Robot.shooter.getRawEncoderPos() >= RobotMap.STATIC_SHOOTER_POWER);
     }
 
     // Called once after isFinished returns true

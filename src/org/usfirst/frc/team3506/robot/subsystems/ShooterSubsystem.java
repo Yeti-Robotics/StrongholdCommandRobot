@@ -4,6 +4,7 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -17,12 +18,13 @@ public class ShooterSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private CANTalon shooterTilt;
-	private DigitalInput lowerLimitSwitch;
+	private DigitalInput lowerLimitSwitch, upperLimitSwitch;
 	
 	public ShooterSubsystem(){
 		this.shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
 		this.lowerLimitSwitch = new DigitalInput(RobotMap.SHOOTER_LOWER_LIMIT_SWITCH_PORT);
-//		this.shooterTilt.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.shooterTilt.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		upperLimitSwitch = new DigitalInput(RobotMap.SHOOTER_UPPER_LIMIT_SWITCH_PORT);
 	}
 	
 	public double calculateFiringAngle() {
@@ -70,6 +72,10 @@ public class ShooterSubsystem extends Subsystem {
 		return this.lowerLimitSwitch.get();
 	}
 	
+	public boolean getUpperLimitSwitch() {
+		return upperLimitSwitch.get();
+	}
+	
 	public void userControl(double val){
 		this.shooterTilt.set(val);
 	}
@@ -77,6 +83,8 @@ public class ShooterSubsystem extends Subsystem {
 	public void publishEncoderValues(){
 		SmartDashboard.putNumber("Shooter encoder position (raw)", getRawEncoderPos());
 		SmartDashboard.putNumber("Shooter encoder velocity (raw)", getRawEncoderVel());
+		SmartDashboard.putBoolean("Shooter Limit", getLowerLimitSwitchState());
+		SmartDashboard.putBoolean("Shooter upper limit", getUpperLimitSwitch());
 	}
 	
 	public void addToLW(){
@@ -85,11 +93,11 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-//        setDefaultCommand(new KeepShooterStaticCommand());
+    	
     }
     
     public void resetEncoder() {
-    	shooterTilt.setEncPosition(0);
+    	shooterTilt.setPosition(0);
     }
 }
 

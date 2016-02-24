@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3506.robot.commands.rollerbar;
+package org.usfirst.frc.team3506.robot.commands.shooter;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
@@ -7,12 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class UserOperateRollerBarCommand extends Command {
+public class DeactivateShooterCommand extends Command {
 
-    public UserOperateRollerBarCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.rollerBar);
+    public DeactivateShooterCommand() {
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -21,20 +19,12 @@ public class UserOperateRollerBarCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.rollersOn){
-    		if(Robot.oi.rollersForward){
-    			Robot.rollerBar.setRollerBarForward();
-    		} else{
-    			Robot.rollerBar.setRollerBarReverse();
-    		}
-    	} else{
-    		Robot.rollerBar.stopRollerBar();
-    	}
+    	Robot.shooter.stopTalon();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

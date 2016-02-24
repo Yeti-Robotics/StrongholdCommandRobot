@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.rollerbar.UserOperateRollerBarCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -35,7 +34,7 @@ public class RollerBarSubsystem extends Subsystem {
     }
 
 	protected void initDefaultCommand() {
-		setDefaultCommand(new UserOperateRollerBarCommand());
+		
 	}
 
 }
