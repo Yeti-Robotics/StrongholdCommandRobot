@@ -35,6 +35,10 @@ public class ArmSubsystem extends Subsystem {
 		ballGrabber.set(speed);
 	}
 	
+	public void stopBallGrabber() {
+		ballGrabber.set(0);
+	}
+	
 	public void moveBallGrabberUp(){
 		ballGrabber.set(-RobotMap.ARM_SPEED_OPERATOR);
 	}

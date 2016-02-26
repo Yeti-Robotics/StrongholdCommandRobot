@@ -3,7 +3,6 @@ package org.usfirst.frc.team3506.robot.commands.rollerbar;
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class HoldRollerBarForwardCommand extends Command {
 
@@ -11,7 +10,9 @@ public class HoldRollerBarForwardCommand extends Command {
     	requires(Robot.rollerBar);
     }
 
-    protected void initialize() {}
+    protected void initialize() {
+    	
+    }
 
     protected void execute() {
     	Robot.rollerBar.setRollerBarForward();

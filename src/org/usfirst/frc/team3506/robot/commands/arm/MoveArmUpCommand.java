@@ -10,34 +10,24 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveArmUpCommand extends Command {
 
     public MoveArmUpCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.arm);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(/*!Robot.ballGrabber.getUpperLimit()*/ true){
-    		Robot.arm.moveBallGrabberUp();
-    	}
+		Robot.arm.moveBallGrabberUp();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	Robot.arm.moveBallGrabber(0);
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.arm.moveBallGrabber(0);
     }

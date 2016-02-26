@@ -18,8 +18,6 @@ public class FlywheelSubsystem extends Subsystem {
 		this.spikeShooterRight = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_RIGHT);
 		isActive = false;
 	}
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	
 	public void activateFlywheels(){
 		this.spikeShooterLeft.set(Value.kForward);
@@ -37,8 +35,7 @@ public class FlywheelSubsystem extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	
     }
 }
 

@@ -14,9 +14,6 @@ public class ArmTiltPIDSubsystem extends PIDSubsystem {
     
 	private CANTalon ballGrabber;
 	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
 	public ArmTiltPIDSubsystem(){
 		super("Arm tilt", RobotMap.ARM_P, RobotMap.ARM_I, RobotMap.ARM_D);
 		ballGrabber = new CANTalon(RobotMap.BALL_GRABBER_CAN_TALON_ID);
@@ -45,6 +42,4 @@ public class ArmTiltPIDSubsystem extends PIDSubsystem {
 	public void resetEncoderValues() {
 		ballGrabber.setPosition(0);
 	}
-	
 }
-

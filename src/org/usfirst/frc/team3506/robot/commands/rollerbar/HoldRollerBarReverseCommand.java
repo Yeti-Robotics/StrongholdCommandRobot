@@ -3,7 +3,6 @@ package org.usfirst.frc.team3506.robot.commands.rollerbar;
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class HoldRollerBarReverseCommand extends Command {
 

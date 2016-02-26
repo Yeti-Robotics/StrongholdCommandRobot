@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 	
 	private CANTalon shooterTilt;
-    
 	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	public ShooterTiltPIDSubsystem(){
 		super("Shooter tilt", RobotMap.SHOOTER_P, RobotMap.SHOOTER_I, RobotMap.SHOOTER_D);
 		shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
@@ -49,8 +46,7 @@ public class ShooterTiltPIDSubsystem extends PIDSubsystem {
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	
     }
 }
 

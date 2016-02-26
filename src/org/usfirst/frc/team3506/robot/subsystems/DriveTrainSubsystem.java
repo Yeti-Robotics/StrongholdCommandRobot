@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
-import org.usfirst.frc.team3506.robot.Robot;
 import org.usfirst.frc.team3506.robot.RobotMap;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.UserTankDriveCommand;
 
@@ -17,17 +16,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrainSubsystem extends Subsystem {
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
 	private CANTalon left1, left2, left3, right1, right2, right3;
 	private RobotDrive robotDrive;
 	private Encoder leftEnc, rightEnc;
+	private Front front;
 
 	public static enum Talons {
 		LEFT1, LEFT2, LEFT3, RIGHT1, RIGHT2, RIGHT3
 	}
-
-	public boolean isArmFront;
+	
+	public static enum Front {
+		ARM, SHOOTER
+	}
 
 	public DriveTrainSubsystem() {
 		left1 = new CANTalon(RobotMap.LEFT_1_CAN_TALON_ID);
@@ -55,9 +55,15 @@ public class DriveTrainSubsystem extends Subsystem {
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftEnc = new Encoder(RobotMap.LEFT_ENCODER_PORT[0], RobotMap.LEFT_ENCODER_PORT[1]);
 		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
-		isArmFront = true;
-		// ENCODER ATTACHMENT PORTS: RIGHT1 (5), LEFT2 (1) ----- CATAPULT AIM IS
-		// FRONT
+		front = Front.ARM;
+	}
+	
+	public void setFront(Front front) {
+		this.front = front;
+	}
+	
+	public Front getFront() {
+		return front;
 	}
 
 	public double getRawLeftEncoderPos() {
@@ -73,11 +79,11 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 
 	public double getRawLeftEncoderVel() {
-		return /* left2.getEncVelocity(); */leftEnc.getRate();
+		return leftEnc.getRate();
 	}
 
 	public double getRawRightEncoderVel() {
-		return /* right1.getEncVelocity(); */rightEnc.getRate();
+		return rightEnc.getRate();
 	}
 
 	public void tankDrive(double left, double right) {
@@ -86,29 +92,6 @@ public class DriveTrainSubsystem extends Subsystem {
 
 	public void arcadeDrive(double forward, double side) {
 		robotDrive.arcadeDrive(forward, side);
-	}
-
-	public void driveTalon() {
-		switch ((Talons) Robot.testDriveTalonChooser.getSelected()) {
-			case LEFT1:
-				left1.set(RobotMap.AUTO_DRIVE_SPEED);
-				break;
-			case LEFT2:
-				left2.set(RobotMap.AUTO_DRIVE_SPEED);
-				break;
-			case LEFT3:
-				left3.set(RobotMap.AUTO_DRIVE_SPEED);
-				break;
-			case RIGHT1:
-				right1.set(RobotMap.AUTO_DRIVE_SPEED);
-				break;
-			case RIGHT2:
-				right2.set(RobotMap.AUTO_DRIVE_SPEED);
-				break;
-			case RIGHT3:
-				right3.set(RobotMap.AUTO_DRIVE_SPEED);
-				break;
-		}
 	}
 
 	public void driveStraight(double speed) {
@@ -160,8 +143,6 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new UserTankDriveCommand());
 	}
 }

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
-import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -15,8 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ShooterSubsystem extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	private CANTalon shooterTilt;
 	private DigitalInput lowerLimitSwitch, upperLimitSwitch;
 	
@@ -91,13 +88,13 @@ public class ShooterSubsystem extends Subsystem {
 		LiveWindow.addSensor("Shooter Subsystem", "Shooter Tilt encoder", shooterTilt);
 		LiveWindow.addActuator("Shooter Subsystem", "Shooter Tilt", shooterTilt);
 	}
-	
-    public void initDefaultCommand() {
-    	
-    }
     
     public void resetEncoder() {
     	shooterTilt.setPosition(0);
+    }
+    
+    public void initDefaultCommand() {
+    	
     }
 }
 

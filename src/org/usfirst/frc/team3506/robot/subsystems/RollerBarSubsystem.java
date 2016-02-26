@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class RollerBarSubsystem extends Subsystem {
     public CANTalon rollerBar;
     
-    
     public RollerBarSubsystem() {
     	rollerBar = new CANTalon(RobotMap.ROLLER_BAR_TALON_ID);
     }
@@ -36,6 +35,4 @@ public class RollerBarSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		
 	}
-
 }
-

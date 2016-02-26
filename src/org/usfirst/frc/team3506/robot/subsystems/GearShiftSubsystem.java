@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class GearShiftSubsystem extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	private DoubleSolenoid shifter;
 	public GearShiftSubsystem(){
 		shifter = new DoubleSolenoid(RobotMap.SOLENOID_PORTS[0], RobotMap.SOLENOID_PORTS[1]);
@@ -33,13 +31,8 @@ public class GearShiftSubsystem extends Subsystem {
 		return shifter.get();
 	}
 	
-	public void publishShiftStatus(){
-//		SmartDashboard.putData("Shift state", shifter);
-	}
-	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	
     }
 }
 

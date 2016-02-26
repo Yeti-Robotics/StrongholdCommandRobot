@@ -35,7 +35,6 @@ public class DriveStraightDistanceAtPower extends Command{
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3506.robot.commands.climber;
 
 import org.usfirst.frc.team3506.robot.Robot;
-import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,7 +22,7 @@ public class ToggleBrakeCommand extends Command {
     	if (Robot.climber.getBrakeState() == Value.kForward) {
     		Robot.climber.releaseBrake();
     	} else {
-    		Robot.climber.brake();
+    		Robot.climber.activateBrake();
     	}
     }
 
