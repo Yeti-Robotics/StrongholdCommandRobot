@@ -22,7 +22,7 @@ public class ClimberSubsystem extends Subsystem {
 		winch = new CANTalon(RobotMap.WINCH_TALON_ID);
 		hold = false;
 		brake = new DoubleSolenoid(RobotMap.CLIMBER_STOP_SOLENOID_PORTS[0], RobotMap.CLIMBER_STOP_SOLENOID_PORTS[1]);
-		upperLimitSwitch = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT_SWITCH_PORT);
+//		upperLimitSwitch = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT_SWITCH_PORT);
 	}
 	
 	public void activateBrake() {

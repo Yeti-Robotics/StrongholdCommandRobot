@@ -15,7 +15,7 @@ public class DriveStraightDistanceAtPower extends Command{
 	
 	protected void initialize() {
 		Robot.driveTrain.resetEncoders();
-		this.ticks = Robot.driveTrain.convertFeetToTicks(distance);
+		ticks = Robot.driveTrain.convertFeetToTicks(distance);
 	}
 
 	@Override

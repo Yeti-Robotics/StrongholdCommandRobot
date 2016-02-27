@@ -36,12 +36,12 @@ public class OI {
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 4, new MoveShooterDownCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 5, new MoveShooterUpCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 6, new MoveClimberUpCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 7, new MoveClimberDownCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 8, new ToggleBrakeCommand());
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleRobotFrontCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 2, new ToggleBrakeCommand());
-		setJoystickButtonWhilePressedCommand(leftStick, 7, new MoveClimberDownCommand());
-		setJoystickButtonWhilePressedCommand(leftStick, 6, new MoveClimberUpCommand());
 		
 		//Right joystick
 		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleGearShiftCommand());

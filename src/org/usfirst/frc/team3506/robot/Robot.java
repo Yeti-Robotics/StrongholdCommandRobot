@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3506.robot;
 
+import org.usfirst.frc.team3506.robot.commands.autonomous.CrossDefenseAutonomous;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
@@ -33,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public static FlywheelSubsystem flywheels;
 	public static boolean captureMode;
 
-	Command autonomousCommand;
+	public static Command autonomousCommand;
 
 	public void robotInit() {
 		captureMode = true;
@@ -47,6 +48,7 @@ public class Robot extends IterativeRobot {
 		servo = new ServoSubsystem();
 		flywheels = new FlywheelSubsystem();
 		oi = new OI();
+		autonomousCommand = new CrossDefenseAutonomous();
 	}
 
 	public void disabledInit() {
