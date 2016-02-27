@@ -1,12 +1,18 @@
 package org.usfirst.frc.team3506.robot;
 
 
-import org.usfirst.frc.team3506.robot.commands.CalibrateShooterCommand;
-import org.usfirst.frc.team3506.robot.commands.ShiftDown;
-import org.usfirst.frc.team3506.robot.commands.ShiftUp;
+import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
+import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
+import org.usfirst.frc.team3506.robot.commands.climber.ToggleBrakeCommand;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.ManualFireCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.drivetrain.ToggleRobotFrontCommand;
+import org.usfirst.frc.team3506.robot.commands.gearshift.ToggleGearShiftCommand;
+import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarForwardCommand;
+import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarReverseCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterDownCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterUpCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,57 +21,35 @@ import edu.wpi.first.wpilibj.command.Command;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	/*Gamepad button mapping for user operation commands:
-	 * 2 & 4: UserOperateRollerBarCommand
-	 * 5 & 6: UserOperateClimberCommand
-	 * 7 & 8: UserOperateArmCommand
-	 */
-	public Joystick gamepad;
+	public Joystick shooterStick;
 	private Joystick leftStick;
 	private Joystick rightStick;
-	public boolean rollersOn;
-	public boolean rollersForward;
 	
 	public OI(){
-		gamepad = new Joystick(RobotMap.GAMEPAD_PORT);
+		shooterStick = new Joystick(RobotMap.SHOOTER_STICK_PORT);
 		leftStick = new Joystick(RobotMap.LEFT_STICK_PORT);
 		rightStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
-		rollersOn = false;
-		rollersForward = false;
-		setJoystickButtonCommand(gamepad, 1, new ShiftDown());
-		setJoystickButtonCommand(gamepad, 3, new ShiftUp());
-		setJoystickButtonCommand(gamepad, 9, new CalibrateShooterCommand());
+		
+		//Shooter joystick
+		setJoystickButtonWhenPressedCommand(shooterStick, 1, new ManualFireCommandGroup());
+		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarReverseCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarForwardCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 4, new MoveShooterDownCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 5, new MoveShooterUpCommand());
+		
+		//Left joystick
+		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleRobotFrontCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 2, new ToggleBrakeCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 7, new MoveClimberDownCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 6, new MoveClimberUpCommand());
+		
+		//Right joystick
+		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleGearShiftCommand());
 	}
 	
-	
-	
-	public double getGamepadLeftX(){
-		if(!(gamepad == null)){
-			return deadZoneMod(gamepad.getRawAxis(RobotMap.GAMEPAD_LEFT_X_AXIS));
-		} else{
-			return 0;
-		}
-	}
-	
-	public double getGamepadLeftY(){
-		if(!(gamepad == null)){
-			return -deadZoneMod(gamepad.getRawAxis(RobotMap.GAMEPAD_LEFT_Y_AXIS));
-		} else{
-			return 0;
-		}
-	}
-	
-	public double getGamepadRightX(){
-		if(!(gamepad == null)){
-			return deadZoneMod(gamepad.getRawAxis(RobotMap.GAMEPAD_RIGHT_X_AXIS));
-		} else{
-			return 0;
-		}
-	}
-	
-	public double getGamepadRightY(){
-		if(!(gamepad == null)){
-			return deadZoneMod(gamepad.getRawAxis(RobotMap.GAMEPAD_RIGHT_Y_AXIS));
+	public double getShooterY(){
+		if(!(shooterStick == null)){
+			return -deadZoneMod(shooterStick.getY());
 		} else{
 			return 0;
 		}
@@ -111,12 +95,12 @@ public class OI {
 		}
 	}
 	
-	public int getGamepadPOV(){
-		return gamepad.getPOV();
+	private void setJoystickButtonWhenPressedCommand(Joystick joystick, int button, Command command) {
+		new JoystickButton(joystick, button).whenPressed(command);
 	}
 	
-	private void setJoystickButtonCommand(Joystick joystick, int button, Command command) {
-		new JoystickButton(joystick, button).whenPressed(command);
+	private void setJoystickButtonWhilePressedCommand(Joystick joystick, int button, Command command){
+		new JoystickButton(joystick, button).whileHeld(command);
 	}
 }
 
