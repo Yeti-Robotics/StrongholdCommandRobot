@@ -2,6 +2,7 @@ package org.usfirst.frc.team3506.robot.commands.climber;
 
 import org.usfirst.frc.team3506.robot.Robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -17,7 +18,9 @@ public class MoveClimberUpCommand extends Command {
     }
 
     protected void execute() {
-		Robot.climber.climbUp();
+		if (Robot.climber.getBrakeState() != Value.kForward) {
+			Robot.climber.climbUp();
+		}
     }
 
     protected boolean isFinished() {
