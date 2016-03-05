@@ -26,11 +26,11 @@ public class ClimberSubsystem extends Subsystem {
 	}
 	
 	public void activateBrake() {
-		brake.set(Value.kForward);
+		brake.set(Value.kReverse);
 	}
 	
 	public void releaseBrake() {
-		brake.set(Value.kReverse);
+		brake.set(Value.kForward);
 	}
 	
 	public Value getBrakeState() {
