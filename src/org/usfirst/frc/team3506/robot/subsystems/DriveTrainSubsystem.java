@@ -64,6 +64,41 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	public Front getFront() {
 		return front;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	public double getRawLeftEncoderPos() {
