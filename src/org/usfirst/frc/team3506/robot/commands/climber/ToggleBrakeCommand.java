@@ -19,7 +19,7 @@ public class ToggleBrakeCommand extends Command {
     }
 
     protected void execute() {
-    	if (Robot.climber.getBrakeState() == Value.kForward) {
+    	if (Robot.climber.getBrakeState() == Value.kReverse) {
     		Robot.climber.releaseBrake();
     	} else {
     		Robot.climber.activateBrake();
