@@ -19,7 +19,7 @@ public class MoveShooterToDegreeCommand extends Command {
     }
 
     protected void initialize() {
-    	angleToEncoder = Robot.shooter.degreeToEncoder(angle);
+    	angleToEncoder = /*Robot.shooter.degreeToEncoder(angle)*/ angle;
     	distance = angleToEncoder - Robot.shooter.getRawEncoderPos();
     }
 
@@ -40,6 +40,6 @@ public class MoveShooterToDegreeCommand extends Command {
     }
 
     protected void interrupted() {
-    	
+    	Robot.shooter.stopTalon();
     }
 }
