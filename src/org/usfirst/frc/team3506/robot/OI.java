@@ -1,10 +1,13 @@
 package org.usfirst.frc.team3506.robot;
 
 
+import org.usfirst.frc.team3506.robot.commands.climber.ActivateBrakeCommand;
+import org.usfirst.frc.team3506.robot.commands.climber.DeactivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.ToggleBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ManualFireCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.ShootAfterClimbingCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.ToggleRobotFrontCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ToggleGearShiftCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarForwardCommand;
@@ -38,7 +41,9 @@ public class OI {
 		setJoystickButtonWhilePressedCommand(shooterStick, 5, new MoveShooterUpCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 6, new MoveClimberUpCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 7, new MoveClimberDownCommand());
-		setJoystickButtonWhenPressedCommand(shooterStick, 8, new ToggleBrakeCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 8, new ShootAfterClimbingCommandGroup());
+		setJoystickButtonWhenPressedCommand(shooterStick, 9, new DeactivateBrakeCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 10, new ActivateBrakeCommand());
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleRobotFrontCommand());
