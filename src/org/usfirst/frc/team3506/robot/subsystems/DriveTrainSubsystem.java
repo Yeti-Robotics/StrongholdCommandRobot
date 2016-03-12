@@ -20,6 +20,7 @@ public class DriveTrainSubsystem extends Subsystem {
 	private RobotDrive robotDrive;
 	private Encoder leftEnc, rightEnc;
 	private Front front;
+	private ControlType controlType;
 
 	public static enum Talons {
 		LEFT1, LEFT2, LEFT3, RIGHT1, RIGHT2, RIGHT3
@@ -27,6 +28,10 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	public static enum Front {
 		ARM, SHOOTER
+	}
+	
+	public static enum ControlType {
+		TANK, ARCADE
 	}
 
 	public DriveTrainSubsystem() {
@@ -56,6 +61,7 @@ public class DriveTrainSubsystem extends Subsystem {
 		leftEnc = new Encoder(RobotMap.LEFT_ENCODER_PORT[0], RobotMap.LEFT_ENCODER_PORT[1]);
 		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
 		front = Front.ARM;
+		controlType = ControlType.ARCADE;
 	}
 	
 	public void setFront(Front front) {
@@ -64,41 +70,14 @@ public class DriveTrainSubsystem extends Subsystem {
 	
 	public Front getFront() {
 		return front;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	}
+	
+	public void setControlType(ControlType controlType) {
+		this.controlType = controlType;
+	}
+	
+	public ControlType getControlType() {
+		return controlType;
 	}
 
 	public double getRawLeftEncoderPos() {
