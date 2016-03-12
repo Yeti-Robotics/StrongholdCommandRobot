@@ -19,9 +19,10 @@ public class MoveShooterDownCommand extends Command {
     }
 
     protected void execute() {
-    	if (!Robot.shooter.getLowerLimitSwitchState()) {
-			Robot.shooter.lowerTilt();
-		}
+//    	if (!Robot.shooter.getLowerLimitSwitchState()) { Limit Switch not responding
+//			Robot.shooter.lowerTilt();
+//		}
+    	Robot.shooter.lowerTilt();
     }
 
     protected boolean isFinished() {

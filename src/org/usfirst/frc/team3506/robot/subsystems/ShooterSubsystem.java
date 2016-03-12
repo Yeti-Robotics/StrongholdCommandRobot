@@ -22,6 +22,7 @@ public class ShooterSubsystem extends Subsystem {
 		this.lowerLimitSwitch = new DigitalInput(RobotMap.SHOOTER_LOWER_LIMIT_SWITCH_PORT);
 		this.shooterTilt.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		upperLimitSwitch = new DigitalInput(RobotMap.SHOOTER_UPPER_LIMIT_SWITCH_PORT);
+		resetEncoder();
 	}
 	
 	public double calculateFiringAngle() {
@@ -38,7 +39,7 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void lowerTilt(){
-		this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED);
+		this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED/2.0);
 	}
 	
 	public void liftTilt(){

@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		flywheels.isActive = false;
 	}
 
 	public void teleopPeriodic() {

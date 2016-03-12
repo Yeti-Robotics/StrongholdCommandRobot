@@ -20,8 +20,8 @@ public class FlywheelSubsystem extends Subsystem {
 	}
 	
 	public void activateFlywheels(){
-		this.spikeShooterLeft.set(Value.kForward);
-		this.spikeShooterRight.set(Value.kReverse);
+		this.spikeShooterLeft.set(Value.kReverse);
+		this.spikeShooterRight.set(Value.kForward);
 	}
 
 	public void deactivateFlywheels(){

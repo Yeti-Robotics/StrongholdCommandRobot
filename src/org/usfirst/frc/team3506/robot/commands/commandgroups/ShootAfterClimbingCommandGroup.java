@@ -4,10 +4,11 @@ import org.usfirst.frc.team3506.robot.commands.climber.ActivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.servo.ServoMoveDownCommand;
 import org.usfirst.frc.team3506.robot.commands.servo.ServoMoveUpCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterToDegreeCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterToEncoderPositionCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.ToggleFlywheelCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -32,10 +33,13 @@ public class ShootAfterClimbingCommandGroup extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new ActivateBrakeCommand());
-    	addSequential(new MoveShooterToDegreeCommand(50));
+    	addSequential(new WaitCommand(1));
+    	addSequential(new MoveShooterToEncoderPositionCommand(320));
     	addParallel(new KeepShooterStaticCommand());
     	addParallel(new ToggleFlywheelCommand());
+    	addSequential(new WaitCommand(1));
     	addSequential(new ServoMoveUpCommand());
+    	addSequential(new WaitCommand(1));
     	addSequential(new ServoMoveDownCommand());
     	addSequential(new ToggleFlywheelCommand());
     }
