@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3506.robot;
 
 
+import org.usfirst.frc.team3506.robot.commands.SetDriveModeToArcadeCommand;
+import org.usfirst.frc.team3506.robot.commands.SetDriveModeToTankCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.ActivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.DeactivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
@@ -49,6 +51,8 @@ public class OI {
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleRobotFrontCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 4, new SetDriveModeToTankCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 5, new SetDriveModeToArcadeCommand());
 		
 		//Right joystick
 		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleGearShiftCommand());

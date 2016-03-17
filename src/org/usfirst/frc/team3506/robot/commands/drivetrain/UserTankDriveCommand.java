@@ -25,14 +25,14 @@ public class UserTankDriveCommand extends Command {
                 Robot.driveTrain.tankDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY(),
                         -RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY());
             } else {
-                Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY(),
-                        RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY());
+                Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY(),
+                        RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightY());
             } 
         } else {
             if (Robot.driveTrain.getFront() == Front.SHOOTER) {
                 Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightX(), RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY());
             } else {
-                Robot.driveTrain.arcadeDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightX(), RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY());
+                Robot.driveTrain.arcadeDrive(RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getRightX(), -RobotMap.USER_SPEED_CONTROL_MODIFIER * Robot.oi.getLeftY());
             }
         }
     }

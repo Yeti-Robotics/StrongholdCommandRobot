@@ -34,7 +34,7 @@ public class ShootAfterClimbingCommandGroup extends CommandGroup {
         // arm.
     	addSequential(new ActivateBrakeCommand());
     	addSequential(new WaitCommand(1));
-    	addSequential(new MoveShooterToEncoderPositionCommand(320));
+    	addSequential(new MoveShooterToEncoderPositionCommand(380));
     	addParallel(new KeepShooterStaticCommand());
     	addParallel(new ToggleFlywheelCommand());
     	addSequential(new WaitCommand(1));
