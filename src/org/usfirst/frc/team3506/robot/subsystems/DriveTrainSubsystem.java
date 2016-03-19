@@ -61,7 +61,7 @@ public class DriveTrainSubsystem extends Subsystem {
 		leftEnc = new Encoder(RobotMap.LEFT_ENCODER_PORT[0], RobotMap.LEFT_ENCODER_PORT[1]);
 		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
 		front = Front.ARM;
-		controlType = ControlType.ARCADE;
+		controlType = ControlType.TANK;
 
 	}
 
