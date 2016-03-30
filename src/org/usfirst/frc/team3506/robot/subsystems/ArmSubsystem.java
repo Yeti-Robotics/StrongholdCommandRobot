@@ -32,7 +32,7 @@ public class ArmSubsystem extends Subsystem {
 	}
 
 	public void moveBallGrabber(double speed) {
-		ballGrabber.set(speed);
+		ballGrabber.set(-speed);
 	}
 	
 	public void stopBallGrabber() {
@@ -40,11 +40,11 @@ public class ArmSubsystem extends Subsystem {
 	}
 	
 	public void moveBallGrabberUp(){
-		ballGrabber.set(-RobotMap.ARM_SPEED_OPERATOR);
+		ballGrabber.set(RobotMap.ARM_SPEED_OPERATOR);
 	}
 	
 	public void moveBallGrabberDown(){
-		ballGrabber.set(RobotMap.ARM_SPEED_OPERATOR);
+		ballGrabber.set(-RobotMap.ARM_SPEED_OPERATOR);
 	}
 	
 	public boolean getUpperLimit(){
