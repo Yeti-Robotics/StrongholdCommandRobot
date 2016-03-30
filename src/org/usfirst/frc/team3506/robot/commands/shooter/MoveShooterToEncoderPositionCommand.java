@@ -9,29 +9,27 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveShooterToEncoderPositionCommand extends Command {
 
-	private double encoderPosition;
-	private double finalPosition;
+	private double desiredPosition;
 	public final double THRESHOLD = 5;
 	
     public MoveShooterToEncoderPositionCommand(double encoderPosition) {
         requires(Robot.shooter);
-        this.encoderPosition = encoderPosition;
+        this.desiredPosition = encoderPosition;
     }
 
     protected void initialize() {
-    	finalPosition = Robot.shooter.getRawEncoderPos() + encoderPosition;
     }
 
     protected void execute() {
-    	if (Robot.shooter.getRawEncoderPos() < finalPosition) {
+    	if (Robot.shooter.getRawEncoderPos() < desiredPosition) {
     		Robot.shooter.liftTilt();
-    	} else if (Robot.shooter.getRawEncoderPos() > finalPosition) {
+    	} else if (Robot.shooter.getRawEncoderPos() > desiredPosition) {
     		Robot.shooter.lowerTilt();
     	}
     }
 
     protected boolean isFinished() {
-        return Math.abs(Robot.shooter.getRawEncoderPos() - finalPosition) <= THRESHOLD;
+        return Math.abs(Robot.shooter.getRawEncoderPos() - desiredPosition) <= THRESHOLD;
     }
 
     protected void end() {

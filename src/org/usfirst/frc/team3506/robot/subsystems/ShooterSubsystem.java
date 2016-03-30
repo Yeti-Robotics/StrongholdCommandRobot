@@ -39,11 +39,11 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
 	public void lowerTilt(){
-		this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED/2.0);
+		this.shooterTilt.set(-RobotMap.SHOOTER_TILT_CAN_TALON_SPEED);
 	}
 	
 	public void liftTilt(){
-		this.shooterTilt.set(-RobotMap.SHOOTER_TILT_CAN_TALON_SPEED);
+		this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED/2.0);
 	}
 	
 	public void stopTalon(){

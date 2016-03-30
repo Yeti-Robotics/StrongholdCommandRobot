@@ -54,10 +54,10 @@ public class RobotMap {
 	public static final int SHOOTER_UPPER_LIMIT_SWITCH_PORT = 7;
 	public static final int SHOOTER_UPPER_ENCODER_LIMIT = 0; //UPDATE
 	public static final int SHOOTER_LOWER_ENCODER_LIMIT = 0; //UPDATE
-	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.2;
+	public static final double SHOOTER_TILT_CAN_TALON_SPEED = 0.4;
 	public static final double SHOOTER_ENCODER_RAW_TO_DEGREES_MODIFIER = 180.0 / 2960.0; //UPDATE
 	public static final double SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER = 2960.0 / 180.0;
-	public static final double STATIC_SHOOTER_POWER = -.05;
+	public static final double STATIC_SHOOTER_POWER = .05;
 	public static final int SHOOTER_STATIC_LIMIT = 700;
 	
 	public static final double SHOOTER_P = 0.1; //CALCULATE
