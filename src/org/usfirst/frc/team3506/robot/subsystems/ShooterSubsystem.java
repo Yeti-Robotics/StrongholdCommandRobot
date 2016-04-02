@@ -46,12 +46,16 @@ public class ShooterSubsystem extends Subsystem {
 		this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED/2.0);
 	}
 	
+	public void liftTiltLowPower() {
+		this.shooterTilt.set(RobotMap.SHOOTER_TILT_CAN_TALON_SPEED_STRING);
+	}
+	
 	public void stopTalon(){
 		this.shooterTilt.set(0.0);
 	}
 	
 	public double getRawEncoderPos(){
-		return this.shooterTilt.getPosition();
+		return this.shooterTilt.getEncPosition();
 	}
 	
 	public double getRawEncoderVel(){
@@ -91,7 +95,7 @@ public class ShooterSubsystem extends Subsystem {
 	}
     
     public void resetEncoder() {
-    	shooterTilt.setPosition(0);
+    	shooterTilt.setEncPosition(0);
     }
     
     public void initDefaultCommand() {

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveShooterToEncoderPositionCommand extends Command {
 
 	private double desiredPosition;
-	public final double THRESHOLD = 5;
+	public final double THRESHOLD = 15;
 	
     public MoveShooterToEncoderPositionCommand(double encoderPosition) {
         requires(Robot.shooter);

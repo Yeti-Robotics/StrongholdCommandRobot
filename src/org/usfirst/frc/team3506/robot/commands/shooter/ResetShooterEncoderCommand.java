@@ -3,6 +3,7 @@ package org.usfirst.frc.team3506.robot.commands.shooter;
 import org.usfirst.frc.team3506.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -14,10 +15,12 @@ public class ResetShooterEncoderCommand extends Command {
     }
 
     protected void initialize() {
+    	SmartDashboard.putBoolean("Working", false);
+    	Robot.shooter.resetEncoder();
     }
 
     protected void execute() {
-    	Robot.shooter.resetEncoder();
+    	
     }
 
     protected boolean isFinished() {

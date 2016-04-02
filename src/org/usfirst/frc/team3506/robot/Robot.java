@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot;
 
 import org.usfirst.frc.team3506.robot.commands.autonomous.CrossDefenseAutonomous;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.ScoreLowGoalCommandGroup;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
@@ -14,6 +15,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +36,10 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static FlywheelSubsystem flywheels;
 	public static boolean captureMode;
+	
+	public SendableChooser autoChooser;
+	
+	public static enum AutoModes {POS1, POS2, POS3, POS4};
 
 	public static Command autonomousCommand;
 
@@ -49,6 +56,12 @@ public class Robot extends IterativeRobot {
 		flywheels = new FlywheelSubsystem();
 		oi = new OI();
 		autonomousCommand = new CrossDefenseAutonomous();
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("Position 1", AutoModes.POS1);
+		autoChooser.addObject("Position 2", AutoModes.POS2);
+		autoChooser.addObject("Position 3", AutoModes.POS3);
+		autoChooser.addObject("Position 4", AutoModes.POS4);
+		SmartDashboard.putData("Auto Chooser", autoChooser);
 	}
 
 	public void disabledInit() {
@@ -60,6 +73,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		//autonomousCommand = new ScoreLowGoalCommandGroup((AutoModes) autoChooser.getSelected());
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
