@@ -57,10 +57,10 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		autonomousCommand = new CrossDefenseAutonomous();
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Position 1", AutoModes.POS1);
-		autoChooser.addObject("Position 2", AutoModes.POS2);
-		autoChooser.addObject("Position 3", AutoModes.POS3);
-		autoChooser.addObject("Position 4", AutoModes.POS4);
+//		autoChooser.addDefault("Position 1", AutoModes.POS1);
+//		autoChooser.addObject("Position 2", AutoModes.POS2);
+//		autoChooser.addObject("Position 3", AutoModes.POS3);
+//		autoChooser.addObject("Position 4", AutoModes.POS4);
 		SmartDashboard.putData("Auto Chooser", autoChooser);
 	}
 

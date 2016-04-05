@@ -18,16 +18,16 @@ public class ScoreLowGoalCommandGroup extends CommandGroup {
     	addSequential(new CrossDefenseAutonomous());
     	switch(mode){
     		case POS1:
-    			addSequential(new PointTurnTimeAtPowerCommand(1, 0.5));
+    			addSequential(new PointTurnTimeAtPowerCommand(1, 0.3));
     			break;
     		case POS2:
-    			addSequential(new PointTurnTimeAtPowerCommand(0.7, 0.5));
+    			addSequential(new PointTurnTimeAtPowerCommand(0.6, 0.3));
     			break;
     		case POS3:
-    			addSequential(new PointTurnTimeAtPowerCommand(0.7, -0.5));
+    			addSequential(new PointTurnTimeAtPowerCommand(0.6, -0.3));
     			break;
     		case POS4:
-    			addSequential(new PointTurnTimeAtPowerCommand(1, -0.5));
+    			addSequential(new PointTurnTimeAtPowerCommand(1, -0.3));
     			break;
     	}
     	addParallel(new MoveArmTimeAtPowerCommand(1.5, 0.2));
