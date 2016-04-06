@@ -81,7 +81,6 @@ public class RobotMap {
 	public static final String AZIMUTH_ID = "Azimuth";
 	public static final double AZIMUTH_TURN_SPEED = .5;
 	
-
 	
 	public static double encoderPositionDegreesModifierShooter; //Subtract from actual encoder position to get calibrated encoder position
 	public static double encoderPositionDegreesModifierArm; //Subtract from actual encoder position to get calibrated encoder position

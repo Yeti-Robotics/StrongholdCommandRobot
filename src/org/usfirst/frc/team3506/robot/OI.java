@@ -7,6 +7,8 @@ import org.usfirst.frc.team3506.robot.commands.climber.ActivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.DeactivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.ChevalDeFriseBreacherCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.LowBarBreacherCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ManualFireCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.MoveShooterToPositionAndFireCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ReadyToFireCommandGroup;
@@ -58,6 +60,8 @@ public class OI {
 		
 		//Right joystick
 		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleGearShiftCommand());
+		setJoystickButtonWhenPressedCommand(rightStick, 2, new ChevalDeFriseBreacherCommandGroup());
+		setJoystickButtonWhenPressedCommand(rightStick, 3, new LowBarBreacherCommandGroup());
 	}
 	
 	public double getShooterY(){
