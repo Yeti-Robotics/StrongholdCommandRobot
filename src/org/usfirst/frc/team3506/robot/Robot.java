@@ -1,7 +1,13 @@
 package org.usfirst.frc.team3506.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.usfirst.frc.team3506.robot.commands.autonomous.CrossDefenseAutonomous;
-import org.usfirst.frc.team3506.robot.commands.commandgroups.ScoreLowGoalCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.ChevalDeFriseBreacherCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.LowBarBreacherCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.domain.RobotInput;
+import org.usfirst.frc.team3506.robot.commands.domain.RobotInput.Joysticks;
 import org.usfirst.frc.team3506.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team3506.robot.subsystems.DriveTrainSubsystem;
@@ -36,16 +42,19 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static FlywheelSubsystem flywheels;
 	public static boolean captureMode;
+	public static boolean recording;
+	public static List <RobotInput> inputSequence = new ArrayList<RobotInput>();
+	public static List <RobotInput> recentInputSequence = new ArrayList<RobotInput>();
 	
 	public SendableChooser autoChooser;
 	
-	public static enum AutoModes {POS1, POS2, POS3, POS4};
+	public static enum AutoModes {CROSSABLE_DEFENSE, CHEVAL_DE_FRISE, LOW_BAR};
 
 	public static Command autonomousCommand;
 
 	public void robotInit() {
 		captureMode = true;
-
+		recording = false;
 		shooter = new ShooterSubsystem();
 		gearShift = new GearShiftSubsystem();
 		driveTrain = new DriveTrainSubsystem();
@@ -57,10 +66,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		autonomousCommand = new CrossDefenseAutonomous();
 		autoChooser = new SendableChooser();
-//		autoChooser.addDefault("Position 1", AutoModes.POS1);
-//		autoChooser.addObject("Position 2", AutoModes.POS2);
-//		autoChooser.addObject("Position 3", AutoModes.POS3);
-//		autoChooser.addObject("Position 4", AutoModes.POS4);
+		autoChooser.addDefault("Moat/Rock wall/Rough terrain/Portcullis", AutoModes.CROSSABLE_DEFENSE);
+		autoChooser.addObject("Cheval de frise", AutoModes.CHEVAL_DE_FRISE);
+		autoChooser.addObject("Low bar", AutoModes.LOW_BAR);
 		SmartDashboard.putData("Auto Chooser", autoChooser);
 	}
 
@@ -73,7 +81,19 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		//autonomousCommand = new ScoreLowGoalCommandGroup((AutoModes) autoChooser.getSelected());
+		switch((AutoModes)autoChooser.getSelected()){
+			case CROSSABLE_DEFENSE:
+				autonomousCommand = new CrossDefenseAutonomous();
+				break;
+			case CHEVAL_DE_FRISE:
+				autonomousCommand = new ChevalDeFriseBreacherCommandGroup();
+				break;
+			case LOW_BAR:
+				autonomousCommand = new LowBarBreacherCommandGroup();
+				break;
+			default:
+				autonomousCommand = new CrossDefenseAutonomous();
+		}
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -90,9 +110,27 @@ public class Robot extends IterativeRobot {
 
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		driveTrain.publishEncoderValues();
-		arm.publishEncoderValues();
-		shooter.publishEncoderValues();
+		if(recording){
+			RobotInput currentInput = new RobotInput();
+			currentInput.setJoystickYAxis(Joysticks.LEFT, oi.getLeftY());
+			currentInput.setJoystickYAxis(Joysticks.RIGHT, oi.getRightY());
+			currentInput.setJoystickYAxis(Joysticks.ARM, oi.getShooterY());
+			for(int i=0; i<3; i++){
+				for(int j=0; j<11; j++){
+					if(i==0){
+						currentInput.setButtonState(Joysticks.LEFT, j, oi.getButtonStatus(Joysticks.LEFT, j));
+					} else if(i==1){
+						currentInput.setButtonState(Joysticks.RIGHT, j, oi.getButtonStatus(Joysticks.RIGHT, j));
+					} else if(i==2){
+						currentInput.setButtonState(Joysticks.ARM, j, oi.getButtonStatus(Joysticks.ARM, j));
+					}
+				}
+			}
+			inputSequence.add(currentInput);
+		}
+//		driveTrain.publishEncoderValues();
+//		arm.publishEncoderValues();
+//		shooter.publishEncoderValues();
 	}
 
 	public void testPeriodic() {

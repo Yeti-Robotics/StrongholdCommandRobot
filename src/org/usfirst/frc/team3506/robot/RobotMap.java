@@ -47,6 +47,7 @@ public class RobotMap {
 	public static final int[] CLIMBER_STOP_SOLENOID_PORTS = {6, 7};
 	
 	//Shooter
+	public static final int[] SHOOTER_TILT_SOLENOID_PORTS = {0, 0};
 	public static final int SHOOTER_TILT_CAN_TALON_ID = 4;
 	public static final int SPIKE_SHOOTER_RELAY_PORT_LEFT = 0;
 	public static final int SPIKE_SHOOTER_RELAY_PORT_RIGHT = 1;

@@ -5,6 +5,8 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,6 +18,7 @@ public class ShooterSubsystem extends Subsystem {
     
 	private CANTalon shooterTilt;
 	private DigitalInput lowerLimitSwitch, upperLimitSwitch;
+	private DoubleSolenoid shooterPistonTilt;
 	
 	public ShooterSubsystem(){
 		this.shooterTilt = new CANTalon(RobotMap.SHOOTER_TILT_CAN_TALON_ID);
@@ -23,6 +26,7 @@ public class ShooterSubsystem extends Subsystem {
 		this.shooterTilt.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		upperLimitSwitch = new DigitalInput(RobotMap.SHOOTER_UPPER_LIMIT_SWITCH_PORT);
 		resetEncoder();
+		shooterPistonTilt = new DoubleSolenoid(RobotMap.SHOOTER_TILT_SOLENOID_PORTS[0], RobotMap.SHOOTER_TILT_SOLENOID_PORTS[1]);
 	}
 	
 	public double calculateFiringAngle() {
@@ -100,6 +104,12 @@ public class ShooterSubsystem extends Subsystem {
     
     public void initDefaultCommand() {
     	
+    }
+    public void movePistonUp(){
+    	this.shooterPistonTilt.set(Value.kForward);
+    }
+    public void movePistonDown(){
+    	this.shooterPistonTilt.set(Value.kReverse);
     }
 }
 
