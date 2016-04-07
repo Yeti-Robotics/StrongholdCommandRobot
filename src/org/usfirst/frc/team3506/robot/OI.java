@@ -13,7 +13,10 @@ import org.usfirst.frc.team3506.robot.commands.commandgroups.ManualFireCommandGr
 import org.usfirst.frc.team3506.robot.commands.commandgroups.MoveShooterToPositionAndFireCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ReadyToFireCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ShootAfterClimbingCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.domain.InitiateRecordingCommand;
+import org.usfirst.frc.team3506.robot.commands.domain.PlayRecordingCommand;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput;
+import org.usfirst.frc.team3506.robot.commands.domain.TerminateAndSaveRecordingCommand;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput.Joysticks;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.ToggleRobotFrontCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ToggleGearShiftCommand;
@@ -62,6 +65,10 @@ public class OI {
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
+		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
+		
 	}
 	
 	public double getShooterY(){

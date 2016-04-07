@@ -28,7 +28,7 @@ public class TerminateAndSaveRecordingCommand extends Command {
     protected void execute() {
     	Robot.recording = false;
     	try{
-    		File file = new File("../"+new Long(System.currentTimeMillis()).toString()+"recording"+".txt");
+    		File file = new File("/recording/" + new Long(System.currentTimeMillis()).toString() + "recording.txt");
     		FileOutputStream fs = new FileOutputStream(file);
     		ObjectOutputStream os = new ObjectOutputStream(fs);
     		os.writeObject(Robot.inputSequence);
