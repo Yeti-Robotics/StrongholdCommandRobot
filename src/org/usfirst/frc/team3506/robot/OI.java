@@ -24,6 +24,8 @@ import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarForwardCom
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarReverseCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterUpCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.PropShooterDownCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.PropUpShooterCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.ToggleFlywheelCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -62,6 +64,8 @@ public class OI {
 		setJoystickButtonWhenPressedCommand(rightStick, 4, new SetDriveModeToTankCommand());
 		setJoystickButtonWhenPressedCommand(rightStick, 5, new SetDriveModeToArcadeCommand());
 		//setJoystickButtonWhenPressedCommand(rightStick, 10, new MoveShooterToPositionAndFireCommandGroup());
+		setJoystickButtonWhenPressedCommand(rightStick, 6, new PropUpShooterCommand());
+		setJoystickButtonWhenPressedCommand(rightStick, 7, new PropShooterDownCommand());
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());
