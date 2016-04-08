@@ -40,6 +40,7 @@ public class TerminateAndSaveRecordingCommand extends Command {
     	for(RobotInput input : Robot.inputSequence){
     		Robot.recentInputSequence.add(input);
     	}
+    	Robot.inputSequence.clear();
     }
 
     // Make this return true when this Command no longer needs to run execute()

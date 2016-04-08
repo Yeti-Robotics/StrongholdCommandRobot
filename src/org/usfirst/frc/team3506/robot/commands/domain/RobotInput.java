@@ -19,15 +19,16 @@ public class RobotInput implements Serializable {
 	public static Command[] armCommands = new Command[11];
 	
 	public void setButtonState(Joysticks joystick, int button, boolean state){
+		button--;
 		switch(joystick){
 			case LEFT:
-				this.leftButtons[button-1] = state;
+				this.leftButtons[button] = state;
 				break;
 			case RIGHT:
-				this.rightButtons[button-1] = state;
+				this.rightButtons[button] = state;
 				break;
 			case ARM:
-				this.armButtons[button-1] = state;
+				this.armButtons[button] = state;
 				break;
 		}
 	}

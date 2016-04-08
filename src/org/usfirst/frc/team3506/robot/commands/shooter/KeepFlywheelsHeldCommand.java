@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ToggleFlywheelCommand extends Command {
+public class KeepFlywheelsHeldCommand extends Command {
 
-    public ToggleFlywheelCommand() {
+    public KeepFlywheelsHeldCommand() {
     	requires(Robot.flywheels);
     }
 
@@ -18,23 +18,24 @@ public class ToggleFlywheelCommand extends Command {
     }
 
     protected void execute() {
-    	Robot.flywheels.isActive = !Robot.flywheels.isActive;
+    	/*Robot.flywheels.isActive = !Robot.flywheels.isActive;
     	if(Robot.flywheels.isActive){
     		Robot.flywheels.activateFlywheels();
     	} else{
     		Robot.flywheels.deactivateFlywheels();
-    	}
+    	}*/
+    	Robot.flywheels.activateFlywheels();
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {
-    	
+    	interrupted();
     }
 
     protected void interrupted() {
-    	
+    	Robot.flywheels.deactivateFlywheels();
     }
 }

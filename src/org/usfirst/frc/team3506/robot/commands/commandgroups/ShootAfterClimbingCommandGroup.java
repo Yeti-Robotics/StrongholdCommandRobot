@@ -6,7 +6,7 @@ import org.usfirst.frc.team3506.robot.commands.servo.ServoMoveUpCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterToEncoderPositionCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.ResetShooterEncoderCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.ToggleFlywheelCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.KeepFlywheelsHeldCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
@@ -38,11 +38,11 @@ public class ShootAfterClimbingCommandGroup extends CommandGroup {
     	addSequential(new ResetShooterEncoderCommand());
     	addSequential(new MoveShooterToEncoderPositionCommand(380));
     	addParallel(new KeepShooterStaticCommand());
-    	addParallel(new ToggleFlywheelCommand());
+    	addParallel(new KeepFlywheelsHeldCommand());
     	addSequential(new WaitCommand(1));
     	addSequential(new ServoMoveUpCommand());
     	addSequential(new WaitCommand(1));
     	addSequential(new ServoMoveDownCommand());
-    	addSequential(new ToggleFlywheelCommand());
+    	addSequential(new KeepFlywheelsHeldCommand());
     }
 }

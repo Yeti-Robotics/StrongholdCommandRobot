@@ -26,7 +26,7 @@ import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterUpCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropUpShooterCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.ToggleFlywheelCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.KeepFlywheelsHeldCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -47,25 +47,25 @@ public class OI {
 		leftStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		
 		//Shooter joystick
-		setJoystickButtonWhenPressedCommand(shooterStick, 1, new ManualFireCommandGroup());
+		setJoystickButtonWhilePressedCommand(shooterStick, 1, new KeepFlywheelsHeldCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarReverseCommand());
-		setJoystickButtonWhilePressedCommand(shooterStick, 4, new MoveShooterDownCommand());
+		//setJoystickButtonWhilePressedCommand(shooterStick, 4, new MoveShooterDownCommand());
 		//setJoystickButtonWhilePressedCommand(shooterStick, 5, new ReadyToFireCommandGroup());
+		setJoystickButtonWhenPressedCommand(shooterStick, 4, new PropUpShooterCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 5, new PropShooterDownCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 6, new MoveClimberUpCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 7, new MoveClimberDownCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 8, new ShootAfterClimbingCommandGroup());
 		setJoystickButtonWhenPressedCommand(shooterStick, 9, new DeactivateBrakeCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 10, new ActivateBrakeCommand());
-		setJoystickButtonWhenPressedCommand(shooterStick, 11, new ToggleFlywheelCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 11, new KeepFlywheelsHeldCommand());
 		
 		//Right joystick
 		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleRobotFrontCommand());
 		setJoystickButtonWhenPressedCommand(rightStick, 4, new SetDriveModeToTankCommand());
 		setJoystickButtonWhenPressedCommand(rightStick, 5, new SetDriveModeToArcadeCommand());
 		//setJoystickButtonWhenPressedCommand(rightStick, 10, new MoveShooterToPositionAndFireCommandGroup());
-		setJoystickButtonWhenPressedCommand(rightStick, 6, new PropUpShooterCommand());
-		setJoystickButtonWhenPressedCommand(rightStick, 7, new PropShooterDownCommand());
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());

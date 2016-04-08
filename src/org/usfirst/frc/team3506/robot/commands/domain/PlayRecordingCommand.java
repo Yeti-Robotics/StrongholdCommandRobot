@@ -55,18 +55,24 @@ public class PlayRecordingCommand extends Command {
     		Robot.driveTrain.tankDrive(-RobotMap.USER_SPEED_CONTROL_MODIFIER * localInputSequence.get(parsingIndex).getJoysticksYAxisStatus()[0], RobotMap.USER_SPEED_CONTROL_MODIFIER * localInputSequence.get(parsingIndex).getJoysticksYAxisStatus()[1]);
     		Robot.arm.moveBallGrabber(localInputSequence.get(parsingIndex).getJoysticksYAxisStatus()[2]);
     		for(int i=0; i<3; i++){
-    			for(int j=0; j<11; j++){
+    			for(int j=1; j<=11; j++){
     				if(parsingIndex != 0 && parsingIndex != 1){
+    					for(int a=0; a<33; a++){
+    						activatedButtons[a] = false;
+    					}
     					if(isButtonPressed(i, j) && !activatedButtons[i*11+j]){
     						switch(i){
     							case 0:
     								RobotInput.elicitCommand(Joysticks.LEFT, j);
+    								activatedButtons[i*11+j-1] = true;
     								break;
     							case 1:
     								RobotInput.elicitCommand(Joysticks.RIGHT, j);
+    								activatedButtons[i*11+j-1] = true;
     								break;
     							case 2:
     								RobotInput.elicitCommand(Joysticks.ARM, j);
+    								activatedButtons[i*11+j-1] = true;
     						}
     					}
     					if(localInputSequence.get(parsingIndex).getButtonStatus(Joysticks.ARM, 2)==true){
