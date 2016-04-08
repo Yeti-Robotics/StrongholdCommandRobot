@@ -117,7 +117,7 @@ public class Robot extends IterativeRobot {
 			currentInput.setJoystickYAxis(Joysticks.ARM, oi.getShooterY());
 			for(int i=0; i<3; i++){
 				for(int j=1; j<=11; j++){
-					if(i==0){
+					if(i==0 && j != 4 && j != 5){
 						currentInput.setButtonState(Joysticks.LEFT, j, oi.getButtonStatus(Joysticks.LEFT, j));
 					} else if(i==1){
 						currentInput.setButtonState(Joysticks.RIGHT, j, oi.getButtonStatus(Joysticks.RIGHT, j));
