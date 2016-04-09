@@ -57,8 +57,8 @@ public class OI {
 		setJoystickButtonWhilePressedCommand(shooterStick, 6, new MoveClimberUpCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 7, new MoveClimberDownCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 8, new ShootAfterClimbingCommandGroup());
-		setJoystickButtonWhenPressedCommand(shooterStick, 9, new DeactivateBrakeCommand());
-		setJoystickButtonWhenPressedCommand(shooterStick, 10, new ActivateBrakeCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 9, new ActivateBrakeCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 10, new DeactivateBrakeCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 11, new KeepFlywheelsHeldCommand());
 		
 		//Right joystick
@@ -69,9 +69,9 @@ public class OI {
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
-		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
+//		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
+//		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
+//		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
 		
 	}
 	

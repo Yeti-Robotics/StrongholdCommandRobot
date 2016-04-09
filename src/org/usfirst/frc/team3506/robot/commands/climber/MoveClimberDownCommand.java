@@ -18,7 +18,7 @@ public class MoveClimberDownCommand extends Command {
     }
 
     protected void execute() {
-		if (Robot.climber.getBrakeState() != Value.kReverse) {
+		if (Robot.climber.getBrakeState() != Value.kForward) {
 			Robot.climber.climbDown();
 		}
     }
