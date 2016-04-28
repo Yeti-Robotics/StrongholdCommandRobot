@@ -61,6 +61,8 @@ public class RobotMap {
 	public static final double SHOOTER_DEGREES_TO_ENCODER_RAW_MODIFIER = 2960.0 / 180.0;
 	public static final double STATIC_SHOOTER_POWER = .05;
 	public static final int SHOOTER_STATIC_LIMIT = 700;
+	public static final int CAN_TALON_SHOOTER_PORT_LEFT = 4;
+	public static final int PWM_TALON_SHOOTER_PORT_RIGHT = 2;
 	
 	public static final double SHOOTER_P = 0.1; //CALCULATE
 	public static final double SHOOTER_I = 0.001; //CALCULATE

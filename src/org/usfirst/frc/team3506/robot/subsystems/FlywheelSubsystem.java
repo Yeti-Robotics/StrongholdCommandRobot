@@ -2,36 +2,37 @@ package org.usfirst.frc.team3506.robot.subsystems;
 
 import org.usfirst.frc.team3506.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Value;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class FlywheelSubsystem extends Subsystem {
-	private Relay spikeShooterLeft, spikeShooterRight;
+	private CANTalon shooterFlywheelLeft;
+	private Talon shooterFlywheelRight;
 	public boolean isActive;
 	
 	public FlywheelSubsystem(){
-		this.spikeShooterLeft = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_LEFT);
-		this.spikeShooterRight = new Relay(RobotMap.SPIKE_SHOOTER_RELAY_PORT_RIGHT);
+		shooterFlywheelLeft = new CANTalon(RobotMap.CAN_TALON_SHOOTER_PORT_LEFT);
+		shooterFlywheelRight = new Talon(RobotMap.PWM_TALON_SHOOTER_PORT_RIGHT);
 		isActive = false;
 	}
 	
 	public void activateFlywheels(){
-		this.spikeShooterLeft.set(Value.kReverse);
-		this.spikeShooterRight.set(Value.kForward);
+		shooterFlywheelLeft.set(1);
+		shooterFlywheelRight.set(-1);
 	}
 
 	public void deactivateFlywheels(){
-		this.spikeShooterLeft.set(Value.kOff);
-		this.spikeShooterRight.set(Value.kOff);
+		shooterFlywheelLeft.set(0);;
+		shooterFlywheelRight.set(0);
 	}
 	
 	public void reverseFlywheeels(){
-		this.spikeShooterLeft.set(Value.kReverse);
-		this.spikeShooterRight.set(Value.kForward);
+		shooterFlywheelLeft.set(1);
+		shooterFlywheelRight.set(-1);
 	}
 
     public void initDefaultCommand() {
