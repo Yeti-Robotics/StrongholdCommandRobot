@@ -5,6 +5,7 @@ import org.usfirst.frc.team3506.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,8 +22,8 @@ public class FlywheelSubsystem extends Subsystem {
 	}
 	
 	public void activateFlywheels(){
-		shooterFlywheelLeft.set(1);
-		shooterFlywheelRight.set(-1);
+		shooterFlywheelLeft.set(RobotMap.FLYWHEEL_SPEED);
+		shooterFlywheelRight.set(-RobotMap.FLYWHEEL_SPEED);
 	}
 
 	public void deactivateFlywheels(){
@@ -31,10 +32,10 @@ public class FlywheelSubsystem extends Subsystem {
 	}
 	
 	public void reverseFlywheeels(){
-		shooterFlywheelLeft.set(1);
-		shooterFlywheelRight.set(-1);
+		shooterFlywheelLeft.set(-RobotMap.FLYWHEEL_SPEED);
+		shooterFlywheelRight.set(RobotMap.FLYWHEEL_SPEED);
 	}
-
+	
     public void initDefaultCommand() {
     	
     }
