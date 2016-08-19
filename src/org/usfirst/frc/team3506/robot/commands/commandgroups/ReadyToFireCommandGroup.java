@@ -4,7 +4,7 @@ import org.usfirst.frc.team3506.robot.commands.shooter.KeepShooterStaticCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterToEncoderPositionCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.MoveShooterUpToString;
 import org.usfirst.frc.team3506.robot.commands.shooter.ResetShooterEncoderCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.KeepFlywheelsHeldCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.TurnOnFlywheelsCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

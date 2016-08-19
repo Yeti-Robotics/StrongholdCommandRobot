@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class KeepFlywheelsHeldCommand extends Command {
+public class TurnOnFlywheelsCommand extends Command {
 
-    public KeepFlywheelsHeldCommand() {
+    public TurnOnFlywheelsCommand() {
     	requires(Robot.flywheels);
     }
 
@@ -18,12 +18,6 @@ public class KeepFlywheelsHeldCommand extends Command {
     }
 
     protected void execute() {
-    	/*Robot.flywheels.isActive = !Robot.flywheels.isActive;
-    	if(Robot.flywheels.isActive){
-    		Robot.flywheels.activateFlywheels();
-    	} else{
-    		Robot.flywheels.deactivateFlywheels();
-    	}*/
     	Robot.flywheels.activateFlywheels();
     }
 

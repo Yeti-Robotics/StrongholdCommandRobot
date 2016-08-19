@@ -70,6 +70,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cheval de frise", AutoModes.CHEVAL_DE_FRISE);
 		autoChooser.addObject("Low bar", AutoModes.LOW_BAR);
 		SmartDashboard.putData("Auto Chooser", autoChooser);
+		SmartDashboard.putNumber("flywheel-speed", .6d);
 	}
 
 	public void disabledInit() {

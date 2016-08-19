@@ -36,6 +36,11 @@ public class FlywheelSubsystem extends Subsystem {
 		shooterFlywheelRight.set(RobotMap.FLYWHEEL_SPEED);
 	}
 	
+	public void setFlywheelSpeed(double speed) {
+		shooterFlywheelLeft.set(speed);
+		shooterFlywheelRight.set(-speed);
+	}
+	
     public void initDefaultCommand() {
     	
     }

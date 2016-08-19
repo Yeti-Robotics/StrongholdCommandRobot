@@ -8,15 +8,17 @@ import org.usfirst.frc.team3506.robot.commands.climber.DeactivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ShootAfterClimbingCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.TestFireAtSpeedCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput.Joysticks;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.ToggleRobotFrontCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ToggleGearShiftCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarForwardCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarReverseCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.KeepFlywheelsHeldCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.TurnOnFlywheelsCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropUpShooterCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.TurnFlywheelAtSpeedCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -37,7 +39,7 @@ public class OI {
 		leftStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		
 		//Shooter joystick
-		setJoystickButtonWhilePressedCommand(shooterStick, 1, new KeepFlywheelsHeldCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 1, new TurnFlywheelAtSpeedCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarReverseCommand());
 		//setJoystickButtonWhilePressedCommand(shooterStick, 4, new MoveShooterDownCommand());
@@ -49,7 +51,7 @@ public class OI {
 		setJoystickButtonWhenPressedCommand(shooterStick, 8, new ShootAfterClimbingCommandGroup());
 		setJoystickButtonWhenPressedCommand(shooterStick, 9, new ActivateBrakeCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 10, new DeactivateBrakeCommand());
-		setJoystickButtonWhenPressedCommand(shooterStick, 11, new KeepFlywheelsHeldCommand());
+		setJoystickButtonWhenPressedCommand(shooterStick, 11, new TurnOnFlywheelsCommand());
 		
 		//Right joystick
 		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleRobotFrontCommand());
