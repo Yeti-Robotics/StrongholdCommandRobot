@@ -8,6 +8,7 @@ import org.usfirst.frc.team3506.robot.commands.climber.ActivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.DeactivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
+import org.usfirst.frc.team3506.robot.commands.commandgroups.MoveArmAndFireCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ShootAfterClimbingCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput.Joysticks;
@@ -35,11 +36,11 @@ public class OI {
 	
 	public OI(){
 		shooterStick = new Joystick(RobotMap.SHOOTER_STICK_PORT);
-		rightStick = new Joystick(RobotMap.LEFT_STICK_PORT);
-		leftStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
+		rightStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
+		leftStick = new Joystick(RobotMap.LEFT_STICK_PORT);
 		
 		//Shooter joystick
-		setJoystickButtonWhilePressedCommand(shooterStick, 1, new TurnFlywheelAtSpeedCommand());
+		setJoystickButtonWhilePressedCommand(shooterStick, 1, new MoveArmAndFireCommandGroup());
 		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarReverseCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 4, new PropUpShooterCommand());
@@ -59,7 +60,7 @@ public class OI {
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());
-		setJoystickButtonWhenPressedCommand(leftStick, 2, new MoveArmToShootCommand());
+		setJoystickButtonWhilePressedCommand(leftStick, 2, new MoveArmToShootCommand());
 //		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
 //		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
 //		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
@@ -125,6 +126,10 @@ public class OI {
 			default:
 				return false; 
 		}
+	}
+	
+	public Joystick getShooter() {
+		return shooterStick;
 	}
 	
 	private void setJoystickButtonWhenPressedCommand(Joystick joystick, int button, Command command) {

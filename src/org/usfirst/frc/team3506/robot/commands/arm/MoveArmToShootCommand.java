@@ -17,7 +17,7 @@ public class MoveArmToShootCommand extends Command {
     }
 
     protected void execute() {
-		Robot.arm.moveBallGrabberUp();
+		Robot.arm.moveBallGrabberToShoot();
     }
 
     protected boolean isFinished() {

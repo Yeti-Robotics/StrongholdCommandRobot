@@ -9,8 +9,8 @@ public class RobotMap {
 	//Robot and controller constants
 	public static final double ROBOT_WHEEL_DIAMETER_FT = 9.0 / 12.0; //feet
 	public static final int SHOOTER_STICK_PORT = 0;
-	public static final int LEFT_STICK_PORT = 1;
-	public static final int RIGHT_STICK_PORT = 2;
+	public static final int RIGHT_STICK_PORT = 1;
+	public static final int LEFT_STICK_PORT = 2;
 	public static final double DEAD_ZONE_MOD = 0.05;
 	public static final double ROBOT_TRACK_WIDTH_FT = 22.5 / 12.0;
 	
@@ -31,7 +31,7 @@ public class RobotMap {
 	//Arm
 	public static final int BALL_GRABBER_CAN_TALON_ID = 3;
 	public static final double ARM_SPEED_OPERATOR = 0.35;
-	public static final double ARM_SHOOT_SPEED_OPERATOR = 0.1;
+	public static final double ARM_SHOOT_SPEED_OPERATOR = 0.17;
 	public static final int ARM_LIMIT_SWITCH_PORT = 4;
 	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 1.0; //UPDATE
 	public static final int MIN_ENCODER_VALUE = 0; //UPDATE
