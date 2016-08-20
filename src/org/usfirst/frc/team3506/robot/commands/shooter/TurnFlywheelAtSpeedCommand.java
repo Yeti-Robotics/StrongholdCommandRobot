@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3506.robot.commands.shooter;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,7 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class TurnFlywheelAtSpeedCommand extends Command {
-	private double flywheelSpeed;
 
     public TurnFlywheelAtSpeedCommand() {
         requires(Robot.flywheels);
@@ -17,12 +17,12 @@ public class TurnFlywheelAtSpeedCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	flywheelSpeed = SmartDashboard.getNumber("flywheel-speed", 0.6d);
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.flywheels.setFlywheelSpeed(flywheelSpeed);
+    	Robot.flywheels.setFlywheelSpeed(RobotMap.DEFAULT_FLYWHEEL_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()

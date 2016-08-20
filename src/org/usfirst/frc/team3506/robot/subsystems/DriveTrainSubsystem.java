@@ -86,11 +86,11 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 
 	public double getRawLeftEncoderVel() {
-		return leftEnc.getRate();
+		return leftEnc.get();
 	}
 
 	public double getRawRightEncoderVel() {
-		return rightEnc.getRate();
+		return rightEnc.get();
 	}
 
 	public void tankDrive(double left, double right) {
@@ -134,8 +134,8 @@ public class DriveTrainSubsystem extends Subsystem {
 	public void publishEncoderValues() {
 		SmartDashboard.putNumber("Left drive encoder position (raw)", getRawLeftEncoderPos());
 		SmartDashboard.putNumber("Left drive encoder velocity (raw)", getRawLeftEncoderVel());
-		SmartDashboard.putNumber("Right drive encoder positon (raw)", getRawRightEncoderPos());
-		SmartDashboard.putNumber("Right drive encoder velocity (raw)", getRawRightEncoderVel());
+//		SmartDashboard.putNumber("Right drive encoder positon (raw)", getRawRightEncoderPos());
+//		SmartDashboard.putNumber("Right drive encoder velocity (raw)", getRawRightEncoderVel());
 	}
 
 	public void addToLW() {
