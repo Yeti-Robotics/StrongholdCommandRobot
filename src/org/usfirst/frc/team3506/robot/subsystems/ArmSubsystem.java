@@ -47,6 +47,10 @@ public class ArmSubsystem extends Subsystem {
 		ballGrabber.set(-RobotMap.ARM_SPEED_OPERATOR);
 	}
 	
+	public void moveBallGrabberToShoot() {
+		ballGrabber.set(RobotMap.ARM_SHOOT_SPEED_OPERATOR);
+	}
+	
 	public boolean getUpperLimit(){
 		return this.upperLimit.get();
 	}

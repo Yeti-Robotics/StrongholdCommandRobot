@@ -3,22 +3,22 @@ package org.usfirst.frc.team3506.robot;
 
 import org.usfirst.frc.team3506.robot.commands.SetDriveModeToArcadeCommand;
 import org.usfirst.frc.team3506.robot.commands.SetDriveModeToTankCommand;
+import org.usfirst.frc.team3506.robot.commands.arm.MoveArmToShootCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.ActivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.DeactivateBrakeCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ShootAfterClimbingCommandGroup;
-import org.usfirst.frc.team3506.robot.commands.commandgroups.TestFireAtSpeedCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput.Joysticks;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.ToggleRobotFrontCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ToggleGearShiftCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarForwardCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarReverseCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.TurnOnFlywheelsCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropUpShooterCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.TurnFlywheelAtSpeedCommand;
+import org.usfirst.frc.team3506.robot.commands.shooter.TurnOnFlywheelsCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -42,8 +42,6 @@ public class OI {
 		setJoystickButtonWhilePressedCommand(shooterStick, 1, new TurnFlywheelAtSpeedCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarReverseCommand());
-		//setJoystickButtonWhilePressedCommand(shooterStick, 4, new MoveShooterDownCommand());
-		//setJoystickButtonWhilePressedCommand(shooterStick, 5, new ReadyToFireCommandGroup());
 		setJoystickButtonWhenPressedCommand(shooterStick, 4, new PropUpShooterCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 5, new PropShooterDownCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 6, new MoveClimberUpCommand());
@@ -61,6 +59,7 @@ public class OI {
 		
 		//Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 2, new MoveArmToShootCommand());
 //		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
 //		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
 //		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
