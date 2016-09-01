@@ -21,7 +21,7 @@ public class MoveArmToShootCommand extends Command {
     }
 
     protected boolean isFinished() {
-    	return false;
+    	return Robot.arm.getUpperLimit();
     }
 
     protected void end() {

@@ -129,7 +129,7 @@ public class Robot extends IterativeRobot {
 			inputSequence.add(currentInput);
 		}
 		driveTrain.publishEncoderValues();
-//		arm.publishEncoderValues();
+		arm.publishEncoderValues();
 //		shooter.publishEncoderValues();
 	}
 
