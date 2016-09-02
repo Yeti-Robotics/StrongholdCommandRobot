@@ -9,7 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class PointTurnDegreesAtPowerCommand extends Command {
-	private double degrees, power, distance, ticks;
+	private double degrees, power, turnArcLength;
+	/**
+	 * @param degrees The amount, in degrees, to turn. A positive value will turn clockwise and a negative counter clockwise.
+	 * @param power The speed at which to turn. A negative value will cause the robot to turn in the opposite direction specified by degrees.
+	 */
     public PointTurnDegreesAtPowerCommand(double degrees, double power) {
     	this.degrees = degrees;
     	this.power = power;
@@ -18,22 +22,21 @@ public class PointTurnDegreesAtPowerCommand extends Command {
 
     protected void initialize() {
     	Robot.driveTrain.resetEncoders();
-    	distance = (this.degrees / 360.0) * (RobotMap.ROBOT_TRACK_WIDTH_FT * Math.PI);
-    	ticks = Robot.driveTrain.convertFeetToTicks(distance);
+    	turnArcLength = (degrees / 360.0) * (RobotMap.ROBOT_TRACK_WIDTH_FT * Math.PI);
     }
 
     protected void execute() {
-    	if(ticks > 0){
+    	if(degrees > 0){
     		Robot.driveTrain.moveLeftTrain(power);
     		Robot.driveTrain.moveRightTrain(-power);
-    	} else if(ticks < 0){
+    	} else if(degrees < 0){
     		Robot.driveTrain.moveLeftTrain(-power);
     		Robot.driveTrain.moveRightTrain(power);
     	}
     }
 
     protected boolean isFinished() {
-    	return Math.abs(Robot.driveTrain.getRawLeftEncoderPos() - ticks) <= 10;
+    	return Math.abs(Robot.driveTrain.getLeftEncoderDistance()) >= turnArcLength;
     }
 
     protected void end() {

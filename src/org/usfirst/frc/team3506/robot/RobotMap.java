@@ -24,14 +24,15 @@ public class RobotMap {
 	public static final double AUTO_DRIVE_SPEED = 0.3;
 	public static final double USER_SPEED_CONTROL_MODIFIER = 0.8;
 	public static final int GYRO_PORT = 0; //UPDATE
-	public static final double DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER = (ROBOT_WHEEL_DIAMETER_FT * Math.PI) / 490;
+	public static final int DRIVE_TRAIN_ENCODER_PULSES_PER_REV = 490;
+	public static final double DRIVE_TRAIN_ENCODER_DISTANCE_PER_PULSE = (ROBOT_WHEEL_DIAMETER_FT * Math.PI) / DRIVE_TRAIN_ENCODER_PULSES_PER_REV;
 	public static final int[] LEFT_ENCODER_PORT = {0, 1};
 	public static final int[] RIGHT_ENCODER_PORT = {2, 3};
 	
 	//Arm
 	public static final int BALL_GRABBER_CAN_TALON_ID = 3;
 	public static final double ARM_SPEED_OPERATOR = 0.35;
-	public static final double ARM_SHOOT_SPEED_OPERATOR = 0.2;
+	public static final double ARM_SHOOT_SPEED_OPERATOR = 0.3;
 	public static final int ARM_LIMIT_SWITCH_PORT = 9;
 	public static final double ARM_ENCODER_RAW_TO_DEGREES_MODIFIER = 1.0; //UPDATE
 	public static final int MIN_ENCODER_VALUE = 0; //UPDATE

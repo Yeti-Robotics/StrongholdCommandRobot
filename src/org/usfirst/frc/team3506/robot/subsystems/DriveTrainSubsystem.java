@@ -60,9 +60,10 @@ public class DriveTrainSubsystem extends Subsystem {
 		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftEnc = new Encoder(RobotMap.LEFT_ENCODER_PORT[0], RobotMap.LEFT_ENCODER_PORT[1]);
 		rightEnc = new Encoder(RobotMap.RIGHT_ENCODER_PORT[0], RobotMap.RIGHT_ENCODER_PORT[1]);
+		leftEnc.setDistancePerPulse(RobotMap.DRIVE_TRAIN_ENCODER_DISTANCE_PER_PULSE);
+		rightEnc.setDistancePerPulse(RobotMap.DRIVE_TRAIN_ENCODER_DISTANCE_PER_PULSE);
 		front = Front.ARM;
 		controlType = ControlType.TANK;
-
 	}
 
 	public void setFront(Front front) {
@@ -74,11 +75,19 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 
 	public double getRawLeftEncoderPos() {
+		return leftEnc.get();
+	}
+	
+	public double getLeftEncoderDistance() {
 		return leftEnc.getDistance();
+	}
+	
+	public double getRightEncoderDistance() {
+		return rightEnc.getDistance();
 	}
 
 	public double getRawRightEncoderPos() {
-		return rightEnc.getDistance();
+		return rightEnc.get();
 	}
 
 	public double getRawAvgEncoderPos() {
@@ -86,11 +95,11 @@ public class DriveTrainSubsystem extends Subsystem {
 	}
 
 	public double getRawLeftEncoderVel() {
-		return leftEnc.get();
+		return leftEnc.getRate();
 	}
 
 	public double getRawRightEncoderVel() {
-		return rightEnc.get();
+		return rightEnc.getRate();
 	}
 
 	public void tankDrive(double left, double right) {
@@ -121,14 +130,6 @@ public class DriveTrainSubsystem extends Subsystem {
 
 	public double convertToRadians(double degrees) {
 		return 2 * Math.PI * (degrees / 360.0);
-	}
-
-	public double convertFeetToTicks(double feet) {
-		return feet * RobotMap.DRIVE_TRAIN_ENCODER_TO_FEET_MODIFIER;
-	}
-
-	public double convertTrainVelocityToPower(double velocity) {
-		return 0.0;
 	}
 
 	public void publishEncoderValues() {

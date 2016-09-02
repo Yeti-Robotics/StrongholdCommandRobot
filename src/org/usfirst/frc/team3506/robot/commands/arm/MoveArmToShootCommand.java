@@ -25,10 +25,10 @@ public class MoveArmToShootCommand extends Command {
     }
 
     protected void end() {
-    	Robot.arm.moveBallGrabber(0);
+    	
     }
 
     protected void interrupted() {
-    	Robot.arm.moveBallGrabber(0);
+    	
     }
 }

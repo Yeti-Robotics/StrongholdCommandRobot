@@ -40,7 +40,7 @@ public class OI {
 		leftStick = new Joystick(RobotMap.LEFT_STICK_PORT);
 		
 		//Shooter joystick
-		setJoystickButtonWhilePressedCommand(shooterStick, 1, new MoveArmAndFireCommandGroup());
+		setJoystickButtonWhenPressedCommand(shooterStick, 1, new MoveArmAndFireCommandGroup());
 		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarReverseCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 4, new PropUpShooterCommand());

@@ -6,8 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveStraightDistanceAtPower extends Command{
 
-	double power, distance, ticks;
+	double power, distance;
 	
+	/**
+	 * @param power The speed at which to drive. A negative value will cause the robot to drive backwards.
+	 * @param distance The distance, in feet, to drive.
+	 */
 	public DriveStraightDistanceAtPower(double power, double distance) {
 		this.power = power;
 		this.distance = distance;
@@ -15,7 +19,6 @@ public class DriveStraightDistanceAtPower extends Command{
 	
 	protected void initialize() {
 		Robot.driveTrain.resetEncoders();
-		ticks = Robot.driveTrain.convertFeetToTicks(distance);
 	}
 
 	@Override
@@ -25,7 +28,7 @@ public class DriveStraightDistanceAtPower extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.driveTrain.getRawAvgEncoderPos() >= ticks;
+		return Robot.driveTrain.getLeftEncoderDistance() >= distance;
 	}
 
 	@Override

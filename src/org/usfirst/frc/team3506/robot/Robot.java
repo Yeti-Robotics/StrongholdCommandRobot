@@ -129,10 +129,11 @@ public class Robot extends IterativeRobot {
 			inputSequence.add(currentInput);
 		}
 		driveTrain.publishEncoderValues();
-		arm.publishEncoderValues();
+		SmartDashboard.putBoolean("Arm limit", arm.getUpperLimit());
+//		arm.publishEncoderValues();
 //		shooter.publishEncoderValues();
 	}
-
+	
 	public void testPeriodic() {
 		LiveWindow.setEnabled(true);
 		LiveWindow.run();

@@ -19,12 +19,11 @@ public class UserOperateArmCommand extends Command {
 	}
 
 	protected void execute() {
-//    	if ((!Robot.arm.getUpperLimit() && Robot.oi.getShooterY() > 0) || 
-//    			(Robot.arm.getRawEncoderPos() >/*or < (needs testing)*/ RobotMap.MIN_ENCODER_VALUE && Robot.oi.getShooterY() < 0)) {
+    	if ((!Robot.arm.getUpperLimit()) || (Robot.arm.getUpperLimit() && Robot.oi.getShooterY() > 0)) {
 			Robot.arm.moveBallGrabber(Robot.oi.getShooterY());
-//		} else {
-//			Robot.arm.stopBallGrabber();
-//		}
+		} else  {
+			Robot.arm.stopBallGrabber();
+		}
     }
 
 	protected boolean isFinished() {
