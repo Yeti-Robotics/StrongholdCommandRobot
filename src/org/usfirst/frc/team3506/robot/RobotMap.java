@@ -24,7 +24,7 @@ public class RobotMap {
 	public static final double AUTO_DRIVE_SPEED = 0.3;
 	public static final double USER_SPEED_CONTROL_MODIFIER = 0.8;
 	public static final int GYRO_PORT = 0; //UPDATE
-	public static final int DRIVE_TRAIN_ENCODER_PULSES_PER_REV = 490;
+	public static final int DRIVE_TRAIN_ENCODER_PULSES_PER_REV = 1;
 	public static final double DRIVE_TRAIN_ENCODER_DISTANCE_PER_PULSE = (ROBOT_WHEEL_DIAMETER_FT * Math.PI) / DRIVE_TRAIN_ENCODER_PULSES_PER_REV;
 	public static final int[] LEFT_ENCODER_PORT = {0, 1};
 	public static final int[] RIGHT_ENCODER_PORT = {2, 3};

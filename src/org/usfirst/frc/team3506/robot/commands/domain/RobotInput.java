@@ -1,15 +1,20 @@
 package org.usfirst.frc.team3506.robot.commands.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class RobotInput implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	public static enum Joysticks {
 		LEFT, RIGHT, ARM
 	};
+
 	private double leftY, rightY, armY;
 	public boolean[] leftButtons = new boolean[11];
 	public boolean[] rightButtons = new boolean[11];
@@ -17,64 +22,66 @@ public class RobotInput implements Serializable {
 	public static Command[] leftCommands = new Command[11];
 	public static Command[] rightCommands = new Command[11];
 	public static Command[] armCommands = new Command[11];
-	
-	public void setButtonState(Joysticks joystick, int button, boolean state){
+
+	public void setButtonState(Joysticks joystick, int button, boolean state) {
 		button--;
-		switch(joystick){
+		switch (joystick) {
 			case LEFT:
-				this.leftButtons[button] = state;
+				leftButtons[button] = state;
 				break;
 			case RIGHT:
-				this.rightButtons[button] = state;
+				rightButtons[button] = state;
 				break;
 			case ARM:
-				this.armButtons[button] = state;
+				armButtons[button] = state;
 				break;
 		}
 	}
-	
-	public void setJoystickYAxis(Joysticks joystick, double val){
-		switch(joystick){
+
+	public void setJoystickYAxis(Joysticks joystick, double val) {
+		switch (joystick) {
 			case LEFT:
-				this.leftY = val;
+				leftY = val;
 				break;
 			case RIGHT:
-				this.rightY = val;
+				rightY = val;
 				break;
 			case ARM:
-				this.armY = val;
+				armY = val;
 				break;
 		}
 	}
-	
-	public double[] getJoysticksYAxisStatus(){
-		double[] joysticksYAxisStatus = {this.leftY, this.rightY, this.armY};
+
+	public double[] getJoysticksYAxisStatus() {
+		double[] joysticksYAxisStatus = { leftY, rightY, armY };
 		return joysticksYAxisStatus;
 	}
-	
-	public boolean getButtonStatus(Joysticks joystick, int button){
-		switch(joystick){
+
+	public boolean getButtonStatus(Joysticks joystick, int button) {
+		button--;
+		switch (joystick) {
 			case LEFT:
-				return leftButtons[button-1];
+				return leftButtons[button];
 			case RIGHT:
-				return rightButtons[button-1];
+				return rightButtons[button];
 			case ARM:
-				return armButtons[button-1];
+				return armButtons[button];
 			default:
 				return false;
 		}
 	}
-	
-	public static void elicitCommand(Joysticks joystick, int button){
-		switch(joystick){
+
+	public static void elicitCommand(Joysticks joystick, int button) {
+		button--;
+		switch (joystick) {
 			case LEFT:
-				Scheduler.getInstance().add(RobotInput.leftCommands[button-1]);
+				Scheduler.getInstance().add(RobotInput.leftCommands[button]);
 				break;
 			case RIGHT:
-				Scheduler.getInstance().add(RobotInput.rightCommands[button-1]);
+				Scheduler.getInstance().add(RobotInput.rightCommands[button]);
 				break;
 			case ARM:
-				Scheduler.getInstance().add(RobotInput.armCommands[button-1]);
+				Scheduler.getInstance().add(RobotInput.armCommands[button]);
 				break;
 		}
 	}

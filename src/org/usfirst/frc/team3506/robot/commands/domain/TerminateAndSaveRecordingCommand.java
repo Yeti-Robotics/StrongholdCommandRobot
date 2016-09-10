@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team3506.robot.Robot;
+import org.usfirst.frc.team3506.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -21,14 +22,13 @@ public class TerminateAndSaveRecordingCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.recording = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.recording = false;
     	try{
-    		File file = new File("/recording/" + new Long(System.currentTimeMillis()).toString() + "recording.txt");
+    		File file = new File("/home/lvuser/recordings/" + new Long(System.currentTimeMillis()).toString() + "recording.txt");
     		FileOutputStream fs = new FileOutputStream(file);
     		ObjectOutputStream os = new ObjectOutputStream(fs);
     		os.writeObject(Robot.inputSequence);

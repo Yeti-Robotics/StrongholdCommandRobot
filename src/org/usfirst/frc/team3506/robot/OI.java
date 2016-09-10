@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3506.robot;
 
-
 import org.usfirst.frc.team3506.robot.commands.SetDriveModeToArcadeCommand;
 import org.usfirst.frc.team3506.robot.commands.SetDriveModeToTankCommand;
 import org.usfirst.frc.team3506.robot.commands.arm.MoveArmToShootCommand;
@@ -10,15 +9,18 @@ import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberDownCommand;
 import org.usfirst.frc.team3506.robot.commands.climber.MoveClimberUpCommand;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.MoveArmAndFireCommandGroup;
 import org.usfirst.frc.team3506.robot.commands.commandgroups.ShootAfterClimbingCommandGroup;
+import org.usfirst.frc.team3506.robot.commands.domain.InitiateRecordingCommand;
+import org.usfirst.frc.team3506.robot.commands.domain.PlayRecordingCommand;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput;
 import org.usfirst.frc.team3506.robot.commands.domain.RobotInput.Joysticks;
+import org.usfirst.frc.team3506.robot.commands.domain.TerminateAndSaveRecordingCommand;
+import org.usfirst.frc.team3506.robot.commands.drivetrain.ResetDriveTrainEncodersCommand;
 import org.usfirst.frc.team3506.robot.commands.drivetrain.ToggleRobotFrontCommand;
 import org.usfirst.frc.team3506.robot.commands.gearshift.ToggleGearShiftCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarForwardCommand;
 import org.usfirst.frc.team3506.robot.commands.rollerbar.HoldRollerBarReverseCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropShooterDownCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.PropUpShooterCommand;
-import org.usfirst.frc.team3506.robot.commands.shooter.TurnFlywheelAtSpeedCommand;
 import org.usfirst.frc.team3506.robot.commands.shooter.TurnOnFlywheelsCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -33,13 +35,13 @@ public class OI {
 	public Joystick shooterStick;
 	private Joystick rightStick;
 	private Joystick leftStick;
-	
-	public OI(){
+
+	public OI() {
 		shooterStick = new Joystick(RobotMap.SHOOTER_STICK_PORT);
 		rightStick = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		leftStick = new Joystick(RobotMap.LEFT_STICK_PORT);
-		
-		//Shooter joystick
+
+		// Shooter joystick
 		setJoystickButtonWhenPressedCommand(shooterStick, 1, new MoveArmAndFireCommandGroup());
 		setJoystickButtonWhilePressedCommand(shooterStick, 2, new HoldRollerBarForwardCommand());
 		setJoystickButtonWhilePressedCommand(shooterStick, 3, new HoldRollerBarReverseCommand());
@@ -51,107 +53,108 @@ public class OI {
 		setJoystickButtonWhenPressedCommand(shooterStick, 9, new ActivateBrakeCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 10, new DeactivateBrakeCommand());
 		setJoystickButtonWhenPressedCommand(shooterStick, 11, new TurnOnFlywheelsCommand());
-		
-		//Right joystick
+
+		// Right joystick
 		setJoystickButtonWhenPressedCommand(rightStick, 1, new ToggleRobotFrontCommand());
 		setJoystickButtonWhenPressedCommand(rightStick, 4, new SetDriveModeToTankCommand());
 		setJoystickButtonWhenPressedCommand(rightStick, 5, new SetDriveModeToArcadeCommand());
-		//setJoystickButtonWhenPressedCommand(rightStick, 10, new MoveShooterToPositionAndFireCommandGroup());
-		
-		//Left joystick
+		// setJoystickButtonWhenPressedCommand(rightStick, 10, new
+		// MoveShooterToPositionAndFireCommandGroup());
+
+		// Left joystick
 		setJoystickButtonWhenPressedCommand(leftStick, 1, new ToggleGearShiftCommand());
 		setJoystickButtonWhilePressedCommand(leftStick, 2, new MoveArmToShootCommand());
-//		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
-//		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
-//		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
-		
+		setJoystickButtonWhenPressedCommand(leftStick, 8, new ResetDriveTrainEncodersCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 3, new PlayRecordingCommand(""));
+		setJoystickButtonWhenPressedCommand(leftStick, 4, new InitiateRecordingCommand());
+		setJoystickButtonWhenPressedCommand(leftStick, 5, new TerminateAndSaveRecordingCommand());
+
 	}
-	
-	public double getShooterY(){
-		if(!(shooterStick == null)){
+
+	public double getShooterY() {
+		if (!(shooterStick == null)) {
 			return -deadZoneMod(shooterStick.getY());
-		} else{
+		} else {
 			return 0;
 		}
 	}
-	
-	public double getLeftX(){
-		if(!(rightStick == null)){
+
+	public double getLeftX() {
+		if (!(rightStick == null)) {
 			return deadZoneMod(rightStick.getX());
-		} else{
+		} else {
 			return 0;
 		}
 	}
-	
-	public double getRightX(){
-		if(!(leftStick == null)){
+
+	public double getRightX() {
+		if (!(leftStick == null)) {
 			return deadZoneMod(leftStick.getX());
-		} else{
+		} else {
 			return 0;
 		}
 	}
-	
-	public double getLeftY(){
-		if(!(rightStick == null)){
+
+	public double getLeftY() {
+		if (!(rightStick == null)) {
 			return deadZoneMod(rightStick.getY());
-		} else{
+		} else {
 			return 0;
 		}
 	}
-	
-	public double getRightY(){
-		if(!(leftStick == null)){
+
+	public double getRightY() {
+		if (!(leftStick == null)) {
 			return deadZoneMod(leftStick.getY());
-		} else{
+		} else {
 			return 0;
 		}
 	}
-	
-	private double deadZoneMod(double val){
-		if(Math.abs(val) <= RobotMap.DEAD_ZONE_MOD){
+
+	private double deadZoneMod(double val) {
+		if (Math.abs(val) <= RobotMap.DEAD_ZONE_MOD) {
 			return 0;
-		} else{
+		} else {
 			return val;
 		}
 	}
-	
-	public boolean getButtonStatus(Joysticks joystick, int button){
-		switch(joystick){
+
+	public boolean getButtonStatus(Joysticks joystick, int button) {
+		switch (joystick) {
 			case LEFT:
 				return leftStick.getRawButton(button);
 			case RIGHT:
 				return rightStick.getRawButton(button);
-			case ARM: 
+			case ARM:
 				return shooterStick.getRawButton(button);
 			default:
-				return false; 
+				return false;
 		}
 	}
-	
+
 	public Joystick getShooter() {
 		return shooterStick;
 	}
-	
+
 	private void setJoystickButtonWhenPressedCommand(Joystick joystick, int button, Command command) {
 		new JoystickButton(joystick, button).whenPressed(command);
-		if(joystick == this.rightStick){
-			RobotInput.rightCommands[button-1] = command;
-		} else if(joystick == this.leftStick){
-			RobotInput.leftCommands[button-1] = command;
-		} else if(joystick == this.shooterStick){
-			RobotInput.armCommands[button-1] = command;
+		if (joystick == rightStick) {
+			RobotInput.rightCommands[button - 1] = command;
+		} else if (joystick == leftStick) {
+			RobotInput.leftCommands[button - 1] = command;
+		} else if (joystick == shooterStick) {
+			RobotInput.armCommands[button - 1] = command;
 		}
 	}
-	
-	private void setJoystickButtonWhilePressedCommand(Joystick joystick, int button, Command command){
+
+	private void setJoystickButtonWhilePressedCommand(Joystick joystick, int button, Command command) {
 		new JoystickButton(joystick, button).whileHeld(command);
-		if(joystick == this.rightStick){
-			RobotInput.rightCommands[button-1] = command;
-		} else if(joystick == this.leftStick){
-			RobotInput.leftCommands[button-1] = command;
-		} else if(joystick == this.shooterStick){
-			RobotInput.armCommands[button-1] = command;
+		if (joystick == rightStick) {
+			RobotInput.rightCommands[button - 1] = command;
+		} else if (joystick == leftStick) {
+			RobotInput.leftCommands[button - 1] = command;
+		} else if (joystick == shooterStick) {
+			RobotInput.armCommands[button - 1] = command;
 		}
 	}
 }
-

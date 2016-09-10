@@ -43,12 +43,14 @@ public class Robot extends IterativeRobot {
 	public static FlywheelSubsystem flywheels;
 	public static boolean captureMode;
 	public static boolean recording;
-	public static List <RobotInput> inputSequence = new ArrayList<RobotInput>();
-	public static List <RobotInput> recentInputSequence = new ArrayList<RobotInput>();
-	
+	public static List<RobotInput> inputSequence = new ArrayList<RobotInput>();
+	public static List<RobotInput> recentInputSequence = new ArrayList<RobotInput>();
+
 	public SendableChooser autoChooser;
-	
-	public static enum AutoModes {CROSSABLE_DEFENSE, CHEVAL_DE_FRISE, LOW_BAR};
+
+	public static enum AutoModes {
+		CROSSABLE_DEFENSE, CHEVAL_DE_FRISE, LOW_BAR
+	};
 
 	public static Command autonomousCommand;
 
@@ -81,7 +83,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		switch((AutoModes)autoChooser.getSelected()){
+		switch ((AutoModes) autoChooser.getSelected()) {
 			case CROSSABLE_DEFENSE:
 				autonomousCommand = new CrossDefenseAutonomous();
 				break;
@@ -110,18 +112,18 @@ public class Robot extends IterativeRobot {
 
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		if(recording){
+		if (recording) {
 			RobotInput currentInput = new RobotInput();
 			currentInput.setJoystickYAxis(Joysticks.LEFT, oi.getLeftY());
 			currentInput.setJoystickYAxis(Joysticks.RIGHT, oi.getRightY());
 			currentInput.setJoystickYAxis(Joysticks.ARM, oi.getShooterY());
-			for(int i=0; i<3; i++){
-				for(int j=1; j<=11; j++){
-					if(i==0 && j != 4 && j != 5){
+			for (int i = 0; i < 3; i++) {
+				for (int j = 1; j <= 11; j++) {
+					if (i == 0 && j != 4 && j != 5) {
 						currentInput.setButtonState(Joysticks.LEFT, j, oi.getButtonStatus(Joysticks.LEFT, j));
-					} else if(i==1){
+					} else if (i == 1) {
 						currentInput.setButtonState(Joysticks.RIGHT, j, oi.getButtonStatus(Joysticks.RIGHT, j));
-					} else if(i==2){
+					} else if (i == 2) {
 						currentInput.setButtonState(Joysticks.ARM, j, oi.getButtonStatus(Joysticks.ARM, j));
 					}
 				}
@@ -130,10 +132,10 @@ public class Robot extends IterativeRobot {
 		}
 		driveTrain.publishEncoderValues();
 		SmartDashboard.putBoolean("Arm limit", arm.getUpperLimit());
-//		arm.publishEncoderValues();
-//		shooter.publishEncoderValues();
+		// arm.publishEncoderValues();
+		// shooter.publishEncoderValues();
 	}
-	
+
 	public void testPeriodic() {
 		LiveWindow.setEnabled(true);
 		LiveWindow.run();
